@@ -2,6 +2,8 @@
 package mathmarecette;
 
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -15,8 +17,10 @@ public class JLabelIngredient extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JLabelIngredient()
+	public JLabelIngredient(JPanelRecette _panelRecette, JPanelIngredients _panelIngredients)
 		{
+		this.panelRecette = _panelRecette;
+		this.panelIngredients = _panelIngredients;
 		geometry();
 		control();
 		appearance();
@@ -71,6 +75,18 @@ public class JLabelIngredient extends JPanel
 	private void control()
 		{
 		// rien
+		addMouseListener(new MouseAdapter()
+			{
+				@Override
+				public void mouseClicked(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					numQuestion++;
+					panelRecette.getJPanelJeu().getLabelQuestion().setText("<html><body><center><p>"+panelRecette.getListQuestion().get(numQuestion)+"</p></center></body></html>");
+					panelRecette.getJPanelJeu().getLabelCasserole().setText(labelQuantite.getText());
+					panelIngredients.setIngredient(panelRecette.gettabReponse()[numQuestion]);
+					}
+			});
 		}
 
 	private void appearance()
@@ -85,4 +101,7 @@ public class JLabelIngredient extends JPanel
 	// Tools
 	private JLabel labelImage;
 	private JLabel labelQuantite;
+	private JPanelRecette panelRecette;
+	private JPanelIngredients panelIngredients;
+	private static int numQuestion = 0;
 	}

@@ -2,17 +2,19 @@
 package mathmarecette;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
-import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class JFrameRecette extends JFrame
+public class JPanelMenu extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameRecette()
+	public JPanelMenu()
 		{
 		geometry();
 		control();
@@ -37,32 +39,39 @@ public class JFrameRecette extends JFrame
 
 	private void geometry()
 		{
-		// JComponent : Instanciation
-		panelRecette = new JPanelRecette();
-		panelRecette.setPreferredSize(new Dimension(600, 700));
+			// JComponent : Instanciation
+		labelTitre = new JLabel("Recette");
+
+		setSize(new Dimension(650, 50));
+		setLocation(0, 0);
+
+			// Layout : Specification
+			{
+			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
+			setLayout(flowlayout);
+
+			// flowlayout.setHgap(20);
+			// flowlayout.setVgap(20);
+			}
 
 		// JComponent : add
-		setContentPane(panelRecette);
-		pack();
+			add(labelTitre);
 		}
 
 	private void control()
 		{
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// rien
 		}
 
 	private void appearance()
 		{
-		setTitle("Math ma recette");
-		setLocationRelativeTo(null); // frame centrer
-		setVisible(true); // last!
+		// rien
 		}
 
 	/*------------------------------------------------------------------*\
-		|*							Attributs Private						*|
-		\*------------------------------------------------------------------*/
+	|*							Attributs Private						*|
+	\*------------------------------------------------------------------*/
 
 	// Tools
-	private JPanelRecette panelRecette;
-
+	private JLabel labelTitre;
 	}

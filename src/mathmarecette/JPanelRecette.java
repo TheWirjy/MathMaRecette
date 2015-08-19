@@ -1,12 +1,9 @@
 
 package mathmarecette;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class JPanelRecette extends JPanel
@@ -71,8 +68,32 @@ public class JPanelRecette extends JPanel
 
 	private void createTableauReponse()
 		{
-		createQuestion(0, "C:\\Users\\jeremy.wirth\\Desktop\\apple.png", "1/4 de pomme", "1/2 #", "1/2 pomme", "3 #", "3 pomme", "8 #", "8 pomme");
-		createQuestion(1, "C:\\Users\\jeremy.wirth\\Desktop\\orange10.png", "1/4 orange", "1/2 *", "1/2 orange", "3 *", "3 orange", "8 *", "8 orange");
+		createQuestion(0, "D:\\Desktop\\apple.png", "1", "D:\\Desktop\\apple.png", "1", "D:\\Desktop\\apple.png", "1", "D:\\Desktop\\apple.png", "1");
+		createQuestion(1, "*", "2", "*", "2", "*", "2", "*", "2");
+		createQuestion(2, "*", "3", "*", "3", "*", "3", "*", "3");
+		createQuestion(3, "*", "4", "*", "4", "*", "4", "*", "4");
+		createQuestion(4, "*", "5", "*", "5", "*", "5", "*", "5");
+		createQuestion(5, "*", "6", "*", "6", "*", "6", "*", "6");
+		createQuestion(6, "*", "7", "*", "7", "*", "7", "*", "7");
+		createQuestion(7, "*", "8", "*", "8", "*", "8", "*", "8");
+		createQuestion(8, "*", "9", "*", "9", "*", "9", "*", "9");
+		createQuestion(9, "*", "10", "*", "10", "*", "10", "*", "10");
+		createQuestion(10, "*", "11", "*", "11", "*", "11", "*", "11");
+		createQuestion(11, "*", "12", "*", "12", "*", "12", "*", "12");
+		createQuestion(12, "*", "13", "*", "13", "*", "13", "*", "13");
+		createQuestion(13, "*", "14", "*", "14", "*", "14", "*", "14");
+		createQuestion(14, "*", "15", "*", "15", "*", "15", "*", "15");
+		createQuestion(15, "*", "16", "*", "16", "*", "16", "*", "16");
+		createQuestion(16, "*", "17", "*", "17", "*", "17", "*", "17");
+		createQuestion(17, "*", "18", "*", "18", "*", "18", "*", "18");
+		createQuestion(18, "*", "19", "*", "19", "*", "19", "*", "19");
+		createQuestion(19, "*", "20", "*", "20", "*", "20", "*", "20");
+		createQuestion(20, "*", "21", "*", "21", "*", "21", "*", "21");
+		createQuestion(21, "*", "22", "*", "22", "*", "22", "*", "22");
+		createQuestion(22, "*", "23", "*", "23", "*", "23", "*", "23");
+		createQuestion(23, "*", "24", "*", "24", "*", "24", "*", "24");
+		createQuestion(24, "*", "25", "*", "25", "*", "25", "*", "25");
+		createQuestion(25, "*", "26", "*", "26", "*", "26", "*", "26");
 		}
 
 	private void createQuestion(int numQuestion, String img1, String q1, String img2, String q2, String img3, String q3, String img4, String q4)
@@ -91,6 +112,21 @@ public class JPanelRecette extends JPanel
 	|*				Get				*|
 	\*------------------------------*/
 
+	public List<String> getListQuestion()
+	{
+		return listQuestion;
+	}
+
+	public Ingredient[][] gettabReponse()
+	{
+		return tabReponse;
+	}
+
+	public JPanelJeu getJPanelJeu()
+		{
+			return panelJeu;
+		}
+
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
@@ -98,24 +134,16 @@ public class JPanelRecette extends JPanel
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		jpanelIngredients = new JPanelIngredients();
-		JButton buttonTest = new JButton("test");
-		buttonTest.addActionListener(new ActionListener()
-			{
+		jpanelIngredients = new JPanelIngredients(this);
+		panelMenu = new JPanelMenu();
+		panelJeu = new JPanelJeu();
 
-				@Override
-				public void actionPerformed(ActionEvent e)
-					{
-					// TODO Auto-generated method stub
-					jpanelIngredients.setIngredient(tabReponse[1]);
-					}
-			});
-
-		setLayout(new BorderLayout());
+		setLayout(null);
 
 		// JComponent : add
-		add(buttonTest, BorderLayout.CENTER);
-		add(jpanelIngredients, BorderLayout.SOUTH);
+		add(panelMenu);
+		add(panelJeu);
+		add(jpanelIngredients);
 		}
 
 	private void control()
@@ -136,6 +164,8 @@ public class JPanelRecette extends JPanel
 	// Tools
 	private JPanelIngredients jpanelIngredients;
 	private Ingredient[][] tabReponse;
-	private java.util.List<String> listQuestion;
+	private List<String> listQuestion;
+	private JPanelJeu panelJeu;
+	private JPanelMenu panelMenu;
 
 	}
