@@ -4,6 +4,7 @@ package mathmarecette;
 import java.awt.FlowLayout;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -31,7 +32,7 @@ public class JLabelIngredient extends JPanel
 
 	public void setIngredient(Ingredient ingr)
 		{
-		this.labelImage.setText(ingr.getImage());
+		this.labelImage.setIcon(new ImageIcon(ingr.getImage()));
 		this.labelQuantite.setText(ingr.getQuantite());
 		}
 

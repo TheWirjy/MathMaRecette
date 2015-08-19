@@ -8,7 +8,7 @@ public class Ingredient
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public Ingredient(String _quantite, String _image)
+	public Ingredient(String _image, String _quantite)
 		{
 		image = _image;
 		quantite = _quantite;

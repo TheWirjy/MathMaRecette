@@ -8,9 +8,9 @@ import javax.swing.JFrame;
 public class JFrameRecette extends JFrame
 	{
 
-		/*------------------------------------------------------------------*\
-		|*							Constructeurs							*|
-		\*------------------------------------------------------------------*/
+	/*------------------------------------------------------------------*\
+	|*							Constructeurs							*|
+	\*------------------------------------------------------------------*/
 
 	public JFrameRecette()
 		{
@@ -19,26 +19,26 @@ public class JFrameRecette extends JFrame
 		appearance();
 		}
 
-		/*------------------------------------------------------------------*\
-		|*							Methodes Public							*|
-		\*------------------------------------------------------------------*/
+	/*------------------------------------------------------------------*\
+	|*							Methodes Public							*|
+	\*------------------------------------------------------------------*/
 
-		/*------------------------------*\
-		|*				Set				*|
-		\*------------------------------*/
+	/*------------------------------*\
+	|*				Set				*|
+	\*------------------------------*/
 
-		/*------------------------------*\
-		|*				Get				*|
-		\*------------------------------*/
+	/*------------------------------*\
+	|*				Get				*|
+	\*------------------------------*/
 
-		/*------------------------------------------------------------------*\
-		|*							Methodes Private						*|
-		\*------------------------------------------------------------------*/
+	/*------------------------------------------------------------------*\
+	|*							Methodes Private						*|
+	\*------------------------------------------------------------------*/
 
 	private void geometry()
 		{
-			// JComponent : Instanciation
-			panelRecette = new JPanelRecette();
+		// JComponent : Instanciation
+		panelRecette = new JPanelRecette();
 
 			// Layout : Specification
 			{
@@ -60,7 +60,8 @@ public class JFrameRecette extends JFrame
 
 	private void appearance()
 		{
-		setSize(600, 800);
+		setSize(600, 700);
+
 		setTitle("Math ma recette");
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
@@ -72,4 +73,5 @@ public class JFrameRecette extends JFrame
 
 	// Tools
 	private JPanelRecette panelRecette;
+
 	}
