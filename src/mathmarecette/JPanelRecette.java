@@ -17,6 +17,7 @@ public class JPanelRecette extends JPanel
 	public JPanelRecette(JFrame jframe)
 		{
 		tabReponse = new Ingredient[26][];
+		tabSolution = new int[26];
 		listQuestion = new ArrayList<String>();
 		this.jframe = jframe;
 
@@ -27,6 +28,7 @@ public class JPanelRecette extends JPanel
 
 		createTableauReponse();
 		createTableauQuestion();
+		createTableauSolution();
 
 		geometry();
 		control();
@@ -99,6 +101,36 @@ public class JPanelRecette extends JPanel
 		createQuestion(25, "*", "26", "*", "26", "*", "26", "*", "26");
 		}
 
+	private void createTableauSolution()
+		{
+		tabSolution[0] = 1;
+		tabSolution[1] = 2;
+		tabSolution[2] = 3;
+		tabSolution[3] = 2;
+		tabSolution[4] = 4;
+		tabSolution[5] = 4;
+		tabSolution[6] = 1;
+		tabSolution[7] = 3;
+		tabSolution[8] = 2;
+		tabSolution[9] = 3;
+		tabSolution[10] = 1;
+		tabSolution[11] = 4;
+		tabSolution[12] = 4;
+		tabSolution[13] = 1;
+		tabSolution[14] = 2;
+		tabSolution[15] = 3;
+		tabSolution[16] = 4;
+		tabSolution[17] = 2;
+		tabSolution[18] = 2;
+		tabSolution[19] = 1;
+		tabSolution[20] = 4;
+		tabSolution[21] = 3;
+		tabSolution[22] = 2;
+		tabSolution[23] = 2;
+		tabSolution[24] = 1;
+		tabSolution[25] = 3;
+		}
+
 	private void createQuestion(int numQuestion, String img1, String q1, String img2, String q2, String img3, String q3, String img4, String q4)
 		{
 		tabReponse[numQuestion][0] = new Ingredient(img1, q1);
@@ -116,18 +148,23 @@ public class JPanelRecette extends JPanel
 	\*------------------------------*/
 
 	public List<String> getListQuestion()
-	{
+		{
 		return listQuestion;
-	}
+		}
+
+	public int[] getTabSolution()
+		{
+		return tabSolution;
+		}
 
 	public Ingredient[][] gettabReponse()
-	{
+		{
 		return tabReponse;
-	}
+		}
 
 	public JPanelJeu getJPanelJeu()
 		{
-			return panelJeu;
+		return panelJeu;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -137,7 +174,7 @@ public class JPanelRecette extends JPanel
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		jpanelIngredients = new JPanelIngredients(this,jframe);
+		jpanelIngredients = new JPanelIngredients(this, jframe);
 		panelMenu = new JPanelInfoBar();
 		panelJeu = new JPanelJeu();
 
@@ -171,4 +208,5 @@ public class JPanelRecette extends JPanel
 	private JPanelJeu panelJeu;
 	private JPanelInfoBar panelMenu;
 	private JFrame jframe;
+	private int[] tabSolution;
 	}

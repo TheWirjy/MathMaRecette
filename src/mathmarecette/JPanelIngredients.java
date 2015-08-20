@@ -53,7 +53,7 @@ public class JPanelIngredients extends JPanel
 		// JComponent : Instanciation
 		for(int i = 0; i < labelIngredient.length; i++)
 			{
-			labelIngredient[i] = new JLabelIngredient(panelRecette, this, jframe);
+			labelIngredient[i] = new JLabelIngredient(panelRecette, this, jframe, i+1);
 			}
 
 			// Layout : Specification

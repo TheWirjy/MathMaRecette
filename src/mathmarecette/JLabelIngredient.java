@@ -18,11 +18,12 @@ public class JLabelIngredient extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JLabelIngredient(JPanelRecette _panelRecette, JPanelIngredients _panelIngredients, JFrame jframe)
+	public JLabelIngredient(JPanelRecette _panelRecette, JPanelIngredients _panelIngredients, JFrame jframe, int _id)
 		{
 		this.panelRecette = _panelRecette;
 		this.panelIngredients = _panelIngredients;
 		this.jframe = jframe;
+		this.id = _id;
 		geometry();
 		control();
 		appearance();
@@ -61,14 +62,8 @@ public class JLabelIngredient extends JPanel
 		boxV.add(Box.createVerticalStrut(5));
 		boxV.add(labelQuantite);
 
-			// Layout : Specification
-			{
-			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
-			setLayout(flowlayout);
-
-			// flowlayout.setHgap(20);
-			// flowlayout.setVgap(20);
-			}
+		FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
+		setLayout(flowlayout);
 
 		// JComponent : add
 		add(boxV);
@@ -79,18 +74,39 @@ public class JLabelIngredient extends JPanel
 		// rien
 		addMouseListener(new MouseAdapter()
 			{
+
 				@Override
 				public void mouseClicked(MouseEvent e)
 					{
 					// TODO Auto-generated method stub
+					if (id == panelRecette.getTabSolution()[numQuestion])
+						{
+						System.out.println("Correct");
+						}
+					else
+						{
+						System.out.println("faux");
+						}
+
 					numQuestion++;
-					panelRecette.getJPanelJeu().getLabelQuestion().setText("<html><body><center><p>"+panelRecette.getListQuestion().get(numQuestion)+"</p></center></body></html>");
+					panelRecette.getJPanelJeu().getLabelQuestion().setText("<html><body><center><p>" + panelRecette.getListQuestion().get(numQuestion) + "</p></center></body></html>");
 					panelRecette.getJPanelJeu().getLabelCasserole().setText(labelQuantite.getText());
 					panelIngredients.setIngredient(panelRecette.gettabReponse()[numQuestion]);
 
-					if(numQuestion == 5)
+					switch(numQuestion)
 						{
-						JDialogAnnonceRecette dialogAnnonce =new JDialogAnnonceRecette(jframe, "PIZZA", "5 questions");
+						case 4:
+							new JDialogAnnonceRecette(jframe, "Crêpes", "4 questions");
+							break;
+						case 8:
+							new JDialogAnnonceRecette(jframe, "Cake au citron", "5 questions");
+							break;
+						case 12:
+							new JDialogAnnonceRecette(jframe, "Pizza", "7 questions");
+							break;
+						case 20:
+							new JDialogAnnonceRecette(jframe, "Salade", "7 questions");
+							break;
 						}
 					}
 			});
@@ -112,4 +128,5 @@ public class JLabelIngredient extends JPanel
 	private JPanelIngredients panelIngredients;
 	private static int numQuestion = 0;
 	private JFrame jframe;
+	private int id;
 	}
