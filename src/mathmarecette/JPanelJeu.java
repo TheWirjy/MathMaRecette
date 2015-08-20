@@ -21,7 +21,7 @@ public class JPanelJeu extends JPanel
 
 	public JPanelJeu()
 		{
-		imageCuisine = new ImageIcon("D:\\Desktop\\testCuisine.png").getImage();
+		imageCuisine = new ImageIcon("C:\\Users\\jeremy.wirth\\Desktop\\testCuisine.png").getImage();
 		geometry();
 		control();
 		appearance();

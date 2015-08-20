@@ -7,14 +7,14 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class JPanelMenu extends JPanel
+public class JPanelInfoBar extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelMenu()
+	public JPanelInfoBar()
 		{
 		geometry();
 		control();

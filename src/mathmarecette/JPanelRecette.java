@@ -4,6 +4,7 @@ package mathmarecette;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class JPanelRecette extends JPanel
@@ -13,10 +14,11 @@ public class JPanelRecette extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelRecette()
+	public JPanelRecette(JFrame jframe)
 		{
 		tabReponse = new Ingredient[26][];
 		listQuestion = new ArrayList<String>();
+		this.jframe = jframe;
 
 		for(int i = 0; i < tabReponse.length; i++)
 			{
@@ -29,6 +31,7 @@ public class JPanelRecette extends JPanel
 		geometry();
 		control();
 		appearance();
+
 		}
 
 	/*------------------------------------------------------------------*\
@@ -68,7 +71,7 @@ public class JPanelRecette extends JPanel
 
 	private void createTableauReponse()
 		{
-		createQuestion(0, "D:\\Desktop\\apple.png", "1", "D:\\Desktop\\apple.png", "1", "D:\\Desktop\\apple.png", "1", "D:\\Desktop\\apple.png", "1");
+		createQuestion(0, "C:\\Users\\jeremy.wirth\\Desktop\\apple.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\apple.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\apple.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\apple.png", "1");
 		createQuestion(1, "*", "2", "*", "2", "*", "2", "*", "2");
 		createQuestion(2, "*", "3", "*", "3", "*", "3", "*", "3");
 		createQuestion(3, "*", "4", "*", "4", "*", "4", "*", "4");
@@ -134,8 +137,8 @@ public class JPanelRecette extends JPanel
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		jpanelIngredients = new JPanelIngredients(this);
-		panelMenu = new JPanelMenu();
+		jpanelIngredients = new JPanelIngredients(this,jframe);
+		panelMenu = new JPanelInfoBar();
 		panelJeu = new JPanelJeu();
 
 		setLayout(null);
@@ -166,6 +169,6 @@ public class JPanelRecette extends JPanel
 	private Ingredient[][] tabReponse;
 	private List<String> listQuestion;
 	private JPanelJeu panelJeu;
-	private JPanelMenu panelMenu;
-
+	private JPanelInfoBar panelMenu;
+	private JFrame jframe;
 	}

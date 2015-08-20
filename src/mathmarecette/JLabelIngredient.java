@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -17,10 +18,11 @@ public class JLabelIngredient extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JLabelIngredient(JPanelRecette _panelRecette, JPanelIngredients _panelIngredients)
+	public JLabelIngredient(JPanelRecette _panelRecette, JPanelIngredients _panelIngredients, JFrame jframe)
 		{
 		this.panelRecette = _panelRecette;
 		this.panelIngredients = _panelIngredients;
+		this.jframe = jframe;
 		geometry();
 		control();
 		appearance();
@@ -85,6 +87,11 @@ public class JLabelIngredient extends JPanel
 					panelRecette.getJPanelJeu().getLabelQuestion().setText("<html><body><center><p>"+panelRecette.getListQuestion().get(numQuestion)+"</p></center></body></html>");
 					panelRecette.getJPanelJeu().getLabelCasserole().setText(labelQuantite.getText());
 					panelIngredients.setIngredient(panelRecette.gettabReponse()[numQuestion]);
+
+					if(numQuestion == 5)
+						{
+						JDialogAnnonceRecette dialogAnnonce =new JDialogAnnonceRecette(jframe, "PIZZA", "5 questions");
+						}
 					}
 			});
 		}
@@ -104,4 +111,5 @@ public class JLabelIngredient extends JPanel
 	private JPanelRecette panelRecette;
 	private JPanelIngredients panelIngredients;
 	private static int numQuestion = 0;
+	private JFrame jframe;
 	}

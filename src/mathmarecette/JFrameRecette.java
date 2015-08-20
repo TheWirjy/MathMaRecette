@@ -38,7 +38,7 @@ public class JFrameRecette extends JFrame
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		panelRecette = new JPanelRecette();
+		panelRecette = new JPanelRecette(this);
 		panelRecette.setPreferredSize(new Dimension(600, 700));
 
 		// JComponent : add
