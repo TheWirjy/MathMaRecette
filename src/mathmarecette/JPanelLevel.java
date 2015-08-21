@@ -60,7 +60,7 @@ public class JPanelLevel extends JPanel
 
 	private void appearance()
 		{
-		Dimension panelD = new Dimension(200, 150);
+		Dimension panelD = new Dimension(500, 500);
 		this.setPreferredSize(panelD);
 		this.setMaximumSize(panelD);
 		}

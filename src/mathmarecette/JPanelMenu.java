@@ -5,6 +5,10 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,7 +40,12 @@ public class JPanelMenu extends JPanel
 		niveau = new JButton("");
 		tutoriel = new JButton("");
 		apropos = new JButton("");
-
+		
+		  String filename="C:/Users/raphael.schaffo/HE-ARC/MathMaRecette Media/Son/CLickJump.mp3";
+	      mp3= new MP3(filename);
+	      
+		
+		
 
 		// JComponent : Adaptation
 
@@ -46,23 +55,23 @@ public class JPanelMenu extends JPanel
 		apropos.setPreferredSize(new Dimension(100, 30));
 
 		arcade.setBorderPainted(false);
-		iconArcade = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\BTNArcade.png");
-		iconArcadeCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\BTNArcade-copie.png");
+		iconArcade = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNArcade.png");
+		iconArcadeCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNArcade-copie.png");
 		arcade.setIcon(iconArcade);
 
 		niveau.setBorderPainted(false);
-		iconLevel = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\BTNNiveau.png");
-		iconLevelCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\BTNNiveau-copie.png");
+		iconLevel = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNNiveau.png");
+		iconLevelCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNNiveau-copie.png");
 		niveau.setIcon(iconLevel);
 
 		tutoriel.setBorderPainted(false);
-		iconTutorial = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\BTNTutoriel.png");
-		iconTutorialCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\BTNTutoriel-copie.png");
+		iconTutorial = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNTutoriel.png");
+		iconTutorialCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNTutoriel-copie.png");
 		tutoriel.setIcon(iconTutorial);
 
 		apropos.setBorderPainted(false);
-		iconApropos = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\BTNApropos.png");
-		iconAproposCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\BTNApropos - Copie.png");
+		iconApropos = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNApropos.png");
+		iconAproposCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNApropos - Copie.png");
 		apropos.setIcon(iconApropos);
 
 
@@ -87,6 +96,7 @@ public class JPanelMenu extends JPanel
 					{
 					// TODO Auto-generated method stub
 					tutoriel.setIcon(iconTutorial);
+					
 					}
 
 				@Override
@@ -114,6 +124,7 @@ public class JPanelMenu extends JPanel
 				public void mouseClicked(MouseEvent e)
 					{
 					// TODO Auto-generated method stub
+					mp3.play();
 
 					}
 			});
@@ -138,7 +149,7 @@ public class JPanelMenu extends JPanel
 				public void mouseExited(MouseEvent e)
 					{
 					// TODO Auto-generated method stub
-
+					
 					}
 
 				@Override
@@ -152,6 +163,7 @@ public class JPanelMenu extends JPanel
 				public void mouseClicked(MouseEvent e)
 					{
 					// TODO Auto-generated method stub
+					mp3.play();
 
 					}
 			});
@@ -190,7 +202,8 @@ public class JPanelMenu extends JPanel
 				public void mouseClicked(MouseEvent e)
 					{
 					// TODO Auto-generated method stub
-					new JFrameLevel();
+					new JFrameLevel().setAlwaysOnTop(true);
+					mp3.play();
 					}
 			});
 
@@ -231,7 +244,8 @@ public class JPanelMenu extends JPanel
 				public void mouseClicked(MouseEvent e)
 					{
 					// TODO Auto-generated method stub
-					new JFrameCredits();
+					new JFrameCredits().setAlwaysOnTop(true);
+					mp3.play();
 					}
 			});
 
@@ -263,6 +277,7 @@ public class JPanelMenu extends JPanel
 	private ImageIcon iconArcadeCopie;
 	private ImageIcon iconTutorial;
 	private ImageIcon iconTutorialCopie;
+	private MP3 mp3 ;
 
 
 	}

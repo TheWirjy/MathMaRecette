@@ -42,7 +42,7 @@ private void control()
 
 private void appearance()
 	{
-	setSize(300, 250);
+	setSize(600, 700);
 	setLocationRelativeTo(null); // frame centrer
 	setVisible(true); // last!
 	setResizable(false);

@@ -31,10 +31,10 @@ public class JFrameMenu extends JFrame
 		pictures= new JLabel("");
 		title= new JLabel("");
 
-		ImageIcon iconPictures = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\font.png");
+		ImageIcon iconPictures = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\font.png");
 		pictures.setIcon(iconPictures);
 
-		ImageIcon iconTitle = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\title.png");
+		ImageIcon iconTitle = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\title.png");
 		title.setIcon(iconTitle);
 
 		// JComponent : Layout
