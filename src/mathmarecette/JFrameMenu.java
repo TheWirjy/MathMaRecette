@@ -38,7 +38,6 @@ public class JFrameMenu extends JFrame
 		title.setIcon(iconTitle);
 
 		// JComponent : Layout
-		pictures.setLocation(100, 100);
 		setLayout(null);
 		add(menu);
 		add(pictures);

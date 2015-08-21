@@ -37,7 +37,7 @@ public class MP3 {
 		new Thread() {
 			public void run() {
 				try {
-					
+
 					player.play();
 				} catch (Exception e) {
 					System.out.println("");
