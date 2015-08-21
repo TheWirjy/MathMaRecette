@@ -1,4 +1,4 @@
-package mathmarecette;
+package mathmarecette.menu;
 
 import java.awt.Color;
 import java.awt.FlowLayout;

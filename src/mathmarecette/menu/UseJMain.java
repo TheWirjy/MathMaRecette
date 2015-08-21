@@ -1,4 +1,6 @@
-package mathmarecette;
+package mathmarecette.menu;
+
+
 
 
 public class UseJMain

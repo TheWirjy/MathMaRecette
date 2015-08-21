@@ -1,5 +1,5 @@
 
-package mathmarecette;
+package mathmarecette.jeu;
 
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
@@ -59,8 +59,8 @@ public class JLabelIngredient extends JPanel
 
 		Box boxV = Box.createVerticalBox();
 		boxV.add(labelImage);
-		boxV.add(Box.createVerticalStrut(5));
-		boxV.add(labelQuantite);
+		//boxV.add(Box.createVerticalStrut(5));
+		//boxV.add(labelQuantite);
 
 		FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
 		setLayout(flowlayout);

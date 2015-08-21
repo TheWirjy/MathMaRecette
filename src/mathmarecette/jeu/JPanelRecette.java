@@ -1,5 +1,5 @@
 
-package mathmarecette;
+package mathmarecette.jeu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,12 +73,12 @@ public class JPanelRecette extends JPanel
 
 	private void createTableauReponse()
 		{
-		createQuestion(0, "C:\\Users\\jeremy.wirth\\Desktop\\apple.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\apple.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\apple.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\apple.png", "1");
-		createQuestion(1, "*", "2", "*", "2", "*", "2", "*", "2");
-		createQuestion(2, "*", "3", "*", "3", "*", "3", "*", "3");
+		createQuestion(0, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R1.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R2.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R3.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R4.png", "1");
+		createQuestion(1, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R1.png", "2", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R2.png", "2", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R3.png", "2", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R4.png", "2");
+		createQuestion(2, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R1.png", "3", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R2.png", "3", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R3.png", "3", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R4.png", "3");
 		createQuestion(3, "*", "4", "*", "4", "*", "4", "*", "4");
 		createQuestion(4, "*", "5", "*", "5", "*", "5", "*", "5");
-		createQuestion(5, "*", "6", "*", "6", "*", "6", "*", "6");
+		createQuestion(5, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R1.png", "6", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R2.png", "6", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R3.png", "6", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R4.png", "6");
 		createQuestion(6, "*", "7", "*", "7", "*", "7", "*", "7");
 		createQuestion(7, "*", "8", "*", "8", "*", "8", "*", "8");
 		createQuestion(8, "*", "9", "*", "9", "*", "9", "*", "9");
@@ -105,30 +105,30 @@ public class JPanelRecette extends JPanel
 		{
 		tabSolution[0] = 1;
 		tabSolution[1] = 2;
-		tabSolution[2] = 3;
-		tabSolution[3] = 2;
-		tabSolution[4] = 4;
+		tabSolution[2] = 4;
+		tabSolution[3] = 3;
+		tabSolution[4] = 2;
 		tabSolution[5] = 4;
 		tabSolution[6] = 1;
-		tabSolution[7] = 3;
-		tabSolution[8] = 2;
+		tabSolution[7] = 2;
+		tabSolution[8] = 1;
 		tabSolution[9] = 3;
 		tabSolution[10] = 1;
 		tabSolution[11] = 4;
-		tabSolution[12] = 4;
-		tabSolution[13] = 1;
+		tabSolution[12] = 1;
+		tabSolution[13] = 3;
 		tabSolution[14] = 2;
-		tabSolution[15] = 3;
-		tabSolution[16] = 4;
-		tabSolution[17] = 2;
+		tabSolution[15] = 2;
+		tabSolution[16] = 1;
+		tabSolution[17] = 3;
 		tabSolution[18] = 2;
-		tabSolution[19] = 1;
-		tabSolution[20] = 4;
-		tabSolution[21] = 3;
-		tabSolution[22] = 2;
+		tabSolution[19] = 3;
+		tabSolution[20] = 2;
+		tabSolution[21] = 3;//a voir
+		tabSolution[22] = 4;
 		tabSolution[23] = 2;
-		tabSolution[24] = 1;
-		tabSolution[25] = 3;
+		tabSolution[24] = 2;
+		tabSolution[25] = 1;
 		}
 
 	private void createQuestion(int numQuestion, String img1, String q1, String img2, String q2, String img3, String q3, String img4, String q4)

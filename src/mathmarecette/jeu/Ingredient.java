@@ -1,5 +1,5 @@
 
-package mathmarecette;
+package mathmarecette.jeu;
 
 public class Ingredient
 	{

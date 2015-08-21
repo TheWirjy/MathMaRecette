@@ -1,4 +1,4 @@
-package mathmarecette;
+package mathmarecette.menu;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;

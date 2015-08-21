@@ -1,5 +1,5 @@
 
-package mathmarecette;
+package mathmarecette.jeu;
 
 import java.awt.Color;
 import java.awt.Dimension;

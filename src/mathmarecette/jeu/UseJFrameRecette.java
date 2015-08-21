@@ -1,5 +1,7 @@
 
-package mathmarecette;
+package mathmarecette.jeu;
+
+import mathmarecette.menu.JFrameRecette;
 
 public class UseJFrameRecette
 	{

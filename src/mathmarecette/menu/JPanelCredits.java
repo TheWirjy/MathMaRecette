@@ -1,4 +1,4 @@
-package mathmarecette;
+package mathmarecette.menu;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
