@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,7 +40,14 @@ public class JPanelLevel extends JPanel
 		level5 = new JButton("Pizza au jambon ");
 
 		// JComponent : Adaptation
-		String filename="C:/Users/raphael.schaffo/HE-ARC/MathMaRecette Media/Son/CLickJump.mp3";
+		
+		try {
+			current = new java.io.File( "." ).getCanonicalPath();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String filename=current+"/Son/ClickJump.mp3";
 	    mp3= new MP3(filename);
 
 		level1.setPreferredSize(new Dimension(100, 30));
@@ -49,30 +57,30 @@ public class JPanelLevel extends JPanel
 		level5.setPreferredSize(new Dimension(100, 30));
 
 		level1.setBorderPainted(false);
-		iconSpaghetti = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNSpaghetti.png");
-		iconSpaghettiCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNSpaghetti-copie.png");
+		iconSpaghetti = new ImageIcon(current+"\\Image\\BTNSpaghetti.png");
+		iconSpaghettiCopie = new ImageIcon(current+"\\Image\\BTNSpaghetti-copie.png");
 		level1.setIcon(iconSpaghetti);
 		
 		
 		level2.setBorderPainted(false);
-		iconPate = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNPate.png");
-		iconPateCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNPate-copie.png");
+		iconPate = new ImageIcon(current+"\\Image\\BTNPate.png");
+		iconPateCopie = new ImageIcon(current+"\\Image\\BTNPate-copie.png");
 		level2.setIcon(iconPate);
 		
 		level3.setBorderPainted(false);
-		iconCake = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNCake.png");
-		iconCakeCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNCake-copie.png");
+		iconCake = new ImageIcon(current+"\\Image\\BTNCake.png");
+		iconCakeCopie = new ImageIcon(current+"\\Image\\BTNCake-copie.png");
 		level3.setIcon(iconCake);
 		
 		
 		level4.setBorderPainted(false);
-		iconSalade = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNSalade.png");
-		iconSaladeCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNSalade-copie.png");
+		iconSalade = new ImageIcon(current+"\\Image\\BTNSalade.png");
+		iconSaladeCopie = new ImageIcon(current+"\\Image\\BTNSalade-copie.png");
 		level4.setIcon(iconSalade);
 		
 		level5.setBorderPainted(false);
-		iconPizza = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNPizza.png");
-		iconPizzaCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNPizza-copie.png");
+		iconPizza = new ImageIcon(current+"\\Image\\BTNPizza.png");
+		iconPizzaCopie = new ImageIcon(current+"\\Image\\BTNPizza-copie.png");
 		level5.setIcon(iconPizza);
 		
 		
@@ -281,5 +289,6 @@ public class JPanelLevel extends JPanel
 	private ImageIcon iconPizza;
 	private ImageIcon iconPizzaCopie;
 	private MP3 mp3 ;
+	private String current;
 
 	}

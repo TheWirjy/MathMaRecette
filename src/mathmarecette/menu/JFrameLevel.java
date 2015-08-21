@@ -2,6 +2,7 @@ package mathmarecette.menu;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -34,7 +35,13 @@ private void geometry()
 	pictures= new JLabel("");
 	
 	// JComponent : Adaptation
-	ImageIcon iconPictures = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\font-niveau.png");
+	try {
+		current = new java.io.File( "." ).getCanonicalPath();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	ImageIcon iconPictures = new ImageIcon(current+"\\Image\\font-niveau.png");
 	pictures.setIcon(iconPictures);
 
 	// JComponent : Layout
@@ -70,6 +77,7 @@ private void appearance()
 // Tools
 private JPanelLevel level;
 private JLabel pictures;
+private String current;
 
 
 
