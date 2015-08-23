@@ -4,7 +4,6 @@ package mathmarecette.jeu;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class JPanelIngredients extends JPanel
@@ -14,11 +13,10 @@ public class JPanelIngredients extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelIngredients(JPanelRecette _panelRecette, JFrame jframe)
+	public JPanelIngredients(JPanelRecette _panelRecette)
 		{
 		this.labelIngredient = new JLabelIngredient[4];
 		this.panelRecette = _panelRecette;
-		this.jframe = jframe;
 		geometry();
 		control();
 		appearance();
@@ -53,7 +51,7 @@ public class JPanelIngredients extends JPanel
 		// JComponent : Instanciation
 		for(int i = 0; i < labelIngredient.length; i++)
 			{
-			labelIngredient[i] = new JLabelIngredient(panelRecette, this, jframe, i+1);
+			labelIngredient[i] = new JLabelIngredient(panelRecette, i + 1);
 			}
 
 			// Layout : Specification
@@ -62,8 +60,8 @@ public class JPanelIngredients extends JPanel
 			setLayout(flowlayout);
 			}
 
-			setSize(new Dimension(600, 130));
-			setLocation(0, 580);
+		setSize(new Dimension(600, 130));
+		setLocation(0, 580);
 
 		// JComponent : add
 		for(int i = 0; i < labelIngredient.length; i++)
@@ -89,5 +87,4 @@ public class JPanelIngredients extends JPanel
 	// Tools
 	private JLabelIngredient[] labelIngredient;
 	private JPanelRecette panelRecette;
-	private JFrame jframe;
 	}

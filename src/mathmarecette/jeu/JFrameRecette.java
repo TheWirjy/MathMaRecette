@@ -1,11 +1,11 @@
 
-package mathmarecette.menu;
+package mathmarecette.jeu;
 
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import mathmarecette.jeu.JPanelRecette;
+import mathmarecette.jeu.Recette.Spaghetti;
 
 public class JFrameRecette extends JFrame
 	{
@@ -40,7 +40,7 @@ public class JFrameRecette extends JFrame
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		panelRecette = new JPanelRecette(this);
+		panelRecette = new JPanelRecette(this, new Spaghetti());
 		panelRecette.setPreferredSize(new Dimension(600, 700));
 
 		// JComponent : add
@@ -56,6 +56,7 @@ public class JFrameRecette extends JFrame
 	private void appearance()
 		{
 		setTitle("Math ma recette");
+		//setResizable(false);
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
 		}

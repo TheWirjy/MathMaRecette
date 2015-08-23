@@ -1,11 +1,11 @@
 
 package mathmarecette.jeu;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import mathmarecette.jeu.Recette.Recette;
 
 public class JPanelRecette extends JPanel
 	{
@@ -14,25 +14,22 @@ public class JPanelRecette extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelRecette(JFrame jframe)
+	public JPanelRecette(JFrame jframe, Recette recette)
 		{
-		tabReponse = new Ingredient[26][];
-		tabSolution = new int[26];
-		listQuestion = new ArrayList<String>();
 		this.jframe = jframe;
-
-		for(int i = 0; i < tabReponse.length; i++)
-			{
-			tabReponse[i] = new Ingredient[4];
-			}
-
-		createTableauReponse();
-		createTableauQuestion();
-		createTableauSolution();
-
+		this.recette = recette;
 		geometry();
 		control();
 		appearance();
+
+		panelMenu.setTitre(recette.getNom());
+		panelJeu.setQuestion(recette.getQuestion());
+		jpanelIngredients.setIngredient(recette.getReponse());
+		panelBarResult = panelJeu.getJPanelBarResult();
+
+		panelBarResult.initialisation(recette.getNbQuestion());
+
+		new JDialogAfficheRecette(jframe, new ImageIcon(".\\image\\SpaghettiRecette.png"));
 
 		}
 
@@ -40,103 +37,48 @@ public class JPanelRecette extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	private void createTableauQuestion()
+	public void reponseValider(int _id)
 		{
-		listQuestion.add("Verse 2*1 bouteille d’ 1 litre dans la casserole");
-		listQuestion.add("Ajoute 1 première cuillère de sel et ensuite ajoute en deux");
-		listQuestion.add("Le paquet de pate contient 500g laisse 300g dans le paquet et ajoute le reste dans la casserole");
-		listQuestion.add("Il est 15h35, les pates doivent cuire 8min, à quelle heure seront-elle prête ?");
-		listQuestion.add("Ajoute 2* 125g de farine");
-		listQuestion.add("Avec une boite de 6 œufs on fait 3 pâtes à crêpes, combien t'en faut-il pour en faire une");
-		listQuestion.add("Ajoute à quantité égal de l’eau et du lait pour un total de 0.5l");
-		listQuestion.add("Ajoute [(5+3)/4] cuillère à soupe d’huile");
-		listQuestion.add("Il faut 4 blancs d’œuf + 4 jaunes d’œuf");
-		listQuestion.add("Prépare 10 carrées de 10g de beurre et le double de sucre");
-		listQuestion.add("Il nous faut autant de farine que de sucre et ½ paquet de levure");
-		listQuestion.add("Le cake sera prêt à 17h25 et la cuisson dure 35min. Quelle heure est-il ?");
-		listQuestion.add("Ajoute 5*4 morceaux de sucre dans la casserole");
-		listQuestion.add("Met 300g de farine");
-		listQuestion.add("Rajoute 2 œufs");
-		listQuestion.add("Rajoute 10g sucre");
-		listQuestion.add("Rajoute 15g sel");
-		listQuestion.add("Laisse reposer 1h sachant qu’il est 17h59");
-		listQuestion.add("Cuire la pâte pendant 20 minutes");
-		listQuestion.add("Chauffe 220g de sauce tomate");
-		listQuestion.add("Coupe  125g de mozzarella en 10 parts égales");
-		listQuestion.add("Ajoute une cuillère à soupe de moutarde et le double de mayonnaise au bol");
-		listQuestion.add("Ajoute une cuillère à café d’huile et une de vinaigre au bol");
-		listQuestion.add("Ajoute trois pincées d’herbe de Provence au bol et ajoute trois fois moins de pincées de sel ");
-		listQuestion.add("Ajoute trois grandes feuilles de salade au plat");
-		listQuestion.add("Ajoute 1/6 de concombre au plat ");
-		listQuestion.add("Verser 0,1l de la sauce faite dans le plat ");
-		}
+		boolean bJuste = recette.verificationReponse(_id);
 
-	private void createTableauReponse()
-		{
-		createQuestion(0, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R1.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R2.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R3.png", "1", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R4.png", "1");
-		createQuestion(1, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R1.png", "2", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R2.png", "2", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R3.png", "2", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R4.png", "2");
-		createQuestion(2, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R1.png", "3", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R2.png", "3", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R3.png", "3", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R4.png", "3");
-		createQuestion(3, "*", "4", "*", "4", "*", "4", "*", "4");
-		createQuestion(4, "*", "5", "*", "5", "*", "5", "*", "5");
-		createQuestion(5, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R1.png", "6", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R2.png", "6", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R3.png", "6", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R4.png", "6");
-		createQuestion(6, "*", "7", "*", "7", "*", "7", "*", "7");
-		createQuestion(7, "*", "8", "*", "8", "*", "8", "*", "8");
-		createQuestion(8, "*", "9", "*", "9", "*", "9", "*", "9");
-		createQuestion(9, "*", "10", "*", "10", "*", "10", "*", "10");
-		createQuestion(10, "*", "11", "*", "11", "*", "11", "*", "11");
-		createQuestion(11, "*", "12", "*", "12", "*", "12", "*", "12");
-		createQuestion(12, "*", "13", "*", "13", "*", "13", "*", "13");
-		createQuestion(13, "*", "14", "*", "14", "*", "14", "*", "14");
-		createQuestion(14, "*", "15", "*", "15", "*", "15", "*", "15");
-		createQuestion(15, "*", "16", "*", "16", "*", "16", "*", "16");
-		createQuestion(16, "*", "17", "*", "17", "*", "17", "*", "17");
-		createQuestion(17, "*", "18", "*", "18", "*", "18", "*", "18");
-		createQuestion(18, "*", "19", "*", "19", "*", "19", "*", "19");
-		createQuestion(19, "*", "20", "*", "20", "*", "20", "*", "20");
-		createQuestion(20, "*", "21", "*", "21", "*", "21", "*", "21");
-		createQuestion(21, "*", "22", "*", "22", "*", "22", "*", "22");
-		createQuestion(22, "*", "23", "*", "23", "*", "23", "*", "23");
-		createQuestion(23, "*", "24", "*", "24", "*", "24", "*", "24");
-		createQuestion(24, "*", "25", "*", "25", "*", "25", "*", "25");
-		createQuestion(25, "*", "26", "*", "26", "*", "26", "*", "26");
-		}
+		panelBarResult.setResultat(recette.getCptQuestion(), bJuste);
 
-	private void createTableauSolution()
-		{
-		tabSolution[0] = 1;
-		tabSolution[1] = 2;
-		tabSolution[2] = 4;
-		tabSolution[3] = 3;
-		tabSolution[4] = 2;
-		tabSolution[5] = 4;
-		tabSolution[6] = 1;
-		tabSolution[7] = 2;
-		tabSolution[8] = 1;
-		tabSolution[9] = 3;
-		tabSolution[10] = 1;
-		tabSolution[11] = 4;
-		tabSolution[12] = 1;
-		tabSolution[13] = 3;
-		tabSolution[14] = 2;
-		tabSolution[15] = 2;
-		tabSolution[16] = 1;
-		tabSolution[17] = 3;
-		tabSolution[18] = 2;
-		tabSolution[19] = 3;
-		tabSolution[20] = 2;
-		tabSolution[21] = 3;//a voir
-		tabSolution[22] = 4;
-		tabSolution[23] = 2;
-		tabSolution[24] = 2;
-		tabSolution[25] = 1;
-		}
+		/*if (bJuste)
+			{
+			System.out.println("Correct");
+			}
+		else
+			{
+			System.out.println("Faux");
+			}*/
 
-	private void createQuestion(int numQuestion, String img1, String q1, String img2, String q2, String img3, String q3, String img4, String q4)
-		{
-		tabReponse[numQuestion][0] = new Ingredient(img1, q1);
-		tabReponse[numQuestion][1] = new Ingredient(img2, q2);
-		tabReponse[numQuestion][2] = new Ingredient(img3, q3);
-		tabReponse[numQuestion][3] = new Ingredient(img4, q4);
+		if (recette.next())
+			{
+			panelJeu.getLabelQuestion().setText("<html><body><center><p>" + recette.getQuestion() + "</p></center></body></html>");
+			//panelJeu.getLabelCasserole().setText(labelQuantite.getText());
+			jpanelIngredients.setIngredient(recette.getReponse());
+			}
+		else
+			{
+			//http://www.spagety.net/wp-content/uploads/2015/03/%C5%A1pagety.png
+			//new JDialogAfficheRecette(jframe, new ImageIcon("D:\\Desktop\\imgMMR\\SpaghettiRecette.png"));
+			recette.getMiniJeu(jframe);
+			}
+		/*switch(numQuestion)
+			{
+			case 4:
+				new JDialogAnnonceRecette(jframe, "Crêpes", "4 questions");
+				break;
+			case 8:
+				new JDialogAnnonceRecette(jframe, "Cake au citron", "5 questions");
+				break;
+			case 12:
+				new JDialogAnnonceRecette(jframe, "Pizza", "7 questions");
+				break;
+			case 20:
+				new JDialogAnnonceRecette(jframe, "Salade", "7 questions");
+				break;
+			}*/
 		}
 
 	/*------------------------------*\
@@ -147,24 +89,24 @@ public class JPanelRecette extends JPanel
 	|*				Get				*|
 	\*------------------------------*/
 
-	public List<String> getListQuestion()
-		{
-		return listQuestion;
-		}
-
-	public int[] getTabSolution()
-		{
-		return tabSolution;
-		}
-
-	public Ingredient[][] gettabReponse()
-		{
-		return tabReponse;
-		}
-
 	public JPanelJeu getJPanelJeu()
 		{
 		return panelJeu;
+		}
+
+	public JFrame getJFrame()
+		{
+		return jframe;
+		}
+
+	public Recette getRecette()
+		{
+		return recette;
+		}
+
+	public JPanelIngredients getPanelIngredients()
+		{
+		return jpanelIngredients;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -174,7 +116,7 @@ public class JPanelRecette extends JPanel
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		jpanelIngredients = new JPanelIngredients(this, jframe);
+		jpanelIngredients = new JPanelIngredients(this);
 		panelMenu = new JPanelInfoBar();
 		panelJeu = new JPanelJeu();
 
@@ -193,8 +135,6 @@ public class JPanelRecette extends JPanel
 
 	private void appearance()
 		{
-		// rien
-		jpanelIngredients.setIngredient(tabReponse[0]);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -203,10 +143,9 @@ public class JPanelRecette extends JPanel
 
 	// Tools
 	private JPanelIngredients jpanelIngredients;
-	private Ingredient[][] tabReponse;
-	private List<String> listQuestion;
 	private JPanelJeu panelJeu;
 	private JPanelInfoBar panelMenu;
 	private JFrame jframe;
-	private int[] tabSolution;
+	private Recette recette;
+	private JPanelBarResult panelBarResult;
 	}

@@ -1,13 +1,14 @@
 
 package mathmarecette.jeu;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,11 +19,9 @@ public class JLabelIngredient extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JLabelIngredient(JPanelRecette _panelRecette, JPanelIngredients _panelIngredients, JFrame jframe, int _id)
+	public JLabelIngredient(JPanelRecette _panelRecette, int _id)
 		{
 		this.panelRecette = _panelRecette;
-		this.panelIngredients = _panelIngredients;
-		this.jframe = jframe;
 		this.id = _id;
 		geometry();
 		control();
@@ -40,7 +39,6 @@ public class JLabelIngredient extends JPanel
 	public void setIngredient(Ingredient ingr)
 		{
 		this.labelImage.setIcon(new ImageIcon(ingr.getImage()));
-		this.labelQuantite.setText(ingr.getQuantite());
 		}
 
 	/*------------------------------*\
@@ -55,7 +53,6 @@ public class JLabelIngredient extends JPanel
 		{
 		// JComponent : Instanciation
 		labelImage = new JLabel("");
-		labelQuantite = new JLabel("");
 
 		Box boxV = Box.createVerticalBox();
 		boxV.add(labelImage);
@@ -79,35 +76,21 @@ public class JLabelIngredient extends JPanel
 				public void mouseClicked(MouseEvent e)
 					{
 					// TODO Auto-generated method stub
-					if (id == panelRecette.getTabSolution()[numQuestion])
-						{
-						System.out.println("Correct");
-						}
-					else
-						{
-						System.out.println("faux");
-						}
+					panelRecette.reponseValider(id);
+					}
 
-					numQuestion++;
-					panelRecette.getJPanelJeu().getLabelQuestion().setText("<html><body><center><p>" + panelRecette.getListQuestion().get(numQuestion) + "</p></center></body></html>");
-					panelRecette.getJPanelJeu().getLabelCasserole().setText(labelQuantite.getText());
-					panelIngredients.setIngredient(panelRecette.gettabReponse()[numQuestion]);
+				@Override
+				public void mousePressed(MouseEvent arg0)
+					{
+					// TODO Auto-generated method stub
+						labelImage.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+					}
 
-					switch(numQuestion)
-						{
-						case 4:
-							new JDialogAnnonceRecette(jframe, "Crêpes", "4 questions");
-							break;
-						case 8:
-							new JDialogAnnonceRecette(jframe, "Cake au citron", "5 questions");
-							break;
-						case 12:
-							new JDialogAnnonceRecette(jframe, "Pizza", "7 questions");
-							break;
-						case 20:
-							new JDialogAnnonceRecette(jframe, "Salade", "7 questions");
-							break;
-						}
+				@Override
+				public void mouseReleased(MouseEvent arg0)
+					{
+					// TODO Auto-generated method stub
+						labelImage.setBorder(null);
 					}
 			});
 		}
@@ -123,10 +106,6 @@ public class JLabelIngredient extends JPanel
 
 	// Tools
 	private JLabel labelImage;
-	private JLabel labelQuantite;
 	private JPanelRecette panelRecette;
-	private JPanelIngredients panelIngredients;
-	private static int numQuestion = 0;
-	private JFrame jframe;
 	private int id;
 	}

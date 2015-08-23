@@ -21,7 +21,6 @@ public class JPanelJeu extends JPanel
 
 	public JPanelJeu()
 		{
-		imageCuisine = new ImageIcon("C:\\Users\\jeremy.wirth\\Desktop\\testCuisine.png").getImage();
 		geometry();
 		control();
 		appearance();
@@ -30,6 +29,11 @@ public class JPanelJeu extends JPanel
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public void setQuestion(String question)
+		{
+		labelQuestion.setText("<html><body><center><p>" + question + "</p></center></body></html>");
+		}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -49,6 +53,11 @@ public class JPanelJeu extends JPanel
 		return labelCasserole;
 		}
 
+	public JPanelBarResult getJPanelBarResult()
+		{
+		return panelBarResult;
+		}
+
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
@@ -66,17 +75,7 @@ public class JPanelJeu extends JPanel
 
 		labelQuestion = new JLabel();
 		labelCasserole = new JLabel("Casserole");
-
-		labelQuestion.setBackground(Color.WHITE);
-		labelQuestion.setOpaque(true);
-		labelQuestion.setFont(new Font("Verdana", 1, 20));
-		labelQuestion.setText("<html><body><center><p>Verse 2*1 bouteille d’ 1 litre dans la casserole</p></center></body></html>");
-		labelQuestion.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		labelQuestion.setSize(560, 100);
-		labelQuestion.setLocation(20, 20);
-
-		labelCasserole.setSize(100, 20);
-		labelCasserole.setLocation(300, 400);
+		panelBarResult = new JPanelBarResult();
 
 		setLayout(null);
 		setSize(new Dimension(620, 530));
@@ -85,6 +84,7 @@ public class JPanelJeu extends JPanel
 		// JComponent : add
 		add(labelQuestion);
 		add(labelCasserole);
+		add(panelBarResult);
 		}
 
 	private void control()
@@ -94,7 +94,18 @@ public class JPanelJeu extends JPanel
 
 	private void appearance()
 		{
-		// rien
+		imageCuisine = new ImageIcon("D:\\Desktop\\testCuisine.png").getImage();
+
+		labelQuestion.setBackground(Color.WHITE);
+		labelQuestion.setOpaque(true);
+		labelQuestion.setFont(new Font("Verdana", 1, 20));
+		labelQuestion.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		labelQuestion.setSize(560, 100);
+		labelQuestion.setLocation(20, 20);
+
+		labelCasserole.setSize(100, 20);
+		labelCasserole.setLocation(300, 400);
+
 		}
 
 	/*------------------------------------------------------------------*\
@@ -105,4 +116,5 @@ public class JPanelJeu extends JPanel
 	private JLabel labelQuestion;
 	private JLabel labelCasserole;
 	private Image imageCuisine;
+	private JPanelBarResult panelBarResult;
 	}
