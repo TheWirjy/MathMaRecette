@@ -22,7 +22,7 @@ public class JPanelRecette extends JPanel
 		control();
 		appearance();
 
-		panelMenu.setTitre(recette.getNom());
+		//panelMenu.setTitre(recette.getNom());
 		panelJeu.setQuestion(recette.getQuestion());
 		jpanelIngredients.setIngredient(recette.getReponse());
 		panelBarResult = panelJeu.getJPanelBarResult();
@@ -54,7 +54,7 @@ public class JPanelRecette extends JPanel
 
 		if (recette.next())
 			{
-			panelJeu.getLabelQuestion().setText("<html><body><center><p>" + recette.getQuestion() + "</p></center></body></html>");
+			panelJeu.getLabelQuestion().setText("<html><body><p align=\"center\">" + recette.getQuestion() + "</p></body></html>");
 			//panelJeu.getLabelCasserole().setText(labelQuantite.getText());
 			jpanelIngredients.setIngredient(recette.getReponse());
 			}
@@ -64,6 +64,7 @@ public class JPanelRecette extends JPanel
 			//new JDialogAfficheRecette(jframe, new ImageIcon("D:\\Desktop\\imgMMR\\SpaghettiRecette.png"));
 			recette.getMiniJeu(jframe);
 			}
+
 		/*switch(numQuestion)
 			{
 			case 4:

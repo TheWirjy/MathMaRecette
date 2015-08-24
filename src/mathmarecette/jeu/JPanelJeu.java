@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -65,7 +64,6 @@ public class JPanelJeu extends JPanel
 	@Override
 	protected void paintComponent(Graphics g)
 		{
-
 		super.paintComponent(g);
 		g.drawImage(imageCuisine, 0, 0, null);
 		}
@@ -78,7 +76,7 @@ public class JPanelJeu extends JPanel
 		panelBarResult = new JPanelBarResult();
 
 		setLayout(null);
-		setSize(new Dimension(620, 530));
+		setSize(new Dimension(600, 530));
 		setLocation(0, 50);
 
 		// JComponent : add
@@ -94,14 +92,16 @@ public class JPanelJeu extends JPanel
 
 	private void appearance()
 		{
-		imageCuisine = new ImageIcon("D:\\Desktop\\testCuisine.png").getImage();
+		imageCuisine = new ImageIcon(".\\image\\kitchen.png").getImage();
 
-		labelQuestion.setBackground(Color.WHITE);
-		labelQuestion.setOpaque(true);
-		labelQuestion.setFont(new Font("Verdana", 1, 20));
-		labelQuestion.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		labelQuestion.setSize(560, 100);
-		labelQuestion.setLocation(20, 20);
+		labelQuestion.setBackground(new Color(255 ,255,255));
+		labelQuestion.setOpaque(false);
+		Font font = new Font("Verdana", 1, 16);
+		labelQuestion.setFont(font);
+		labelQuestion.setForeground(Color.black);
+		//labelQuestion.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		labelQuestion.setSize(540, 50);
+		labelQuestion.setLocation(30, 0);
 
 		labelCasserole.setSize(100, 20);
 		labelCasserole.setLocation(300, 400);
