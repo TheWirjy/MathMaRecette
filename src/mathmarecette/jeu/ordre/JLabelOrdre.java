@@ -17,11 +17,11 @@ public class JLabelOrdre extends JLabel
 		{
 		super("" + _id);
 		this.id = _id;
+		this.id_pos = _id;
 		this.x = x;
 		setLocation(x, 0);
 		setSize(80, 80);
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		mx = x + 40;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -31,6 +31,27 @@ public class JLabelOrdre extends JLabel
 	public int getID()
 		{
 		return id;
+		}
+
+	public int getID_pos()
+		{
+		return id_pos;
+		}
+
+	public void setID_pos(int id)
+		{
+		this.id_pos = id;
+		}
+
+
+	public void setPositionX(int x)
+		{
+		this.x = x;
+		}
+
+	public int getPositionX()
+		{
+		return x;
 		}
 
 	/*------------------------------*\
@@ -49,7 +70,7 @@ public class JLabelOrdre extends JLabel
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 
+	private int id_pos;
 	private int id;
 	private int x;
-	private int mx;
 	}

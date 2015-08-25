@@ -2,12 +2,14 @@
 package mathmarecette.jeu.ordre;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -20,13 +22,13 @@ public class JFrameTestOrdre extends JFrame
 
 	public JFrameTestOrdre()
 		{
-		label = new JLabel[4];
+		label = new JLabelOrdre[4];
 
-		position = new int[4];
-		position[0] = 0;
-		position[1] = 80;
-		position[2] = 160;
-		position[3] = 240;
+		ordre = new int[4];
+		ordre[0] = 2;
+		ordre[1] = 0;
+		ordre[2] = 3;
+		ordre[3] = 1;
 
 		for(int i = 0; i < 4; i++)
 			{
@@ -35,7 +37,6 @@ public class JFrameTestOrdre extends JFrame
 			label[i] = newLabel;
 			label[i].addMouseMotionListener(new MouseMotionListener()
 				{
-
 					@Override
 					public void mouseMoved(MouseEvent e)
 						{
@@ -48,13 +49,24 @@ public class JFrameTestOrdre extends JFrame
 						{
 						// TODO Auto-generated method stub
 						e.getComponent().setLocation(e.getComponent().getX() + e.getX() - xSourisClick, e.getComponent().getY());
-						if (e.getComponent().getX() + 40 > label[((JLabelOrdre)e.getSource()).getID() + 1].getX() + 40)
+						if ((((JLabelOrdre)e.getSource()).getX() - ((JLabelOrdre)e.getSource()).getPositionX()) > 40)
 							{
-								int itemp = ((JLabelOrdre)e.getSource()).getID() + 1;
-								label[((JLabelOrdre)e.getSource()).getID() + 1] = label[((JLabelOrdre)e.getSource()).getID()];
+							if (((JLabelOrdre)e.getSource()).getID_pos() + 1 < label.length)
+								{
+								swapLabel(((JLabelOrdre)e.getSource()).getID_pos(), ((JLabelOrdre)e.getSource()).getID_pos() + 1);
+								}
+							}
+
+						if ((((JLabelOrdre)e.getSource()).getX() - ((JLabelOrdre)e.getSource()).getPositionX()) < -40)
+							{
+							if (((JLabelOrdre)e.getSource()).getID_pos() - 1 > -1)
+								{
+								swapLabel(((JLabelOrdre)e.getSource()).getID_pos(), ((JLabelOrdre)e.getSource()).getID_pos() - 1);
+								}
 							}
 						}
 				});
+
 			label[i].addMouseListener(new MouseAdapter()
 				{
 
@@ -67,8 +79,7 @@ public class JFrameTestOrdre extends JFrame
 					@Override
 					public void mouseReleased(MouseEvent e)
 						{
-						int x = e.getComponent().getX();
-
+						((JLabelOrdre)e.getSource()).setLocation(((JLabelOrdre)e.getSource()).getPositionX(), 0);
 						}
 				});
 			}
@@ -81,6 +92,43 @@ public class JFrameTestOrdre extends JFrame
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public void swapLabel(int i1, int i2)
+		{
+		label[i2].setLocation(label[i1].getPositionX(), 0);
+
+		int tmp = label[i2].getID_pos();
+		label[i2].setID_pos(label[i1].getID_pos());
+		label[i1].setID_pos(tmp);
+
+		tmp = label[i2].getPositionX();
+		label[i2].setPositionX(label[i1].getPositionX());
+		label[i1].setPositionX(tmp);
+
+		JLabelOrdre temp = label[i1];
+		label[i1] = label[i2];
+		label[i2] = temp;
+		repaint();
+		}
+
+	public void checkOrdre()
+		{
+		String txt = "";
+		for(JLabelOrdre jLabelOrdre:label)
+			{
+			txt += jLabelOrdre.getID() + " ";
+			}
+		boolean bOrdrer = true;
+		for(int i = 0; i < label.length; i++)
+			{
+			if (label[i].getID() != ordre[i])
+				{
+				bOrdrer = false;
+				}
+			}
+
+		labelReponse.setText(txt + " " + bOrdrer);
+		}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -96,11 +144,26 @@ public class JFrameTestOrdre extends JFrame
 
 	private void geometry()
 		{
-			// JComponent : Instanciation
+		// JComponent : Instanciation
+		JButton buttonV = new JButton("Valider");
+		buttonV.setLocation(50, 200);
+		buttonV.setSize(150, 30);
+		buttonV.addActionListener(new ActionListener()
+			{
 
+				@Override
+				public void actionPerformed(ActionEvent e)
+					{
+					// TODO Auto-generated method stub
+					checkOrdre();
+					}
+			});
+
+		labelReponse = new JLabel("1 4 5 8");
+		labelReponse.setSize(250, 50);
+		labelReponse.setLocation(50, 100);
 			// Layout : Specification
 			{
-			FlowLayout flowLayout = new FlowLayout();
 			setLayout(null);
 
 			// borderLayout.setHgap(20);
@@ -111,6 +174,9 @@ public class JFrameTestOrdre extends JFrame
 			{
 			add(label[i]);
 			}
+
+		add(buttonV);
+		add(labelReponse);
 
 		// JComponent : add
 		//add(TODO,BorderLayout.CENTER);
@@ -134,10 +200,10 @@ public class JFrameTestOrdre extends JFrame
 
 	// Tools
 
-	private JLabel[] label;
-	private int[] reponse;
+	private JLabelOrdre[] label;
+	private int[] ordre;
 	private int xSourisClick;
-	private int[] position;
+	private JLabel labelReponse;
 
 	public static void main(String[] args)
 		{
