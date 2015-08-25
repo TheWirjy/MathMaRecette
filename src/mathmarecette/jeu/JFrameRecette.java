@@ -5,7 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import mathmarecette.jeu.Recette.Crepe;
+import mathmarecette.jeu.Recette.Spaghetti;
 
 public class JFrameRecette extends JFrame
 	{
@@ -40,7 +40,7 @@ public class JFrameRecette extends JFrame
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		panelRecette = new JPanelRecette(this, new Crepe());
+		panelRecette = new JPanelRecette(this, new Spaghetti());
 		panelRecette.setPreferredSize(new Dimension(600, 700));
 
 		// JComponent : add

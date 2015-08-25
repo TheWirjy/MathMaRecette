@@ -62,7 +62,7 @@ public class JPanelRecette extends JPanel
 			{
 			//http://www.spagety.net/wp-content/uploads/2015/03/%C5%A1pagety.png
 			//new JDialogAfficheRecette(jframe, new ImageIcon("D:\\Desktop\\imgMMR\\SpaghettiRecette.png"));
-			recette.getMiniJeu(jframe);
+			recette.ordreRecette();
 			}
 
 		/*switch(numQuestion)

@@ -2,66 +2,66 @@
 package mathmarecette.jeu.ordre;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class JFrameTestOrdre extends JFrame
+import mathmarecette.jeu.Recette.Recette;
+
+public class JFrameOrdreRecette extends JFrame
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameTestOrdre()
+	public JFrameOrdreRecette(Recette recette)
 		{
-		label = new JLabelOrdre[4];
+		this.recette = recette;
+		label = new JPanelOrdre[recette.getTabIngredientOrdre().length];
 
-		ordre = new int[4];
+		/*ordre = new int[4];
 		ordre[0] = 2;
 		ordre[1] = 0;
 		ordre[2] = 3;
-		ordre[3] = 1;
+		ordre[3] = 1;*/
 
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < label.length; i++)
 			{
-			JLabelOrdre newLabel = new JLabelOrdre(i, 80 * i);
-			newLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-			label[i] = newLabel;
-			label[i].addMouseMotionListener(new MouseMotionListener()
-				{
-					@Override
-					public void mouseMoved(MouseEvent e)
-						{
-						// TODO Auto-generated method stub
 
-						}
+			JPanelOrdre newPanel = new JPanelOrdre(i, SIZE_PANEL * i + i * 2, new ImageIcon(recette.getTabIngredientOrdre()[i].getImage()), recette.getTabIngredientOrdre()[i].getNom());
+			newPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+			label[i] = newPanel;
+			label[i].addMouseMotionListener(new MouseMotionAdapter()
+				{
 
 					@Override
 					public void mouseDragged(MouseEvent e)
 						{
 						// TODO Auto-generated method stub
-						e.getComponent().setLocation(e.getComponent().getX() + e.getX() - xSourisClick, e.getComponent().getY());
-						if ((((JLabelOrdre)e.getSource()).getX() - ((JLabelOrdre)e.getSource()).getPositionX()) > 40)
+
+						JPanelOrdre panelDrag = (JPanelOrdre)e.getComponent();
+
+						panelDrag.setLocation(panelDrag.getX() + e.getX() - xSourisClick, panelDrag.getY());
+
+						if ((panelDrag.getX() - panelDrag.getPositionX()) > M_SIZE_PANEL)
 							{
-							if (((JLabelOrdre)e.getSource()).getID_pos() + 1 < label.length)
+							if (panelDrag.getID_pos() + 1 < label.length)
 								{
-								swapLabel(((JLabelOrdre)e.getSource()).getID_pos(), ((JLabelOrdre)e.getSource()).getID_pos() + 1);
+								swapLabel(panelDrag.getID_pos(), panelDrag.getID_pos() + 1);
 								}
 							}
 
-						if ((((JLabelOrdre)e.getSource()).getX() - ((JLabelOrdre)e.getSource()).getPositionX()) < -40)
+						if ((panelDrag.getX() - panelDrag.getPositionX()) < -M_SIZE_PANEL)
 							{
-							if (((JLabelOrdre)e.getSource()).getID_pos() - 1 > -1)
+							if (panelDrag.getID_pos() - 1 > -1)
 								{
-								swapLabel(((JLabelOrdre)e.getSource()).getID_pos(), ((JLabelOrdre)e.getSource()).getID_pos() - 1);
+								swapLabel(panelDrag.getID_pos(), panelDrag.getID_pos() - 1);
 								}
 							}
 						}
@@ -74,12 +74,14 @@ public class JFrameTestOrdre extends JFrame
 					public void mousePressed(MouseEvent e)
 						{
 						xSourisClick = e.getX();
+						getContentPane().setComponentZOrder(e.getComponent(), 0);
 						}
 
 					@Override
 					public void mouseReleased(MouseEvent e)
 						{
-						((JLabelOrdre)e.getSource()).setLocation(((JLabelOrdre)e.getSource()).getPositionX(), 0);
+						JPanelOrdre panelDrag = (JPanelOrdre)e.getComponent();
+						panelDrag.setLocation(panelDrag.getPositionX(), 0);
 						}
 				});
 			}
@@ -105,27 +107,27 @@ public class JFrameTestOrdre extends JFrame
 		label[i2].setPositionX(label[i1].getPositionX());
 		label[i1].setPositionX(tmp);
 
-		JLabelOrdre temp = label[i1];
+		JPanelOrdre temp = label[i1];
 		label[i1] = label[i2];
 		label[i2] = temp;
-		repaint();
 		}
 
 	public void checkOrdre()
 		{
 		String txt = "";
-		for(JLabelOrdre jLabelOrdre:label)
+		for(JPanelOrdre jLabelOrdre:label)
 			{
 			txt += jLabelOrdre.getID() + " ";
 			}
+
 		boolean bOrdrer = true;
-		for(int i = 0; i < label.length; i++)
+		/*for(int i = 0; i < label.length; i++)
 			{
 			if (label[i].getID() != ordre[i])
 				{
 				bOrdrer = false;
 				}
-			}
+			}*/
 
 		labelReponse.setText(txt + " " + bOrdrer);
 		}
@@ -145,53 +147,29 @@ public class JFrameTestOrdre extends JFrame
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		JButton buttonV = new JButton("Valider");
-		buttonV.setLocation(50, 200);
-		buttonV.setSize(150, 30);
-		buttonV.addActionListener(new ActionListener()
-			{
 
-				@Override
-				public void actionPerformed(ActionEvent e)
-					{
-					// TODO Auto-generated method stub
-					checkOrdre();
-					}
-			});
+		setLayout(null);
 
-		labelReponse = new JLabel("1 4 5 8");
-		labelReponse.setSize(250, 50);
-		labelReponse.setLocation(50, 100);
-			// Layout : Specification
-			{
-			setLayout(null);
-
-			// borderLayout.setHgap(20);
-			// borderLayout.setVgap(20);
-			}
-
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < recette.getTabIngredientOrdre().length; i++)
 			{
 			add(label[i]);
+			getContentPane().setComponentZOrder(label[i], i);
 			}
-
-		add(buttonV);
-		add(labelReponse);
-
-		// JComponent : add
-		//add(TODO,BorderLayout.CENTER);
 		}
 
 	private void control()
 		{
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		}
 
 	private void appearance()
 		{
-		setSize(600, 400);
+		int nbElement = recette.getTabIngredientOrdre().length;
+		getContentPane().setSize(nbElement*100, 160);
+		setSize(nbElement*110, 200);
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
+		getContentPane().setBackground(new Color(204,204,204));
 		}
 
 	/*------------------------------------------------------------------*\
@@ -200,13 +178,12 @@ public class JFrameTestOrdre extends JFrame
 
 	// Tools
 
-	private JLabelOrdre[] label;
+	private JPanelOrdre[] label;
 	private int[] ordre;
 	private int xSourisClick;
 	private JLabel labelReponse;
+	private Recette recette;
 
-	public static void main(String[] args)
-		{
-		new JFrameTestOrdre();
-		}
+	private final int SIZE_PANEL = 100;
+	private final int M_SIZE_PANEL = 50;
 	}

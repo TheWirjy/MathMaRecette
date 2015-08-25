@@ -1,9 +1,12 @@
 
 package mathmarecette.jeu;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class JPanelIngredients extends JPanel
@@ -26,7 +29,7 @@ public class JPanelIngredients extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	public void setIngredient(Ingredient[] ingredient)
+	public void setIngredient(ImageIcon[] ingredient)
 		{
 		for(int i = 0; i < ingredient.length; i++)
 			{
@@ -52,6 +55,7 @@ public class JPanelIngredients extends JPanel
 		for(int i = 0; i < labelIngredient.length; i++)
 			{
 			labelIngredient[i] = new JLabelIngredient(panelRecette, i + 1);
+			labelIngredient[i].setOpaque(false);
 			}
 
 			// Layout : Specification
@@ -77,7 +81,8 @@ public class JPanelIngredients extends JPanel
 
 	private void appearance()
 		{
-		//setBackground(new Color(255,246,213));
+		setBackground(new Color(119,114,105));
+		setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
 		}
 
 	/*------------------------------------------------------------------*\

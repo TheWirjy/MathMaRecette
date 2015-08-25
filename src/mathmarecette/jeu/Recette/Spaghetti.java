@@ -2,9 +2,9 @@
 package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
-import mathmarecette.jeu.memory.JDialogMemory;
+import mathmarecette.jeu.ingredient.IngredientOrdre;
+import mathmarecette.jeu.ordre.JFrameOrdreRecette;
 
 public class Spaghetti extends Recette
 	{
@@ -22,15 +22,20 @@ public class Spaghetti extends Recette
 		tabQuestion[2] = "Le paquet de pate contient 500g laisse 300g dans le paquet et ajoute le reste dans la casserole";
 		tabQuestion[3] = "Il est 15h35, les pates doivent cuire 8min, à quelle heure seront-elle prête ?";
 
-		createQuestion(0, ".\\image\\ingredient\\Q1R1_.png", ".\\image\\ingredient\\Q1R2_.png", ".\\image\\ingredient\\Q1R3_.png", ".\\image\\ingredient\\Q1R4_.png", "1", "1", "1", "1");
-		createQuestion(1, ".\\image\\ingredient\\Q2R1.png", ".\\image\\ingredient\\Q2R2.png", ".\\image\\ingredient\\Q2R3.png", ".\\image\\ingredient\\Q2R4.png", "2", "2", "2", "2");
-		createQuestion(2, ".\\image\\ingredient\\Q3R1.png", ".\\image\\ingredient\\Q3R2.png", ".\\image\\ingredient\\Q3R3.png", ".\\image\\ingredient\\Q3R4.png", "3", "3", "3", "3");
-		createQuestion(3, ".\\image\\ingredient\\Q4R1.png", ".\\image\\ingredient\\Q4R2.png", ".\\image\\ingredient\\Q4R3.png", ".\\image\\ingredient\\Q4R4.png", "4", "4", "4", "4");
+		createQuestion(0, ".\\image\\ingredient\\Q1R1_.png", ".\\image\\ingredient\\Q1R2_.png", ".\\image\\ingredient\\Q1R3_.png", ".\\image\\ingredient\\Q1R4_.png");
+		createQuestion(1, ".\\image\\ingredient\\Q2R1.png", ".\\image\\ingredient\\Q2R2.png", ".\\image\\ingredient\\Q2R3.png", ".\\image\\ingredient\\Q2R4.png");
+		createQuestion(2, ".\\image\\ingredient\\Q3R1.png", ".\\image\\ingredient\\Q3R2.png", ".\\image\\ingredient\\Q3R3.png", ".\\image\\ingredient\\Q3R4.png");
+		createQuestion(3, ".\\image\\ingredient\\Q4R1.png", ".\\image\\ingredient\\Q4R2.png", ".\\image\\ingredient\\Q4R3.png", ".\\image\\ingredient\\Q4R4.png");
 
 		tabSolution[0] = 1;
 		tabSolution[1] = 2;
 		tabSolution[2] = 4;
 		tabSolution[3] = 3;
+
+		this.tabIngredientOrdre = new IngredientOrdre[3];
+		tabIngredientOrdre[0] = new IngredientOrdre(".\\image\\ingredient\\Q1R1_.png", "Eau");
+		tabIngredientOrdre[1] = new IngredientOrdre(".\\image\\ingredient\\Q2R2.png", "Sel");
+		tabIngredientOrdre[2] = new IngredientOrdre(".\\image\\ingredient\\Q3R4.png", "Pâtes");
 
 		imageRecette = new ImageIcon("");
 
@@ -41,9 +46,9 @@ public class Spaghetti extends Recette
 	\*------------------------------------------------------------------*/
 
 	@Override
-	public void getMiniJeu(JFrame jframe)
+	public void ordreRecette()
 		{
-			new JDialogMemory(jframe);
+			new JFrameOrdreRecette(this);
 		}
 
 	/*------------------------------*\

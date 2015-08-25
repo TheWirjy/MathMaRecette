@@ -2,9 +2,8 @@
 package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
-import mathmarecette.jeu.Ingredient;
+import mathmarecette.jeu.ingredient.IngredientOrdre;
 
 public class Recette
 	{
@@ -20,11 +19,13 @@ public class Recette
 		this.nbQuestion = _nbQuestion;
 		this.cptQuestion = 0;
 		this.tabQuestion = new String[nbQuestion];
-		this.tabReponse = new Ingredient[nbQuestion][];
+		this.tabReponse = new ImageIcon[nbQuestion][];
+
 		for(int i = 0; i < nbQuestion; i++)
 			{
-			tabReponse[i] = new Ingredient[4];
+			tabReponse[i] = new ImageIcon[4];
 			}
+
 		this.tabSolution = new int[nbQuestion];
 		}
 
@@ -45,7 +46,7 @@ public class Recette
 			}
 		}
 
-	public Ingredient[] getReponse()
+	public ImageIcon[] getReponse()
 		{
 		return tabReponse[cptQuestion];
 		}
@@ -67,12 +68,12 @@ public class Recette
 			}
 		}
 
-	protected void createQuestion(int numQuestion, String img1, String img2, String img3, String img4, String q1, String q2, String q3, String q4)
+	protected void createQuestion(int numQuestion, String img1, String img2, String img3, String img4)
 		{
-		tabReponse[numQuestion][0] = new Ingredient(img1, q1);
-		tabReponse[numQuestion][1] = new Ingredient(img2, q2);
-		tabReponse[numQuestion][2] = new Ingredient(img3, q3);
-		tabReponse[numQuestion][3] = new Ingredient(img4, q4);
+		tabReponse[numQuestion][0] = new ImageIcon(img1);
+		tabReponse[numQuestion][1] = new ImageIcon(img2);
+		tabReponse[numQuestion][2] = new ImageIcon(img3);
+		tabReponse[numQuestion][3] = new ImageIcon(img4);
 		}
 
 	/*------------------------------*\
@@ -118,15 +119,20 @@ public class Recette
 		return tabSolution;
 		}
 
-	public Ingredient[][] getTabReponse()
+	public ImageIcon[][] getTabReponse()
 		{
 		return tabReponse;
 		}
 
-	public void getMiniJeu(@SuppressWarnings("unused") JFrame jframe)
+	public IngredientOrdre[] getTabIngredientOrdre()
 		{
-
+		return tabIngredientOrdre;
 		}
+
+	public void ordreRecette()
+	{
+
+	}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
@@ -141,7 +147,8 @@ public class Recette
 	private int nbQuestion;
 	private int cptQuestion;
 	protected String[] tabQuestion;
-	protected Ingredient[][] tabReponse;
+	protected ImageIcon[][] tabReponse;
 	protected int[] tabSolution;
 	protected ImageIcon imageRecette;
+	protected IngredientOrdre[] tabIngredientOrdre;
 	}

@@ -1,10 +1,12 @@
 
 package mathmarecette.jeu;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -72,6 +74,8 @@ public class JPanelInfoBar extends JPanel
 	private void appearance()
 		{
 		labelTitre.setFont(new Font("Verdana", 1, 20));
+		setBackground(new Color(119,114,105));
+		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		}
 
 	/*------------------------------------------------------------------*\

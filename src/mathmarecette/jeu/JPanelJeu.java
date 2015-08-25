@@ -10,6 +10,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class JPanelJeu extends JPanel
 	{
@@ -94,14 +95,14 @@ public class JPanelJeu extends JPanel
 		{
 		imageCuisine = new ImageIcon(".\\image\\kitchen.png").getImage();
 
-		labelQuestion.setBackground(new Color(255 ,255,255));
 		labelQuestion.setOpaque(false);
-		Font font = new Font("Verdana", 1, 16);
+		Font font = new Font("Arial", 1, 14);
 		labelQuestion.setFont(font);
 		labelQuestion.setForeground(Color.black);
-		//labelQuestion.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		labelQuestion.setSize(540, 50);
-		labelQuestion.setLocation(30, 0);
+		labelQuestion.setSize(490, 55);
+		labelQuestion.setLocation(58, 26);
+		labelQuestion.setVerticalAlignment(SwingConstants.CENTER);
+		labelQuestion.setHorizontalAlignment(SwingConstants.CENTER);
 
 		labelCasserole.setSize(100, 20);
 		labelCasserole.setLocation(300, 400);

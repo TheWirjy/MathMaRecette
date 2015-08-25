@@ -24,13 +24,13 @@ public class Salade extends Recette
 			tabQuestion[5] = "Ajoute 1/6 de concombre au plat";
 			tabQuestion[6] = "Verse 0,1l de la sauce faite dans le plat";
 
-			createQuestion(0, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R2.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R4.png","1","1","1","1");
-			createQuestion(1, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R2.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R4.png","2","2","2","2");
-			createQuestion(2, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R1.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R2.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R4.png","3","3","3","3");
-			createQuestion(3,  "4", "4",  "4",  "4",  "4", "4",  "4",  "4");
-			createQuestion(4, "5", "5", "5", "5", "5", "5", "5", "5");
-			createQuestion(5, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R2.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R4.png", "6","6","6","6");
-			createQuestion(6, "7", "7", "7","7", "7", "7", "7","7");
+			createQuestion(0, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R2.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R4.png");
+			createQuestion(1, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R2.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R4.png");
+			createQuestion(2, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R1.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R2.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R4.png");
+			createQuestion(3,  "4", "4",  "4",  "4");
+			createQuestion(4, "5", "5", "5", "5");
+			createQuestion(5, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R2.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R4.png");
+			createQuestion(6, "7", "7", "7","7");
 
 			tabSolution[0] = 3;
 			tabSolution[1] = 2;

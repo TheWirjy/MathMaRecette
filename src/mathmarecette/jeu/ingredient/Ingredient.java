@@ -1,5 +1,5 @@
 
-package mathmarecette.jeu;
+package mathmarecette.jeu.ingredient;
 
 public class Ingredient
 	{
@@ -8,10 +8,9 @@ public class Ingredient
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public Ingredient(String _image, String _quantite)
+	public Ingredient(String _image)
 		{
 		image = _image;
-		quantite = _quantite;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -31,11 +30,6 @@ public class Ingredient
 		return this.image;
 		}
 
-	public String getQuantite()
-		{
-		return this.quantite;
-		}
-
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
@@ -45,7 +39,4 @@ public class Ingredient
 	\*------------------------------------------------------------------*/
 
 	private String image;
-
-	private String quantite;
-
 	}

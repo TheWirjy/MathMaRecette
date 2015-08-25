@@ -1,58 +1,22 @@
 
-package mathmarecette.jeu.ordre;
+package mathmarecette.jeu.ingredient;
 
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-
-public class JLabelOrdre extends JLabel
+public class IngredientOrdre
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JLabelOrdre(int _id, int x)
+	public IngredientOrdre(String _image, String _nom)
 		{
-		super("" + _id);
-		this.id = _id;
-		this.id_pos = _id;
-		this.x = x;
-		setLocation(x, 0);
-		setSize(80, 80);
-		setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		image = _image;
+		nom = _nom;
 		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
-
-	public int getID()
-		{
-		return id;
-		}
-
-	public int getID_pos()
-		{
-		return id_pos;
-		}
-
-	public void setID_pos(int id)
-		{
-		this.id_pos = id;
-		}
-
-
-	public void setPositionX(int x)
-		{
-		this.x = x;
-		}
-
-	public int getPositionX()
-		{
-		return x;
-		}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -62,6 +26,16 @@ public class JLabelOrdre extends JLabel
 	|*				Get				*|
 	\*------------------------------*/
 
+	public String getImage()
+		{
+		return this.image;
+		}
+
+	public String getNom()
+		{
+		return this.nom;
+		}
+
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
@@ -70,7 +44,7 @@ public class JLabelOrdre extends JLabel
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 
-	private int id_pos;
-	private int id;
-	private int x;
+	private String image;
+	private String nom;
+
 	}
