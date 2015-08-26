@@ -85,7 +85,7 @@ public class JPanelOrdre extends JPanel
 		this.labelNom.setVerticalAlignment(SwingConstants.CENTER);
 		this.labelNom.setFont(new Font("Segoe Print", Font.PLAIN, 12));
 		this.labelNom.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		this.labelNom.setBackground(new Color(119,114,105));
+		this.labelNom.setBackground(new Color(234,226,197));
 
 
 		this.labelNom.setSize(100, 50);
@@ -97,7 +97,7 @@ public class JPanelOrdre extends JPanel
 		this.labelImage.setSize(100, 100);
 		this.labelImage.setLocation(0, 50);
 		this.labelImage.setIcon(image);
-		this.labelImage.setBackground(new Color(145,139,126));
+		this.labelImage.setBackground(new Color(252,243,212));
 		this.labelImage.setHorizontalAlignment(SwingConstants.CENTER);
 		this.labelImage.setVerticalAlignment(SwingConstants.CENTER);
 		this.labelImage.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));

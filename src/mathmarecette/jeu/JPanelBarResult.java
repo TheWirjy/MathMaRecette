@@ -70,6 +70,7 @@ public class JPanelBarResult extends JPanel
 
 		g2.setColor(Color.black);
 		g2.setStroke(new BasicStroke(2));
+
 		for(int i = 0; i < nbQuestion; i++)
 			{
 			g.drawRect(3, (int)(i * hLabel) + 3, width, (int)hLabel);
