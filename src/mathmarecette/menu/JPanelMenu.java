@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.IOException;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -44,7 +45,12 @@ public class JPanelMenu extends JPanel
 		  String filename="C:/Users/raphael.schaffo/HE-ARC/MathMaRecette Media/Son/CLickJump.mp3";
 	      mp3= new MP3(filename);
 	      
-		
+	      try {
+				current = new java.io.File( "." ).getCanonicalPath();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 
 		// JComponent : Adaptation
@@ -55,23 +61,23 @@ public class JPanelMenu extends JPanel
 		apropos.setPreferredSize(new Dimension(100, 30));
 
 		arcade.setBorderPainted(false);
-		iconArcade = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNArcade.png");
-		iconArcadeCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNArcade-copie.png");
+		iconArcade = new ImageIcon(current+"\\Image\\BTNArcade.png");
+		iconArcadeCopie = new ImageIcon(current+"\\Image\\BTNArcade-copie.png");
 		arcade.setIcon(iconArcade);
 
 		niveau.setBorderPainted(false);
-		iconLevel = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNNiveau.png");
-		iconLevelCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNNiveau-copie.png");
+		iconLevel = new ImageIcon(current+"\\Image\\BTNNiveau.png");
+		iconLevelCopie = new ImageIcon(current+"\\Image\\BTNNiveau-copie.png");
 		niveau.setIcon(iconLevel);
 
 		tutoriel.setBorderPainted(false);
-		iconTutorial = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNTutoriel.png");
-		iconTutorialCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNTutoriel-copie.png");
+		iconTutorial = new ImageIcon(current+"\\Image\\BTNTutoriel.png");
+		iconTutorialCopie = new ImageIcon(current+"\\Image\\BTNTutoriel-copie.png");
 		tutoriel.setIcon(iconTutorial);
 
 		apropos.setBorderPainted(false);
-		iconApropos = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNApropos.png");
-		iconAproposCopie = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\BTNApropos - Copie.png");
+		iconApropos = new ImageIcon(current+"\\Image\\BTNApropos.png");
+		iconAproposCopie = new ImageIcon(current+"\\Image\\BTNApropos - Copie.png");
 		apropos.setIcon(iconApropos);
 
 
@@ -104,6 +110,7 @@ public class JPanelMenu extends JPanel
 					{
 					// TODO Auto-generated method stub
 					tutoriel.setIcon(iconTutorialCopie);
+
 					}
 
 				@Override
@@ -278,6 +285,7 @@ public class JPanelMenu extends JPanel
 	private ImageIcon iconTutorial;
 	private ImageIcon iconTutorialCopie;
 	private MP3 mp3 ;
+	private String current;
 
 
 	}
