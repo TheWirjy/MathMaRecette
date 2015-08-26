@@ -74,7 +74,7 @@ public class JPanelInfoBar extends JPanel
 	private void appearance()
 		{
 		labelTitre.setFont(new Font("Verdana", 1, 20));
-		setBackground(new Color(119,114,105));
+		setBackground(new Color(234,226,197));
 		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		}
 

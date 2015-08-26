@@ -81,7 +81,7 @@ public class JPanelIngredients extends JPanel
 
 	private void appearance()
 		{
-		setBackground(new Color(119,114,105));
+		setBackground(new Color(216,209,182));
 		setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
 		}
 
