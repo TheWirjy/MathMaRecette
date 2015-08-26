@@ -1,6 +1,7 @@
 package mathmarecette.menu;
 
 import java.awt.Color;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -30,11 +31,18 @@ public class JFrameMenu extends JFrame
 		menu = new JPanelMenu();
 		pictures= new JLabel("");
 		title= new JLabel("");
+		
+		try {
+			current = new java.io.File( "." ).getCanonicalPath();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		ImageIcon iconPictures = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\font.png");
+		ImageIcon iconPictures = new ImageIcon(current+"\\Image\\font.png");
 		pictures.setIcon(iconPictures);
 
-		ImageIcon iconTitle = new ImageIcon("C:\\Users\\raphael.schaffo\\HE-ARC\\MathMaRecette Media\\Image\\title.png");
+		ImageIcon iconTitle = new ImageIcon(current+"\\Image\\title.png");
 		title.setIcon(iconTitle);
 
 		// JComponent : Layout
@@ -74,5 +82,6 @@ public class JFrameMenu extends JFrame
 	private JPanelMenu menu;
 	JLabel pictures;
 	JLabel title;
+	private String current;
 
 	}
