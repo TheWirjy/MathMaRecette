@@ -3,12 +3,15 @@ package mathmarecette.jeu;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
+
+import mathmarecette.Tools;
 
 public class JPanelBarResult extends JPanel
 	{
@@ -20,8 +23,9 @@ public class JPanelBarResult extends JPanel
 	public JPanelBarResult()
 		{
 		reponse = new ArrayList<Integer>();
-		width = 15;
-		height = 250;
+		width = 250;
+		height = 15;
+
 		geometry();
 		control();
 		appearance();
@@ -39,7 +43,6 @@ public class JPanelBarResult extends JPanel
 			{
 			reponse.add(2);
 			}
-		hLabel = height / _nbQuestion;
 		}
 
 	@Override
@@ -54,17 +57,7 @@ public class JPanelBarResult extends JPanel
 			if (reponse.get(i) == 1)
 				{
 				g2.setColor(COLOR_JUSTE);
-				g2.fillRect(3, (int)(height - (i + 1) * hLabel), width, (int)hLabel);
-				}
-			else if (reponse.get(i) == 0)
-				{
-				g2.setColor(COLOR_FAUX);
-				g2.fillRect(3, (int)(height - (i + 1) * hLabel), width, (int)hLabel);
-				}
-			else
-				{
-				g2.setColor(COLOR_NEUTRE);
-				g2.fillRect(3, (int)(height - (i + 1) * hLabel), width, (int)hLabel);
+				g2.fillRect(i * 10 + i * 5 + 5, 3, 10, 10);
 				}
 			}
 
@@ -73,20 +66,13 @@ public class JPanelBarResult extends JPanel
 
 		for(int i = 0; i < nbQuestion; i++)
 			{
-			g.drawRect(3, (int)(i * hLabel) + 3, width, (int)hLabel);
+			g.drawRect(i * 10 + i * 5 + 5, 3, 10, 10);
 			}
 		}
 
-	public void setResultat(int indice, boolean juste)
+	public void setResultat(int indice, @SuppressWarnings("unused") boolean juste)
 		{
-		if (juste)
-			{
-			reponse.add(indice, 1);
-			}
-		else
-			{
-			reponse.add(indice, 0);
-			}
+		reponse.add(indice, 1);
 		repaint();
 		}
 
@@ -114,8 +100,9 @@ public class JPanelBarResult extends JPanel
 
 	private void appearance()
 		{
-		setSize(width + 5, height + 5);
-		setLocation(570, 250);
+		setSize(width, height);
+		setPreferredSize(new Dimension(width, height));
+		setLocation(335, 175);
 		setOpaque(false);
 		}
 
@@ -126,10 +113,7 @@ public class JPanelBarResult extends JPanel
 	// Tools
 	private int width;
 	private int height;
-	private double hLabel;
 	private int nbQuestion = 0;
 	private List<Integer> reponse;
-	private final Color COLOR_FAUX = new Color(174, 0, 38);
-	private final Color COLOR_JUSTE = new Color(0, 173, 115);
-	private final Color COLOR_NEUTRE = new Color(84, 84, 84);
+	private final Color COLOR_JUSTE = Tools.COLOR_VERT;
 	}

@@ -3,6 +3,7 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
+import mathmarecette.jeu.JFrameRecette;
 import mathmarecette.jeu.ingredient.IngredientOrdre;
 
 public class Recette
@@ -129,7 +130,7 @@ public class Recette
 		return tabIngredientOrdre;
 		}
 
-	public void ordreRecette()
+	public void ordreRecette(@SuppressWarnings("unused") JFrameRecette parent)
 	{
 
 	}

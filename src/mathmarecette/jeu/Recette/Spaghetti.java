@@ -3,8 +3,9 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
+import mathmarecette.jeu.JFrameRecette;
 import mathmarecette.jeu.ingredient.IngredientOrdre;
-import mathmarecette.jeu.ordre.JFrameOrdreRecette;
+import mathmarecette.jeu.ordre.JDialogOrdreRecette;
 
 public class Spaghetti extends Recette
 	{
@@ -17,25 +18,27 @@ public class Spaghetti extends Recette
 		{
 		super("Spaghetti", "Nature", 4);
 
-		tabQuestion[0] = "Verse 2*1 bouteille d’ 1 litre dans la casserole";
-		tabQuestion[1] = "Ajoute 1 première cuillère de sel et ensuite ajoute en deux";
-		tabQuestion[2] = "Le paquet de pate contient 500g laisse 300g dans le paquet et ajoute le reste dans la casserole";
-		tabQuestion[3] = "Il est 15h35, les pates doivent cuire 8min, à quelle heure seront-elle prête ?";
+		tabQuestion[0] = "Il faut 2*1 bouteille d’ 1 litre <i>(Un récipient plein = 1L)</i>";
+		tabQuestion[1] = "On a besoin de 15g de sel (1 cuillère = 5g)";
+		tabQuestion[2] = "Le paquet de pâte contient 500g laisse 300g dans le paquet et prend le reste";
+		tabQuestion[3] = "Il est 15h37, les pâtes doivent cuire 6min, à quelle heure seront-elle prête ?";
 
-		createQuestion(0, ".\\image\\ingredient\\Q1R1_.png", ".\\image\\ingredient\\Q1R2_.png", ".\\image\\ingredient\\Q1R3_.png", ".\\image\\ingredient\\Q1R4_.png");
-		createQuestion(1, ".\\image\\ingredient\\Q2R1.png", ".\\image\\ingredient\\Q2R2.png", ".\\image\\ingredient\\Q2R3.png", ".\\image\\ingredient\\Q2R4.png");
-		createQuestion(2, ".\\image\\ingredient\\Q3R1.png", ".\\image\\ingredient\\Q3R2.png", ".\\image\\ingredient\\Q3R3.png", ".\\image\\ingredient\\Q3R4.png");
-		createQuestion(3, ".\\image\\ingredient\\Q4R1.png", ".\\image\\ingredient\\Q4R2.png", ".\\image\\ingredient\\Q4R3.png", ".\\image\\ingredient\\Q4R4.png");
+		createQuestion(0, CHEMIN_QUESTION + "Q1R1.png", CHEMIN_QUESTION + "Q1R2.png", CHEMIN_QUESTION + "Q1R3.png", CHEMIN_QUESTION + "Q1R4.png");
+		createQuestion(1, CHEMIN_QUESTION + "Q2R1.png", CHEMIN_QUESTION + "Q2R2.png", CHEMIN_QUESTION + "Q2R3.png", CHEMIN_QUESTION + "Q2R4.png");
+		createQuestion(2, CHEMIN_QUESTION + "Q3R1.png", CHEMIN_QUESTION + "Q3R2.png", CHEMIN_QUESTION + "Q3R3.png", CHEMIN_QUESTION + "Q3R4.png");
+		createQuestion(3, CHEMIN_QUESTION + "Q4R1.png", CHEMIN_QUESTION + "Q4R2.png", CHEMIN_QUESTION + "Q4R3.png", CHEMIN_QUESTION + "Q4R4.png");
 
 		tabSolution[0] = 1;
 		tabSolution[1] = 2;
 		tabSolution[2] = 4;
 		tabSolution[3] = 3;
 
-		this.tabIngredientOrdre = new IngredientOrdre[3];
-		tabIngredientOrdre[0] = new IngredientOrdre(".\\image\\ingredient\\Q1R1_.png", "Eau");
-		tabIngredientOrdre[1] = new IngredientOrdre(".\\image\\ingredient\\Q2R2.png", "Sel");
-		tabIngredientOrdre[2] = new IngredientOrdre(".\\image\\ingredient\\Q3R4.png", "Pâtes");
+		this.tabIngredientOrdre = new IngredientOrdre[5];
+		tabIngredientOrdre[0] = new IngredientOrdre(CHEMIN_ORDRE + "eau.png", "Eau");
+		tabIngredientOrdre[1] = new IngredientOrdre(CHEMIN_ORDRE + "sel.png", "Sel");
+		tabIngredientOrdre[2] = new IngredientOrdre(CHEMIN_ORDRE + "pate.png", "Pâtes");
+		tabIngredientOrdre[3] = new IngredientOrdre(CHEMIN_ORDRE + "casserole.png", "Cuisson");
+		tabIngredientOrdre[4] = new IngredientOrdre(CHEMIN_ORDRE + "huile.png", "Huile d'olive");
 
 		imageRecette = new ImageIcon("");
 
@@ -46,9 +49,9 @@ public class Spaghetti extends Recette
 	\*------------------------------------------------------------------*/
 
 	@Override
-	public void ordreRecette()
+	public void ordreRecette(JFrameRecette parent)
 		{
-			new JFrameOrdreRecette(this);
+		new JDialogOrdreRecette(parent, this);
 		}
 
 	/*------------------------------*\
@@ -66,4 +69,6 @@ public class Spaghetti extends Recette
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
+	private final String CHEMIN_QUESTION = ".\\image\\ingredient\\spaghetti\\";
+	private final String CHEMIN_ORDRE = ".\\image\\ingredient\\spaghetti\\ordre\\";
 	}

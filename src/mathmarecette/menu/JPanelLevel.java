@@ -1,15 +1,24 @@
+
 package mathmarecette.menu;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import mathmarecette.jeu.JFrameRecette;
+import mathmarecette.jeu.Recette.Cake;
+import mathmarecette.jeu.Recette.Crepe;
+import mathmarecette.jeu.Recette.Pizza;
+import mathmarecette.jeu.Recette.Recette;
+import mathmarecette.jeu.Recette.Salade;
+import mathmarecette.jeu.Recette.Spaghetti;
 
 public class JPanelLevel extends JPanel
 	{
@@ -40,15 +49,18 @@ public class JPanelLevel extends JPanel
 		level5 = new JButton("Pizza au jambon ");
 
 		// JComponent : Adaptation
-		
-		try {
-			current = new java.io.File( "." ).getCanonicalPath();
-		} catch (IOException e) {
+
+		try
+			{
+			current = new java.io.File(".").getCanonicalPath();
+			}
+		catch (IOException e)
+			{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		String filename=current+"/Son/ClickJump.mp3";
-	    mp3= new MP3(filename);
+			}
+		String filename = current + "/Son/ClickJump.mp3";
+		mp3 = new MP3(filename);
 
 		level1.setPreferredSize(new Dimension(100, 30));
 		level2.setPreferredSize(new Dimension(100, 30));
@@ -57,33 +69,25 @@ public class JPanelLevel extends JPanel
 		level5.setPreferredSize(new Dimension(100, 30));
 
 		level1.setBorderPainted(false);
-		iconSpaghetti = new ImageIcon(current+"\\Image\\BTNSpaghetti.png");
-		iconSpaghettiCopie = new ImageIcon(current+"\\Image\\BTNSpaghetti-copie.png");
+		iconSpaghetti = new ImageIcon(current + "\\Image\\BTNSpaghetti.png");
 		level1.setIcon(iconSpaghetti);
-		
-		
+
 		level2.setBorderPainted(false);
-		iconPate = new ImageIcon(current+"\\Image\\BTNPate.png");
-		iconPateCopie = new ImageIcon(current+"\\Image\\BTNPate-copie.png");
+		iconPate = new ImageIcon(current + "\\Image\\BTNPate.png");
 		level2.setIcon(iconPate);
-		
+
 		level3.setBorderPainted(false);
-		iconCake = new ImageIcon(current+"\\Image\\BTNCake.png");
-		iconCakeCopie = new ImageIcon(current+"\\Image\\BTNCake-copie.png");
+		iconCake = new ImageIcon(current + "\\Image\\BTNCake.png");
 		level3.setIcon(iconCake);
-		
-		
+
 		level4.setBorderPainted(false);
-		iconSalade = new ImageIcon(current+"\\Image\\BTNSalade.png");
-		iconSaladeCopie = new ImageIcon(current+"\\Image\\BTNSalade-copie.png");
+		iconSalade = new ImageIcon(current + "\\Image\\BTNSalade.png");
 		level4.setIcon(iconSalade);
-		
+
 		level5.setBorderPainted(false);
-		iconPizza = new ImageIcon(current+"\\Image\\BTNPizza.png");
-		iconPizzaCopie = new ImageIcon(current+"\\Image\\BTNPizza-copie.png");
+		iconPizza = new ImageIcon(current + "\\Image\\BTNPizza.png");
 		level5.setIcon(iconPizza);
-		
-		
+
 		// JComponent : Layout
 
 		setLayout(new GridLayout(5, 1, 10, 10));
@@ -95,168 +99,56 @@ public class JPanelLevel extends JPanel
 
 		}
 
+	private MouseAdapter monMouseListener(final JButton level, final Recette recette)
+		{
+		return new MouseAdapter()
+			{
+
+				@Override
+				public void mouseReleased(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					level.setLocation(level.getX(), level.getY()+10);
+					if (click && dessus)
+						{
+						mp3.play();
+						new JFrameRecette(recette);
+						}
+					click = false;
+					}
+
+				@Override
+				public void mousePressed(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					click = true;
+					dessus = true;
+					level.setLocation(level.getX(), level.getY()-10);
+					}
+
+				@Override
+				public void mouseExited(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = false;
+					}
+
+				@Override
+				public void mouseEntered(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = true;
+					}
+			};
+		}
+
 	private void control()
 		{
-		level1.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				level1.setIcon(iconSpaghetti);
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				level1.setIcon(iconSpaghettiCopie);
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				mp3.play();
-			}
-		});
-		level2.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				level2.setIcon(iconPate);
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				level2.setIcon(iconPateCopie);
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				mp3.play();
-			}
-		});
-		level3.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				level3.setIcon(iconCake);
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				level3.setIcon(iconCakeCopie);
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				mp3.play();
-			}
-		});
-		level4.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				level4.setIcon(iconSalade);
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				level4.setIcon(iconSaladeCopie);
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				mp3.play();
-			}
-		});
-		level5.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				level5.setIcon(iconPizza);
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				level5.setIcon(iconPizzaCopie);
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				mp3.play();
-			}
-		});
+		level1.addMouseListener(monMouseListener(level1, new Spaghetti()));
+		level2.addMouseListener(monMouseListener(level2, new Crepe()));
+		level3.addMouseListener(monMouseListener(level3, new Cake()));
+		level4.addMouseListener(monMouseListener(level4, new Salade()));
+		level5.addMouseListener(monMouseListener(level5, new Pizza()));
 		}
 
 	private void appearance()
@@ -264,7 +156,7 @@ public class JPanelLevel extends JPanel
 		Dimension panelD = new Dimension(500, 470);
 		this.setPreferredSize(panelD);
 		this.setMaximumSize(panelD);
-		Color fontColor = new Color(255,246,213);
+		Color fontColor = new Color(255, 246, 213);
 		setBackground(fontColor);
 		}
 
@@ -279,16 +171,13 @@ public class JPanelLevel extends JPanel
 	JButton level4;
 	JButton level5;
 	private ImageIcon iconSpaghetti;
-	private ImageIcon iconSpaghettiCopie;
 	private ImageIcon iconPate;
-	private ImageIcon iconPateCopie;
 	private ImageIcon iconCake;
-	private ImageIcon iconCakeCopie;
 	private ImageIcon iconSalade;
-	private ImageIcon iconSaladeCopie;
 	private ImageIcon iconPizza;
-	private ImageIcon iconPizzaCopie;
-	private MP3 mp3 ;
+	private MP3 mp3;
 	private String current;
+	private boolean click = false;
+	private boolean dessus = false;
 
 	}

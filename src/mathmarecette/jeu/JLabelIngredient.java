@@ -15,6 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import mathmarecette.Tools;
+
 public class JLabelIngredient extends JPanel
 	{
 
@@ -30,7 +32,7 @@ public class JLabelIngredient extends JPanel
 		control();
 		appearance();
 		colorRect = Color.BLACK;
-		colorFRect = COLOR_CASE;
+		colorFRect = Tools.COLOR_CASE_INGREDIENT;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -123,7 +125,7 @@ public class JLabelIngredient extends JPanel
 					// TODO Auto-generated method stub
 					//labelImage.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 					colorRect = Color.WHITE;
-					colorFRect = COLOR_CLICK;
+					colorFRect = Tools.COLOR_CASE_CLICK_INGREDIENT;
 					repaint();
 					click = true;
 					dessus = true;
@@ -135,7 +137,7 @@ public class JLabelIngredient extends JPanel
 					// TODO Auto-generated method stub
 					//labelImage.setBorder(null);
 					colorRect = Color.BLACK;
-					colorFRect = COLOR_CASE;
+					colorFRect = Tools.COLOR_CASE_INGREDIENT;
 					repaint();
 
 					if (click && dessus)
@@ -171,8 +173,6 @@ public class JLabelIngredient extends JPanel
 	protected int shadowOffset = 4;
 	private Color colorRect;
 	private Color colorFRect;
-	private static final Color COLOR_CLICK = new Color(173, 173, 173);
-	private static final Color COLOR_CASE = new Color(205, 204, 205);
 	private boolean click = false;
 	private boolean dessus = false;
 	}

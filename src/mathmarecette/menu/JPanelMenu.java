@@ -1,3 +1,4 @@
+
 package mathmarecette.menu;
 
 import java.awt.Color;
@@ -5,11 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.IOException;
-
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -41,17 +38,19 @@ public class JPanelMenu extends JPanel
 		niveau = new JButton("");
 		tutoriel = new JButton("");
 		apropos = new JButton("");
-		
-		  String filename="C:/Users/raphael.schaffo/HE-ARC/MathMaRecette Media/Son/CLickJump.mp3";
-	      mp3= new MP3(filename);
-	      
-	      try {
-				current = new java.io.File( "." ).getCanonicalPath();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+		String filename = "C:/Users/raphael.schaffo/HE-ARC/MathMaRecette Media/Son/CLickJump.mp3";
+		mp3 = new MP3(filename);
+
+		try
+			{
+			current = new java.io.File(".").getCanonicalPath();
 			}
-		
+		catch (IOException e)
+			{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
 
 		// JComponent : Adaptation
 
@@ -61,29 +60,26 @@ public class JPanelMenu extends JPanel
 		apropos.setPreferredSize(new Dimension(100, 30));
 
 		arcade.setBorderPainted(false);
-		iconArcade = new ImageIcon(current+"\\Image\\BTNArcade.png");
-		iconArcadeCopie = new ImageIcon(current+"\\Image\\BTNArcade-copie.png");
+		iconArcade = new ImageIcon(current + "\\Image\\BTNArcade.png");
+		iconArcadeCopie = new ImageIcon(current + "\\Image\\BTNArcade-copie.png");
 		arcade.setIcon(iconArcade);
 
 		niveau.setBorderPainted(false);
-		iconLevel = new ImageIcon(current+"\\Image\\BTNNiveau.png");
-		iconLevelCopie = new ImageIcon(current+"\\Image\\BTNNiveau-copie.png");
+		iconLevel = new ImageIcon(current + "\\Image\\BTNNiveau.png");
+		iconLevelCopie = new ImageIcon(current + "\\Image\\BTNNiveau-copie.png");
 		niveau.setIcon(iconLevel);
 
 		tutoriel.setBorderPainted(false);
-		iconTutorial = new ImageIcon(current+"\\Image\\BTNTutoriel.png");
-		iconTutorialCopie = new ImageIcon(current+"\\Image\\BTNTutoriel-copie.png");
+		iconTutorial = new ImageIcon(current + "\\Image\\BTNTutoriel.png");
+		iconTutorialCopie = new ImageIcon(current + "\\Image\\BTNTutoriel-copie.png");
 		tutoriel.setIcon(iconTutorial);
 
 		apropos.setBorderPainted(false);
-		iconApropos = new ImageIcon(current+"\\Image\\BTNApropos.png");
-		iconAproposCopie = new ImageIcon(current+"\\Image\\BTNApropos - Copie.png");
+		iconApropos = new ImageIcon(current + "\\Image\\BTNApropos.png");
+		iconAproposCopie = new ImageIcon(current + "\\Image\\BTNApropos - Copie.png");
 		apropos.setIcon(iconApropos);
 
-
-
 		// JComponent : Layout
-
 
 		setLayout(new GridLayout(4, 1, 20, 20));
 		add(arcade);
@@ -102,7 +98,7 @@ public class JPanelMenu extends JPanel
 					{
 					// TODO Auto-generated method stub
 					tutoriel.setIcon(iconTutorial);
-					
+
 					}
 
 				@Override
@@ -156,7 +152,7 @@ public class JPanelMenu extends JPanel
 				public void mouseExited(MouseEvent e)
 					{
 					// TODO Auto-generated method stub
-					
+
 					}
 
 				@Override
@@ -209,7 +205,7 @@ public class JPanelMenu extends JPanel
 				public void mouseClicked(MouseEvent e)
 					{
 					// TODO Auto-generated method stub
-					new JFrameLevel().setAlwaysOnTop(true);
+					new JFrameLevel();
 					mp3.play();
 					}
 			});
@@ -229,7 +225,6 @@ public class JPanelMenu extends JPanel
 					{
 					// TODO Auto-generated method stub
 					apropos.setIcon(iconAproposCopie);
-
 
 					}
 
@@ -263,7 +258,7 @@ public class JPanelMenu extends JPanel
 		Dimension panelD = new Dimension(250, 300);
 		this.setPreferredSize(panelD);
 		this.setMaximumSize(panelD);
-		Color fontColor = new Color(255,246,213);
+		Color fontColor = new Color(255, 246, 213);
 		setBackground(fontColor);
 		}
 
@@ -284,8 +279,7 @@ public class JPanelMenu extends JPanel
 	private ImageIcon iconArcadeCopie;
 	private ImageIcon iconTutorial;
 	private ImageIcon iconTutorialCopie;
-	private MP3 mp3 ;
+	private MP3 mp3;
 	private String current;
-
 
 	}

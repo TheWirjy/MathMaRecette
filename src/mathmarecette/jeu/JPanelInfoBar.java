@@ -10,6 +10,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import mathmarecette.Tools;
+
 public class JPanelInfoBar extends JPanel
 	{
 
@@ -73,8 +75,8 @@ public class JPanelInfoBar extends JPanel
 
 	private void appearance()
 		{
-		labelTitre.setFont(new Font("Verdana", 1, 20));
-		setBackground(new Color(234,226,197));
+		labelTitre.setFont(new Font("Arial", 1, 20));
+		setBackground(Tools.COLOR_BAR);
 		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
 		}
 

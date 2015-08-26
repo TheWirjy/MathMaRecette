@@ -1,6 +1,8 @@
 
 package mathmarecette.jeu.ingredient;
 
+import javax.swing.ImageIcon;
+
 public class IngredientOrdre
 	{
 
@@ -10,7 +12,7 @@ public class IngredientOrdre
 
 	public IngredientOrdre(String _image, String _nom)
 		{
-		image = _image;
+		image = new ImageIcon(_image);
 		nom = _nom;
 		}
 
@@ -26,7 +28,7 @@ public class IngredientOrdre
 	|*				Get				*|
 	\*------------------------------*/
 
-	public String getImage()
+	public ImageIcon getImage()
 		{
 		return this.image;
 		}
@@ -44,7 +46,7 @@ public class IngredientOrdre
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 
-	private String image;
+	private ImageIcon image;
 	private String nom;
 
 	}

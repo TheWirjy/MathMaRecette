@@ -3,6 +3,10 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
+import mathmarecette.jeu.JFrameRecette;
+import mathmarecette.jeu.ingredient.IngredientOrdre;
+import mathmarecette.jeu.ordre.JDialogOrdreRecette;
+
 
 
 public class Cake extends Recette
@@ -22,9 +26,9 @@ public class Cake extends Recette
 			tabQuestion[3] = "Le cake sera prêt à 17h25 et la cuisson dure 35min. Quelle heure est-il ?";
 			tabQuestion[4] = "Ajoute 5*4 morceaux de sucre dans la casserole";
 
-			createQuestion(0, ".\\image\\ingredient\\Q1R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R2.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R4.png");
-			createQuestion(1, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R2.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R4.png");
-			createQuestion(2, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R1.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R2.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R4.png");
+			createQuestion(0, CHEMIN_QUESTION+"Q1R1.png", CHEMIN_QUESTION+"Q1R2.png",  CHEMIN_QUESTION+"Q1R3.png", CHEMIN_QUESTION+"Q1R4.png");
+			createQuestion(1, CHEMIN_QUESTION+"Q2R1.png", CHEMIN_QUESTION+"Q2R2.png",  CHEMIN_QUESTION+"Q2R3.png", CHEMIN_QUESTION+"Q2R4.png");
+			createQuestion(2, CHEMIN_QUESTION+"Q3R1.png",  CHEMIN_QUESTION+"Q3R2.png",  CHEMIN_QUESTION+"Q3R3.png", CHEMIN_QUESTION+"Q3R4.png");
 			createQuestion(3,  "4", "4",  "4",  "4");
 			createQuestion(4, "5", "5", "5", "5");
 
@@ -34,6 +38,21 @@ public class Cake extends Recette
 			tabSolution[3] = 4;
 			tabSolution[4] = 1;
 
+			// http://www.marmiton.org/recettes/recette_cake-au-citron_11391.aspx
+			this.tabIngredientOrdre = new IngredientOrdre[12];
+			tabIngredientOrdre[0] = new IngredientOrdre(CHEMIN_ORDRE + "oeuf.png", "Séparer blanc/jaune");
+			tabIngredientOrdre[1] = new IngredientOrdre(CHEMIN_ORDRE + "beurre.png", "Fondre le beurre");
+			tabIngredientOrdre[2] = new IngredientOrdre(CHEMIN_ORDRE + "citron.png", "Râper le citron");
+			tabIngredientOrdre[3] = new IngredientOrdre(CHEMIN_ORDRE + "neige.png", "Monter blancs en neige");
+			tabIngredientOrdre[4] = new IngredientOrdre(CHEMIN_ORDRE + "jaune_sucre.png", "Mélanger jaune + sucre");
+			tabIngredientOrdre[5] = new IngredientOrdre(CHEMIN_ORDRE + "zeste.png", "Ajouter citron râpé");
+			tabIngredientOrdre[6] = new IngredientOrdre(CHEMIN_ORDRE + "farine.png", "Ajouter farine");
+			tabIngredientOrdre[7] = new IngredientOrdre(CHEMIN_ORDRE + "levure.png", "Ajouter levure");
+			tabIngredientOrdre[8] = new IngredientOrdre(CHEMIN_ORDRE + "beurre_fondu.png", "Ajouter beurre fondue");
+			tabIngredientOrdre[9] = new IngredientOrdre(CHEMIN_ORDRE + "blanc_neige.png", "Ajouter blanc neige");
+			tabIngredientOrdre[10] = new IngredientOrdre(CHEMIN_ORDRE + "four.png", "Cuisson");
+			tabIngredientOrdre[11] = new IngredientOrdre(CHEMIN_ORDRE + "sirop.png", "Faire le sirop");
+
 			imageRecette = new ImageIcon("");
 
 		}
@@ -41,6 +60,12 @@ public class Cake extends Recette
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	@Override
+	public void ordreRecette(JFrameRecette parent)
+		{
+		new JDialogOrdreRecette(parent, this);
+		}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -57,5 +82,7 @@ public class Cake extends Recette
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
+	private final String CHEMIN_QUESTION = ".\\image\\ingredient\\cake\\";
+	private final String CHEMIN_ORDRE = ".\\image\\ingredient\\cake\\ordre\\";
 	}
 

@@ -5,7 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import mathmarecette.jeu.Recette.Spaghetti;
+import mathmarecette.jeu.Recette.Recette;
 
 public class JFrameRecette extends JFrame
 	{
@@ -14,8 +14,9 @@ public class JFrameRecette extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameRecette()
+	public JFrameRecette(Recette recette)
 		{
+		this.recette = recette;
 		geometry();
 		control();
 		appearance();
@@ -33,6 +34,11 @@ public class JFrameRecette extends JFrame
 	|*				Get				*|
 	\*------------------------------*/
 
+	public JPanelRecette getPanelRecette()
+		{
+		return panelRecette;
+		}
+
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
@@ -40,7 +46,7 @@ public class JFrameRecette extends JFrame
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		panelRecette = new JPanelRecette(this, new Spaghetti());
+		panelRecette = new JPanelRecette(this, recette);
 		panelRecette.setPreferredSize(new Dimension(600, 700));
 
 		// JComponent : add
@@ -67,5 +73,6 @@ public class JFrameRecette extends JFrame
 
 	// Tools
 	private JPanelRecette panelRecette;
+	private Recette recette;
 
 	}

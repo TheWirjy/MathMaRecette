@@ -1,7 +1,6 @@
 
 package mathmarecette.jeu;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,7 +13,7 @@ public class JPanelRecette extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelRecette(JFrame jframe, Recette recette)
+	public JPanelRecette(JFrameRecette jframe, Recette recette)
 		{
 		this.jframe = jframe;
 		this.recette = recette;
@@ -29,7 +28,7 @@ public class JPanelRecette extends JPanel
 
 		panelBarResult.initialisation(recette.getNbQuestion());
 
-		new JDialogAfficheRecette(jframe, new ImageIcon(".\\image\\SpaghettiRecette.png"));
+		//new JDialogAfficheRecette(jframe, new ImageIcon(".\\image\\SpaghettiRecette.png"));
 
 		}
 
@@ -55,31 +54,14 @@ public class JPanelRecette extends JPanel
 		if (recette.next())
 			{
 			panelJeu.getLabelQuestion().setText("<html><body><p align=\"center\">" + recette.getQuestion() + "</p></body></html>");
-			//panelJeu.getLabelCasserole().setText(labelQuantite.getText());
 			jpanelIngredients.setIngredient(recette.getReponse());
 			}
 		else
 			{
 			//http://www.spagety.net/wp-content/uploads/2015/03/%C5%A1pagety.png
 			//new JDialogAfficheRecette(jframe, new ImageIcon("D:\\Desktop\\imgMMR\\SpaghettiRecette.png"));
-			recette.ordreRecette();
+			recette.ordreRecette(jframe);
 			}
-
-		/*switch(numQuestion)
-			{
-			case 4:
-				new JDialogAnnonceRecette(jframe, "Crêpes", "4 questions");
-				break;
-			case 8:
-				new JDialogAnnonceRecette(jframe, "Cake au citron", "5 questions");
-				break;
-			case 12:
-				new JDialogAnnonceRecette(jframe, "Pizza", "7 questions");
-				break;
-			case 20:
-				new JDialogAnnonceRecette(jframe, "Salade", "7 questions");
-				break;
-			}*/
 		}
 
 	/*------------------------------*\
@@ -146,7 +128,7 @@ public class JPanelRecette extends JPanel
 	private JPanelIngredients jpanelIngredients;
 	private JPanelJeu panelJeu;
 	private JPanelInfoBar panelMenu;
-	private JFrame jframe;
+	private JFrameRecette jframe;
 	private Recette recette;
 	private JPanelBarResult panelBarResult;
 	}

@@ -9,6 +9,8 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import mathmarecette.Tools;
+
 public class JPanelIngredients extends JPanel
 	{
 
@@ -81,7 +83,7 @@ public class JPanelIngredients extends JPanel
 
 	private void appearance()
 		{
-		setBackground(new Color(216,209,182));
+		setBackground(Tools.COLOR_PANEL_INGREDIENT);
 		setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
 		}
 

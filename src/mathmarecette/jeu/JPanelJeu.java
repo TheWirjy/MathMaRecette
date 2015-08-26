@@ -32,7 +32,7 @@ public class JPanelJeu extends JPanel
 
 	public void setQuestion(String question)
 		{
-		labelQuestion.setText("<html><body><center><p>" + question + "</p></center></body></html>");
+		labelQuestion.setText("<html><body><p align=\"center\">" + question + "</p></body></html>");
 		}
 
 	/*------------------------------*\
@@ -46,11 +46,6 @@ public class JPanelJeu extends JPanel
 	public JLabel getLabelQuestion()
 		{
 		return labelQuestion;
-		}
-
-	public JLabel getLabelCasserole()
-		{
-		return labelCasserole;
 		}
 
 	public JPanelBarResult getJPanelBarResult()
@@ -73,7 +68,6 @@ public class JPanelJeu extends JPanel
 		{
 
 		labelQuestion = new JLabel();
-		labelCasserole = new JLabel("Casserole");
 		panelBarResult = new JPanelBarResult();
 
 		setLayout(null);
@@ -82,7 +76,6 @@ public class JPanelJeu extends JPanel
 
 		// JComponent : add
 		add(labelQuestion);
-		add(labelCasserole);
 		add(panelBarResult);
 		}
 
@@ -99,13 +92,10 @@ public class JPanelJeu extends JPanel
 		Font font = new Font("Arial", 1, 14);
 		labelQuestion.setFont(font);
 		labelQuestion.setForeground(Color.black);
-		labelQuestion.setSize(490, 55);
-		labelQuestion.setLocation(58, 26);
+		labelQuestion.setSize(560, 56);
+		labelQuestion.setLocation(24, 16);
 		labelQuestion.setVerticalAlignment(SwingConstants.CENTER);
 		labelQuestion.setHorizontalAlignment(SwingConstants.CENTER);
-
-		labelCasserole.setSize(100, 20);
-		labelCasserole.setLocation(300, 400);
 
 		}
 
@@ -115,7 +105,6 @@ public class JPanelJeu extends JPanel
 
 	// Tools
 	private JLabel labelQuestion;
-	private JLabel labelCasserole;
 	private Image imageCuisine;
 	private JPanelBarResult panelBarResult;
 	}

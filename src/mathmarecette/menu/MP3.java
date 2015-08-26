@@ -16,7 +16,9 @@ public class MP3 {
 
 	public void close() {
 		if (player != null)
-			player.close();
+			{
+				player.close();
+				}
 	}
 
 	// play the MP3 file to the sound card
@@ -35,6 +37,7 @@ public class MP3 {
 
 		// run in new thread to play in background
 		new Thread() {
+			@Override
 			public void run() {
 				try {
 
