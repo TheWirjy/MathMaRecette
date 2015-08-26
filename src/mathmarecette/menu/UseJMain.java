@@ -1,7 +1,5 @@
+
 package mathmarecette.menu;
-
-
-
 
 public class UseJMain
 	{
@@ -13,7 +11,6 @@ public class UseJMain
 
 	public static void main()
 		{
-		 new JFrameMenu();
+		new JFrameMenu();
 		}
 	}
-
