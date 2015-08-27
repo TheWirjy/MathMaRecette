@@ -19,6 +19,7 @@ public class Recette
 		this.description = _descr;
 		this.nbQuestion = _nbQuestion;
 		this.cptQuestion = 0;
+		this.score = 0;
 		this.tabQuestion = new String[nbQuestion];
 		this.tabReponse = new ImageIcon[nbQuestion][];
 
@@ -77,6 +78,11 @@ public class Recette
 		tabReponse[numQuestion][3] = new ImageIcon(img4);
 		}
 
+	public void addScore(int pts)
+		{
+		this.score += pts;
+		}
+
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
@@ -84,6 +90,11 @@ public class Recette
 	/*------------------------------*\
 	|*				Get				*|
 	\*------------------------------*/
+
+	public int getScore()
+		{
+		return this.score;
+		}
 
 	public String getNom()
 		{
@@ -131,9 +142,9 @@ public class Recette
 		}
 
 	public void ordreRecette(@SuppressWarnings("unused") JFrameRecette parent)
-	{
+		{
 
-	}
+		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
@@ -152,4 +163,5 @@ public class Recette
 	protected int[] tabSolution;
 	protected ImageIcon imageRecette;
 	protected IngredientOrdre[] tabIngredientOrdre;
+	private int score;
 	}

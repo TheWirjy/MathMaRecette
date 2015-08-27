@@ -48,9 +48,14 @@ public class JPanelJeu extends JPanel
 		return labelQuestion;
 		}
 
-	public JPanelBarResult getJPanelBarResult()
+	public JPanelBarEtat getJPanelBarResult()
 		{
 		return panelBarResult;
+		}
+
+	public void setScore(int score)
+		{
+		labelScore.setText(score+"");
 		}
 
 	/*------------------------------------------------------------------*\
@@ -68,7 +73,8 @@ public class JPanelJeu extends JPanel
 		{
 
 		labelQuestion = new JLabel();
-		panelBarResult = new JPanelBarResult();
+		panelBarResult = new JPanelBarEtat();
+		labelScore = new JLabel("0");
 
 		setLayout(null);
 		setSize(new Dimension(600, 530));
@@ -77,6 +83,7 @@ public class JPanelJeu extends JPanel
 		// JComponent : add
 		add(labelQuestion);
 		add(panelBarResult);
+		add(labelScore);
 		}
 
 	private void control()
@@ -97,6 +104,13 @@ public class JPanelJeu extends JPanel
 		labelQuestion.setVerticalAlignment(SwingConstants.CENTER);
 		labelQuestion.setHorizontalAlignment(SwingConstants.CENTER);
 
+		labelScore.setForeground(Color.RED);
+		labelScore.setFont(new Font("Arial", Font.BOLD, 12));
+		labelScore.setSize(50, 20);
+		labelScore.setLocation(62, 220);
+		labelScore.setVerticalAlignment(SwingConstants.CENTER);
+		labelScore.setHorizontalAlignment(SwingConstants.CENTER);
+
 		}
 
 	/*------------------------------------------------------------------*\
@@ -106,5 +120,6 @@ public class JPanelJeu extends JPanel
 	// Tools
 	private JLabel labelQuestion;
 	private Image imageCuisine;
-	private JPanelBarResult panelBarResult;
+	private JPanelBarEtat panelBarResult;
+	private JLabel labelScore;
 	}

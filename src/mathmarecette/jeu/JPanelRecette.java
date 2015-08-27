@@ -40,16 +40,14 @@ public class JPanelRecette extends JPanel
 		{
 		boolean bJuste = recette.verificationReponse(_id);
 
+		if (bJuste)
+			{
+			recette.addScore(50);
+			panelJeu.setScore(recette.getScore());
+			}
+
 		panelBarResult.setResultat(recette.getCptQuestion(), bJuste);
 
-		/*if (bJuste)
-			{
-			System.out.println("Correct");
-			}
-		else
-			{
-			System.out.println("Faux");
-			}*/
 
 		if (recette.next())
 			{
@@ -62,6 +60,7 @@ public class JPanelRecette extends JPanel
 			//new JDialogAfficheRecette(jframe, new ImageIcon("D:\\Desktop\\imgMMR\\SpaghettiRecette.png"));
 			recette.ordreRecette(jframe);
 			}
+
 		}
 
 	/*------------------------------*\
@@ -130,5 +129,5 @@ public class JPanelRecette extends JPanel
 	private JPanelInfoBar panelMenu;
 	private JFrameRecette jframe;
 	private Recette recette;
-	private JPanelBarResult panelBarResult;
+	private JPanelBarEtat panelBarResult;
 	}

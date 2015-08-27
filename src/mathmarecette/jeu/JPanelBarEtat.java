@@ -13,14 +13,14 @@ import javax.swing.JPanel;
 
 import mathmarecette.Tools;
 
-public class JPanelBarResult extends JPanel
+public class JPanelBarEtat extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelBarResult()
+	public JPanelBarEtat()
 		{
 		reponse = new ArrayList<Integer>();
 		width = 250;
