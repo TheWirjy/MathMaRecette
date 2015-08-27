@@ -35,6 +35,13 @@ public class JPanelJeu extends JPanel
 		labelQuestion.setText("<html><body><p align=\"center\">" + question + "</p></body></html>");
 		}
 
+	public void setSplash(ImageIcon image)
+		{
+		labelIntroRecette.setIcon(image);
+		imageCuisine = CUISINE_FLOU.getImage();
+
+		}
+
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
@@ -55,7 +62,7 @@ public class JPanelJeu extends JPanel
 
 	public void setScore(int score)
 		{
-		labelScore.setText(score+"");
+		labelScore.setText(score + "");
 		}
 
 	/*------------------------------------------------------------------*\
@@ -76,14 +83,24 @@ public class JPanelJeu extends JPanel
 		panelBarResult = new JPanelBarEtat();
 		labelScore = new JLabel("0");
 
+		labelIntroRecette = new JLabel();
+		labelIntroRecette.setSize(600, 500);
+		labelIntroRecette.setLocation(0, 15);
+
 		setLayout(null);
 		setSize(new Dimension(600, 530));
 		setLocation(0, 50);
 
 		// JComponent : add
+		add(labelIntroRecette);
+		setComponentZOrder(labelIntroRecette, 0);
 		add(labelQuestion);
+		setComponentZOrder(labelQuestion, 1);
 		add(panelBarResult);
+		setComponentZOrder(panelBarResult, 2);
 		add(labelScore);
+		setComponentZOrder(labelScore, 3);
+
 		}
 
 	private void control()
@@ -93,7 +110,7 @@ public class JPanelJeu extends JPanel
 
 	private void appearance()
 		{
-		imageCuisine = new ImageIcon(".\\image\\kitchen.png").getImage();
+		imageCuisine = CUISINE.getImage();
 
 		labelQuestion.setOpaque(false);
 		Font font = new Font("Arial", 1, 14);
@@ -122,4 +139,7 @@ public class JPanelJeu extends JPanel
 	private Image imageCuisine;
 	private JPanelBarEtat panelBarResult;
 	private JLabel labelScore;
+	private JLabel labelIntroRecette;
+	private static final ImageIcon CUISINE_FLOU = new ImageIcon(".\\image\\kitchen_blur.png");
+	private static final ImageIcon CUISINE = new ImageIcon(".\\image\\kitchen.png");
 	}

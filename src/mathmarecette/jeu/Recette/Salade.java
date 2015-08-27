@@ -14,7 +14,7 @@ public class Salade extends Recette
 
 	public Salade()
 		{
-			super("Salade", "Sauce - Tomate - Concombre", 7);
+			super("Salade", "Sauce - Tomate - Concombre", 6);
 
 			tabQuestion[0] = "Ajoute une cuillère à soupe de moutarde et le double de mayonnaise au bol";
 			tabQuestion[1] = "Ajoute une cuillère à café d’huile et une de vinaigre au bol";
@@ -22,7 +22,6 @@ public class Salade extends Recette
 			tabQuestion[3] = "Ajoute trois grandes feuilles de salade au plat";
 			tabQuestion[4] = "Ajouter ¼ de tomate au plat";
 			tabQuestion[5] = "Ajoute 1/6 de concombre au plat";
-			tabQuestion[6] = "Verse 0,1l de la sauce faite dans le plat";
 
 			createQuestion(0, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R2.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R4.png");
 			createQuestion(1, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R2.png",  "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R4.png");

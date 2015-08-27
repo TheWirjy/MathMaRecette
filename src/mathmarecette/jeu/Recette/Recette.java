@@ -163,5 +163,6 @@ public class Recette
 	protected int[] tabSolution;
 	protected ImageIcon imageRecette;
 	protected IngredientOrdre[] tabIngredientOrdre;
+	protected int[] tabOrdreIndice;
 	private int score;
 	}

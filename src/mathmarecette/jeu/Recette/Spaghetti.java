@@ -40,7 +40,14 @@ public class Spaghetti extends Recette
 		tabIngredientOrdre[3] = new IngredientOrdre(CHEMIN_ORDRE + "casserole.png", "Cuisson");
 		tabIngredientOrdre[4] = new IngredientOrdre(CHEMIN_ORDRE + "huile.png", "Huile d'olive");
 
-		imageRecette = new ImageIcon("");
+		this.tabOrdreIndice = new int[5];
+		tabOrdreIndice[0] = 0;
+		tabOrdreIndice[1] = 1;
+		tabOrdreIndice[2] = 2;
+		tabOrdreIndice[3] = 3;
+		tabOrdreIndice[4] = 4;
+
+		imageRecette = new ImageIcon(".//image//splach/splachSpaghetti.png");
 
 		}
 

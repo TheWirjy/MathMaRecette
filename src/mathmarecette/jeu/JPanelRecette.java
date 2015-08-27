@@ -27,7 +27,7 @@ public class JPanelRecette extends JPanel
 		panelBarResult = panelJeu.getJPanelBarResult();
 
 		panelBarResult.initialisation(recette.getNbQuestion());
-
+		panelJeu.setSplash(recette.getImageRecette());
 		//new JDialogAfficheRecette(jframe, new ImageIcon(".\\image\\SpaghettiRecette.png"));
 
 		}
