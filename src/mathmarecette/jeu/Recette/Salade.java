@@ -38,6 +38,7 @@ public class Salade extends Recette
 			tabSolution[5] = 2;
 
 			imageRecette = new ImageIcon(".//image//splach/splachSalade.png");
+			imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_salade.png");
 
 		}
 

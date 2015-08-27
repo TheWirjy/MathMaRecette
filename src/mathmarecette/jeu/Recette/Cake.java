@@ -56,6 +56,7 @@ public class Cake extends Recette
 			//this.tab = new IngredientOrdre[12];
 
 			imageRecette = new ImageIcon(".//image//splach/splachCake.png");
+			imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_cake.png");
 
 		}
 

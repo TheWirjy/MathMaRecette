@@ -1,7 +1,7 @@
 
 package mathmarecette.jeu;
 
-import mathmarecette.jeu.Recette.Spaghetti;
+import mathmarecette.jeu.Recette.Crepe;
 
 public class UseJFrameRecette
 	{
@@ -17,7 +17,7 @@ public class UseJFrameRecette
 
 	public static void main()
 		{
-		new JFrameRecette(new Spaghetti());
+		new JFrameRecette(new Crepe());
 		}
 
 	/*------------------------------------------------------------------*\

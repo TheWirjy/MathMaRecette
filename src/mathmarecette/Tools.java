@@ -40,5 +40,6 @@ public class Tools
 	public static final Color COLOR_CASE_INGREDIENT = new Color(205, 204, 205);
 	public static final Color COLOR_MUR = new Color(252, 243, 212);
 	public static final Color COLOR_VERT = new Color(0, 255, 0);
+	public static final Color COLOR_BLEU = new Color(0, 0, 128);
 	}
 

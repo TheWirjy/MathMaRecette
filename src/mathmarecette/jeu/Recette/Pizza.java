@@ -64,6 +64,7 @@ public class Pizza extends Recette
 		tabIngredientOrdre[14] = new IngredientOrdre(CHEMIN_ORDRE + "four.png", "Cuisson");
 
 		imageRecette = new ImageIcon(".//image//splach/splachPizza.png");
+		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_pizza.png");
 
 		}
 

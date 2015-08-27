@@ -7,8 +7,10 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -24,13 +26,21 @@ public class JLabelIngredient extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JLabelIngredient(JPanelRecette _panelRecette, int _id)
+	public JLabelIngredient(JPanelRecette _panelRecette, int _id, Point pO)
 		{
 		this.panelRecette = _panelRecette;
 		this.id = _id;
+		this.pO = pO;
 		geometry();
 		control();
 		appearance();
+
+		setLocation(pO);
+		setSize(90, 90);
+		setOpaque(false);
+		setEnabled(false);
+		setVisible(false);
+
 		colorRect = Color.BLACK;
 		colorFRect = Tools.COLOR_CASE_INGREDIENT;
 		}
@@ -102,6 +112,50 @@ public class JLabelIngredient extends JPanel
 
 	private void control()
 		{
+		addMouseMotionListener(new MouseMotionAdapter()
+			{
+
+				@Override
+				public void mouseDragged(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+
+					JLabelIngredient panelDrag = (JLabelIngredient)e.getComponent();
+
+					x = panelDrag.getX() + e.getX() - xSourisClick;
+					y = panelDrag.getY() + e.getY() - ySourisClick;
+					panelDrag.setLocation(x, y);
+					}
+			});
+
+		addMouseListener(new MouseAdapter()
+			{
+
+				@Override
+				public void mousePressed(MouseEvent e)
+					{
+					xSourisClick = e.getX();
+					ySourisClick = e.getY();
+					//setComponentZOrder(e.getComponent(), 0);
+					}
+
+				@Override
+				public void mouseReleased(MouseEvent e)
+					{
+					if (x + 45 < 110 || x + 45 > 520 || y + 45 < 320 || y + 45 > 500)
+						{
+						e.getComponent().setLocation(pO);
+						}
+					else
+						{
+						e.getComponent().setLocation(pO);
+						Integer Px = new Integer(x);
+						Integer Py = new Integer(y);
+						panelRecette.reponseValider(id, (ImageIcon)labelImage.getIcon(), Px.intValue(), Py.intValue());
+						}
+					}
+			});
+
 		addMouseListener(new MouseAdapter()
 			{
 
@@ -140,10 +194,10 @@ public class JLabelIngredient extends JPanel
 					colorFRect = Tools.COLOR_CASE_INGREDIENT;
 					repaint();
 
-					if (click && dessus)
+					/*if (click && dessus)
 						{
-						panelRecette.reponseValider(id);
-						}
+						panelRecette.reponseValider(id, labelImage.getIcon());
+						}*/
 					click = false;
 					}
 			});
@@ -161,6 +215,13 @@ public class JLabelIngredient extends JPanel
 	private JLabel labelImage;
 	private JPanelRecette panelRecette;
 	private int id;
+	private int xSourisClick;
+	private int ySourisClick;
+	private boolean click = false;
+	private boolean dessus = false;
+	private int x;
+	private int y;
+	private Point pO;
 
 	//shadow
 	protected int strokeSize = 1;
@@ -173,6 +234,4 @@ public class JLabelIngredient extends JPanel
 	protected int shadowOffset = 4;
 	private Color colorRect;
 	private Color colorFRect;
-	private boolean click = false;
-	private boolean dessus = false;
 	}

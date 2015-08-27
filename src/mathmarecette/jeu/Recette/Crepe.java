@@ -46,7 +46,8 @@ public class Crepe extends Recette
 		tabIngredientOrdre[8] = new IngredientOrdre(CHEMIN_ORDRE + "huiler.png", "Huiler plaque");
 		tabIngredientOrdre[9] = new IngredientOrdre(CHEMIN_ORDRE + "casserole.png", "Cuisson");
 
-		imageRecette = new ImageIcon(".//image//splach/splachCrepe.png");
+		imageRecette = new ImageIcon(".//image//splach/splachCrepes.png");
+		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_crepe.png");
 
 		}
 
