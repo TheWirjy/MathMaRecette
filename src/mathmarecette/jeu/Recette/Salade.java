@@ -29,7 +29,6 @@ public class Salade extends Recette
 			createQuestion(3,  "4", "4",  "4",  "4");
 			createQuestion(4, "5", "5", "5", "5");
 			createQuestion(5, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R2.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R4.png");
-			createQuestion(6, "7", "7", "7","7");
 
 			tabSolution[0] = 3;
 			tabSolution[1] = 2;
@@ -37,9 +36,8 @@ public class Salade extends Recette
 			tabSolution[3] = 4;
 			tabSolution[4] = 2;
 			tabSolution[5] = 2;
-			tabSolution[6] = 1;
 
-			imageRecette = new ImageIcon("");
+			imageRecette = new ImageIcon(".//image//splach/splachSalade.png");
 
 		}
 
