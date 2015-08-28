@@ -21,7 +21,7 @@ public class Cake extends Recette
 			super("Cake au citron", "Citron - sirop", 5);
 
 			tabQuestion[0] = "Il faut 4 blancs d’œuf + 4 jaunes d’œuf";
-			tabQuestion[1] = "Prépare 10 carrées de 10g de beurre et le double de sucre";
+			tabQuestion[1] = "Prépare 10 carrées de 10g de beurre et le double de sucre (une plaque de beurre fait 300g)";
 			tabQuestion[2] = "Il nous faut autant de farine que de sucre et ½ paquet de levure";
 			tabQuestion[3] = "Le cake sera prêt à 17h25 et la cuisson dure 35min. Quelle heure est-il ?";
 			tabQuestion[4] = "Ajoute 5*4 morceaux de sucre dans la casserole";
