@@ -1,6 +1,7 @@
 
 package mathmarecette.jeu;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,14 +22,8 @@ public class JPanelRecette extends JPanel
 		control();
 		appearance();
 
-		//panelMenu.setTitre(recette.getNom());
-		panelJeu.setQuestion(recette.getQuestion());
-		jpanelIngredients.setIngredient(recette.getReponse());
 		panelBarResult = panelJeu.getJPanelBarResult();
-
-		panelBarResult.initialisation(recette.getNbQuestion());
-
-		//new JDialogAfficheRecette(jframe, new ImageIcon(".\\image\\SpaghettiRecette.png"));
+		panelJeu.setSplash(recette.getImageRecette());
 
 		}
 
@@ -36,7 +31,17 @@ public class JPanelRecette extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	public void reponseValider(int _id)
+	public void startRecette()
+		{
+		panelBarResult.initialisation(recette.getNbQuestion());
+		panelJeu.setQuestion(recette.getQuestion());
+		panelJeu.setIngredient(recette.getReponse());
+		panelMenu.setTitre(recette.getImageTitre());
+		//panelJeu.remplirTable(recette.getIngredientTable());
+		panelMenu.start();
+		}
+
+	public void reponseValider(int _id, ImageIcon icon, int x, int y)
 		{
 		boolean bJuste = recette.verificationReponse(_id);
 
@@ -48,11 +53,12 @@ public class JPanelRecette extends JPanel
 
 		panelBarResult.setResultat(recette.getCptQuestion(), bJuste);
 
-
 		if (recette.next())
 			{
 			panelJeu.getLabelQuestion().setText("<html><body><p align=\"center\">" + recette.getQuestion() + "</p></body></html>");
-			jpanelIngredients.setIngredient(recette.getReponse());
+			panelJeu.setIngredient(recette.getReponse());
+			panelJeu.addIngr(icon, recette.getCptQuestion() - 1, x,y);
+			//panelJeu.removeIngr(recette.getCptQuestion()-1, (ImageIcon)icon);
 			}
 		else
 			{
@@ -86,11 +92,6 @@ public class JPanelRecette extends JPanel
 		return recette;
 		}
 
-	public JPanelIngredients getPanelIngredients()
-		{
-		return jpanelIngredients;
-		}
-
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
@@ -98,16 +99,14 @@ public class JPanelRecette extends JPanel
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		jpanelIngredients = new JPanelIngredients(this);
-		panelMenu = new JPanelInfoBar();
-		panelJeu = new JPanelJeu();
+		panelMenu = new JPanelInfoBar(jframe);
+		panelJeu = new JPanelJeu(this);
 
 		setLayout(null);
 
 		// JComponent : add
 		add(panelMenu);
 		add(panelJeu);
-		add(jpanelIngredients);
 		}
 
 	private void control()
@@ -123,8 +122,6 @@ public class JPanelRecette extends JPanel
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 
-	// Tools
-	private JPanelIngredients jpanelIngredients;
 	private JPanelJeu panelJeu;
 	private JPanelInfoBar panelMenu;
 	private JFrameRecette jframe;

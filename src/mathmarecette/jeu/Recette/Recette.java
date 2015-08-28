@@ -121,6 +121,11 @@ public class Recette
 		return this.imageRecette;
 		}
 
+	public ImageIcon getImageTitre()
+		{
+		return this.imageTitre;
+		}
+
 	public String[] getTabQuestion()
 		{
 		return tabQuestion;
@@ -163,5 +168,8 @@ public class Recette
 	protected int[] tabSolution;
 	protected ImageIcon imageRecette;
 	protected IngredientOrdre[] tabIngredientOrdre;
+	protected int[] tabOrdreIndice;
 	private int score;
+	protected final String CHEMIN_TITRE = ".\\image\\titre\\";
+	protected ImageIcon imageTitre;
 	}

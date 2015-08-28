@@ -16,7 +16,7 @@ public class Crepe extends Recette
 
 	public Crepe()
 		{
-		super("Crêpes", "Pâte à crêpe nature", 4);
+		super("Crêpes", "Pâte à crêpe nature", 4);//huile, sucre, beurre
 
 		tabQuestion[0] = "Ajoute 2* 125g de farine";
 		tabQuestion[1] = "Avec une boite de 6 œufs on fait 3 pâtes à crêpes, combien t'en faut-il pour en faire une";
@@ -46,7 +46,8 @@ public class Crepe extends Recette
 		tabIngredientOrdre[8] = new IngredientOrdre(CHEMIN_ORDRE + "huiler.png", "Huiler plaque");
 		tabIngredientOrdre[9] = new IngredientOrdre(CHEMIN_ORDRE + "casserole.png", "Cuisson");
 
-		imageRecette = new ImageIcon("");
+		imageRecette = new ImageIcon(".//image//splach/splachCrepes.png");
+		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_crepe.png");
 
 		}
 

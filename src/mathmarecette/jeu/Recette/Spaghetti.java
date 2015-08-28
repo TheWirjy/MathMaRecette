@@ -40,8 +40,15 @@ public class Spaghetti extends Recette
 		tabIngredientOrdre[3] = new IngredientOrdre(CHEMIN_ORDRE + "casserole.png", "Cuisson");
 		tabIngredientOrdre[4] = new IngredientOrdre(CHEMIN_ORDRE + "huile.png", "Huile d'olive");
 
-		imageRecette = new ImageIcon("");
+		this.tabOrdreIndice = new int[5];
+		tabOrdreIndice[0] = 0;
+		tabOrdreIndice[1] = 1;
+		tabOrdreIndice[2] = 2;
+		tabOrdreIndice[3] = 3;
+		tabOrdreIndice[4] = 4;
 
+		imageRecette = new ImageIcon(".//image//splach/splachSpaghetti.png");
+		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_spaghetti.png");
 		}
 
 	/*------------------------------------------------------------------*\
@@ -70,5 +77,6 @@ public class Spaghetti extends Recette
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 	private final String CHEMIN_QUESTION = ".\\image\\ingredient\\spaghetti\\";
+	private final String CHEMIN_TABLE = ".\\image\\ingredient\\spaghetti\\table\\";
 	private final String CHEMIN_ORDRE = ".\\image\\ingredient\\spaghetti\\ordre\\";
 	}

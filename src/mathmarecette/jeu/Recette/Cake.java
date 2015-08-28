@@ -24,13 +24,13 @@ public class Cake extends Recette
 			tabQuestion[1] = "Prépare 10 carrées de 10g de beurre et le double de sucre (une plaque de beurre fait 300g)";
 			tabQuestion[2] = "Il nous faut autant de farine que de sucre et ½ paquet de levure";
 			tabQuestion[3] = "Le cake sera prêt à 17h25 et la cuisson dure 35min. Quelle heure est-il ?";
-			tabQuestion[4] = "Ajoute 5*4 morceaux de sucre dans la casserole";
+			tabQuestion[4] = "Ajoute 5x4 morceaux de sucre dans la casserole (un morceau = 5g) et 4x le jus d un demi citron";
 
 			createQuestion(0, CHEMIN_QUESTION+"Q1R1.png", CHEMIN_QUESTION+"Q1R2.png",  CHEMIN_QUESTION+"Q1R3.png", CHEMIN_QUESTION+"Q1R4.png");
 			createQuestion(1, CHEMIN_QUESTION+"Q2R1.png", CHEMIN_QUESTION+"Q2R2.png",  CHEMIN_QUESTION+"Q2R3.png", CHEMIN_QUESTION+"Q2R4.png");
 			createQuestion(2, CHEMIN_QUESTION+"Q3R1.png",  CHEMIN_QUESTION+"Q3R2.png",  CHEMIN_QUESTION+"Q3R3.png", CHEMIN_QUESTION+"Q3R4.png");
-			createQuestion(3,  "4", "4",  "4",  "4");
-			createQuestion(4, "5", "5", "5", "5");
+			createQuestion(3, CHEMIN_QUESTION+"Q3R1.png",  CHEMIN_QUESTION+"Q3R2.png",  CHEMIN_QUESTION+"Q3R3.png", CHEMIN_QUESTION+"Q3R4.png");
+			createQuestion(4, CHEMIN_QUESTION+"Q3R1.png",  CHEMIN_QUESTION+"Q3R2.png",  CHEMIN_QUESTION+"Q3R3.png", CHEMIN_QUESTION+"Q3R4.png");
 
 			tabSolution[0] = 1;
 			tabSolution[1] = 3;
@@ -53,7 +53,10 @@ public class Cake extends Recette
 			tabIngredientOrdre[10] = new IngredientOrdre(CHEMIN_ORDRE + "four.png", "Cuisson");
 			tabIngredientOrdre[11] = new IngredientOrdre(CHEMIN_ORDRE + "sirop.png", "Faire le sirop");
 
-			imageRecette = new ImageIcon("");
+			//this.tab = new IngredientOrdre[12];
+
+			imageRecette = new ImageIcon(".//image//splach/splachCake.png");
+			imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_cake.png");
 
 		}
 
