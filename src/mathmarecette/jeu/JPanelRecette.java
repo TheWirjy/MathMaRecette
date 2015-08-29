@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import mathmarecette.jeu.Recette.Recette;
+import mathmarecette.jeu.score.JPanelScore;
 
 public class JPanelRecette extends JPanel
 	{
@@ -30,6 +31,13 @@ public class JPanelRecette extends JPanel
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public void startQuestionBonus()
+		{
+		this.remove(panelJeu);
+		this.add(panelJeuHorloge);
+		repaint();
+		}
 
 	public void startRecette()
 		{
@@ -57,7 +65,7 @@ public class JPanelRecette extends JPanel
 			{
 			panelJeu.getLabelQuestion().setText("<html><body><p align=\"center\">" + recette.getQuestion() + "</p></body></html>");
 			panelJeu.setIngredient(recette.getReponse());
-			panelJeu.addIngr(icon, recette.getCptQuestion() - 1, x,y);
+			panelJeu.addIngr(icon, recette.getCptQuestion() - 1, x, y);
 			//panelJeu.removeIngr(recette.getCptQuestion()-1, (ImageIcon)icon);
 			}
 		else
@@ -67,6 +75,13 @@ public class JPanelRecette extends JPanel
 			recette.ordreRecette(jframe);
 			}
 
+		}
+
+	public void afficheScore()
+		{
+		this.remove(panelJeuHorloge);
+		this.add(panelScore);
+		repaint();
 		}
 
 	/*------------------------------*\
@@ -101,12 +116,16 @@ public class JPanelRecette extends JPanel
 		// JComponent : Instanciation
 		panelMenu = new JPanelInfoBar(jframe);
 		panelJeu = new JPanelJeu(this);
+		panelJeuHorloge = new JPanelJeuHorloge(this);
+		panelScore = new JPanelScore(this);
 
 		setLayout(null);
 
 		// JComponent : add
 		add(panelMenu);
 		add(panelJeu);
+		//add(panelScore);
+		//add(panelJeuHorloge);
 		}
 
 	private void control()
@@ -127,4 +146,6 @@ public class JPanelRecette extends JPanel
 	private JFrameRecette jframe;
 	private Recette recette;
 	private JPanelBarEtat panelBarResult;
+	private JPanelJeuHorloge panelJeuHorloge;
+	private JPanelScore panelScore;
 	}

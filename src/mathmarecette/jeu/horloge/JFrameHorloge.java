@@ -1,25 +1,19 @@
 
-package mathmarecette.jeu.ordre;
+package mathmarecette.jeu.horloge;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 
-import mathmarecette.jeu.JFrameRecette;
-import mathmarecette.jeu.Recette.Recette;
-
-public class JDialogOrdreRecette extends JDialog
+public class JFrameHorloge extends JFrame
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JDialogOrdreRecette(JFrameRecette parent, Recette recette)
+	public JFrameHorloge()
 		{
-		super(parent, recette.getNom(), true);
-		this.parent = parent;
-		this.recette = recette;
 		geometry();
 		control();
 		appearance();
@@ -43,23 +37,33 @@ public class JDialogOrdreRecette extends JDialog
 
 	private void geometry()
 		{
-		panelOrdreRecette = new JPanelOrdreRecette(recette, this, parent.getPanelRecette());
-		setLayout(new BorderLayout());
-		add(panelOrdreRecette, BorderLayout.CENTER);
+		// JComponent : Instanciation
+		horloge = new JPanelHorloge();
+			// Layout : Specification
+			{
+			BorderLayout borderLayout = new BorderLayout();
+			setLayout(borderLayout);
+
+			// borderLayout.setHgap(20);
+			// borderLayout.setVgap(20);
+			}
+
+		// JComponent : add
+		//add(TODO,BorderLayout.CENTER);
+		add(horloge, BorderLayout.CENTER);
 		}
 
 	private void control()
 		{
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		}
 
 	private void appearance()
 		{
-		//setPreferredSize(new Dimension(400, 300));
+		//setSize(600, 600);
 		pack();
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
-
 		}
 
 	/*------------------------------------------------------------------*\
@@ -67,7 +71,23 @@ public class JDialogOrdreRecette extends JDialog
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	private Recette recette;
-	private JPanelOrdreRecette panelOrdreRecette;
-	private JFrameRecette parent;
+
+	/*------------------------------------------------------------------*\
+	|*							Methodes Public							*|
+	\*------------------------------------------------------------------*/
+
+	public static void main(String[] args)
+		{
+		main();
+		}
+
+	public static void main()
+		{
+		new JFrameHorloge();
+		}
+
+	/*------------------------------------------------------------------*\
+	|*							Methodes Private						*|
+	\*------------------------------------------------------------------*/
+	private JPanelHorloge horloge;
 	}

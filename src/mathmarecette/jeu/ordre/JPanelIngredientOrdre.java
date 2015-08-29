@@ -19,13 +19,14 @@ public class JPanelIngredientOrdre extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelIngredientOrdre(int _id, int x, ImageIcon image, String nom)
+	public JPanelIngredientOrdre(int _id, int id_ordre, int x, ImageIcon image, String nom)
 		{
 		this.id = _id;
 		this.id_pos = _id;
 		this.x = x;
 		this.nom = nom;
 		this.image = image;
+		this.id_ordre = id_ordre;
 
 		geometry();
 		control();
@@ -48,6 +49,11 @@ public class JPanelIngredientOrdre extends JPanel
 	public int getID_pos()
 		{
 		return id_pos;
+		}
+
+	public int getID_ordre()
+		{
+		return id_ordre;
 		}
 
 	public void setID_pos(int id)
@@ -126,6 +132,7 @@ public class JPanelIngredientOrdre extends JPanel
 
 	private int id_pos;
 	private int id;
+	private int id_ordre;
 	private int x;
 	private ImageIcon image;
 	private JLabel labelImage;

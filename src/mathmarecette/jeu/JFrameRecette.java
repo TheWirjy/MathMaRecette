@@ -51,7 +51,6 @@ public class JFrameRecette extends JFrame
 
 		// JComponent : add
 		setContentPane(panelRecette);
-		pack();
 		}
 
 	private void control()
@@ -61,10 +60,10 @@ public class JFrameRecette extends JFrame
 
 	private void appearance()
 		{
+		pack();
 		setTitle("Math ma recette");
-		//setResizable(false);
 		setLocationRelativeTo(null); // frame centrer
-		setVisible(true); // last!
+		setVisible(true);
 		}
 
 	/*------------------------------------------------------------------*\

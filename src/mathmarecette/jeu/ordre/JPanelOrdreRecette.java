@@ -13,10 +13,13 @@ import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import mathmarecette.Tools;
+import mathmarecette.jeu.JPanelRecette;
 import mathmarecette.jeu.Recette.Recette;
 
 public class JPanelOrdreRecette extends JPanel
@@ -26,15 +29,18 @@ public class JPanelOrdreRecette extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelOrdreRecette(Recette recette)
+	public JPanelOrdreRecette(Recette recette, JDialog dialog, JPanelRecette panelRecette)
 		{
 		this.recette = recette;
+		this.dialog = dialog;
+		this.panelRecette = panelRecette;
 		label = new JPanelIngredientOrdre[recette.getTabIngredientOrdre().length];
+		int[] tabOrdreIndice = recette.getTabOrdreIndice();
 
 		for(int i = 0; i < label.length; i++)
 			{
 
-			JPanelIngredientOrdre newPanel = new JPanelIngredientOrdre(i, 10 + SIZE_PANEL * i + i * 2, recette.getTabIngredientOrdre()[i].getImage(), recette.getTabIngredientOrdre()[i].getNom());
+			JPanelIngredientOrdre newPanel = new JPanelIngredientOrdre(i, tabOrdreIndice[i], 10 + SIZE_PANEL * i + i * 2, recette.getTabIngredientOrdre()[i].getImage(), recette.getTabIngredientOrdre()[i].getNom());
 			newPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 			label[i] = newPanel;
 			label[i].addMouseMotionListener(new MouseMotionAdapter()
@@ -81,7 +87,7 @@ public class JPanelOrdreRecette extends JPanel
 					public void mouseReleased(MouseEvent e)
 						{
 						JPanelIngredientOrdre panelDrag = (JPanelIngredientOrdre)e.getComponent();
-						panelDrag.setLocation(panelDrag.getPositionX(), 100);
+						panelDrag.setLocation(panelDrag.getPositionX(), posIngr);
 						}
 				});
 			}
@@ -97,7 +103,7 @@ public class JPanelOrdreRecette extends JPanel
 
 	public void swapLabel(int i1, int i2)
 		{
-		label[i2].setLocation(label[i1].getPositionX(), 100);
+		label[i2].setLocation(label[i1].getPositionX(), posIngr);
 
 		int tmp = label[i2].getID_pos();
 		label[i2].setID_pos(label[i1].getID_pos());
@@ -128,6 +134,7 @@ public class JPanelOrdreRecette extends JPanel
 		{
 		// JComponent : Instanciation
 		buttonValider = new JButton("Valider");
+		labelResultat = new JLabel("5 éssais restants");
 
 		labelIndication = new JLabelIndication();
 
@@ -145,11 +152,12 @@ public class JPanelOrdreRecette extends JPanel
 			int rand = gen.nextInt(label.length - 1);
 
 			swapLabel(i, rand);
-			label[rand].setLocation(label[rand].getPositionX(), 100);
+			label[rand].setLocation(label[rand].getPositionX(), posIngr);
 			}
 
 		add(buttonValider);
 		add(labelIndication);
+		add(labelResultat);
 
 		}
 
@@ -163,29 +171,38 @@ public class JPanelOrdreRecette extends JPanel
 				public void actionPerformed(ActionEvent e)
 					{
 					// TODO Auto-generated method stub
-					if (nbEssai > 0)
+					if (!fini)
 						{
-						nbEssai--;
-						for(int i = 0; i < label.length; i++)
+						if (nbEssai > 0)
 							{
-							if (label[i].getID() == i)
+							nbEssai--;
+							cptBonneRep = recette.checkReponseOrdre(label);
+
+							if (cptBonneRep == label.length)
 								{
-								cptBonneRep++;
+								recette.addScore(50*(nbEssai+1));
+								labelResultat.setText("Tu as réussi!! Clique sur continuer pour passer à la suite");
+								buttonValider.setText("Continuer");
+								fini = true;
 								}
-							}
-						if (cptBonneRep == label.length)
-							{
-							System.out.println(cptBonneRep + " Bonne réponse - Tu as réussi!");
+							else
+								{
+								labelResultat.setText(cptBonneRep + "/" + label.length + " Bonne réponse - plus que " + nbEssai + "essai(s)");
+								}
+							cptBonneRep = 0;
 							}
 						else
 							{
-							System.out.println(cptBonneRep + " Bonne réponse - Recommence");
+							recette.addScore(0);
+							labelResultat.setText("Tu n'as plus d'essai. Clique sur continuer pour passer à la suite");
+							buttonValider.setText("Continuer");
+							fini = true;
 							}
-						cptBonneRep = 0;
 						}
 					else
 						{
-						System.out.println("plus d essai");
+						dialog.dispose();
+						panelRecette.startQuestionBonus();
 						}
 					}
 			});
@@ -194,7 +211,7 @@ public class JPanelOrdreRecette extends JPanel
 	private void appearance()
 		{
 		int nbElement = recette.getTabIngredientOrdre().length;
-		setPreferredSize(new Dimension(18 + SIZE_PANEL * nbElement + nbElement * 2, 300));
+		setPreferredSize(new Dimension(18 + SIZE_PANEL * nbElement + nbElement * 2, 330));
 		setSize(new Dimension(8 + SIZE_PANEL * nbElement + nbElement * 2, 300));
 		setBackground(Tools.COLOR_MUR);
 
@@ -209,10 +226,17 @@ public class JPanelOrdreRecette extends JPanel
 			labelIndication.setLocation(10, 20);
 			}
 
+		labelResultat.setSize(this.getWidth() - 20, 50);
+		labelResultat.setLocation(10, 80);
+		labelResultat.setForeground(Tools.COLOR_BLEU);
+		labelResultat.setFont(new Font("Verdana", Font.BOLD, 14));
+		labelResultat.setHorizontalAlignment(SwingConstants.CENTER);
+		labelResultat.setVerticalAlignment(SwingConstants.CENTER);
+
 		buttonValider.setBackground(Tools.COLOR_CASE_INGREDIENT);
 		buttonValider.setFont(new Font("Arial", 1, 14));
 		buttonValider.setSize(150, 30);
-		buttonValider.setLocation(this.getWidth() / 2 - buttonValider.getWidth() / 2, 260);
+		buttonValider.setLocation(this.getWidth() / 2 - buttonValider.getWidth() / 2, 290);
 		buttonValider.setHorizontalAlignment(SwingConstants.CENTER);
 		buttonValider.setVerticalAlignment(SwingConstants.CENTER);
 		}
@@ -231,7 +255,14 @@ public class JPanelOrdreRecette extends JPanel
 	private final int SIZE_PANEL = 100;
 	private final int M_SIZE_PANEL = 50;
 
+	private int posIngr = 130;
+
 	private int cptBonneRep = 0;
 	private int nbEssai = 4;
 	private JLabelIndication labelIndication;
+	private JLabel labelResultat;
+
+	private boolean fini = false;
+	private JDialog dialog;
+	private JPanelRecette panelRecette;
 	}

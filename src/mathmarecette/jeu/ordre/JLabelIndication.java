@@ -37,11 +37,21 @@ public class JLabelIndication extends JLabel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	public void setFontLabel(Font f)
+		{
+		labelText.setFont(f);
+		}
+
+	public void setQuestion(String text)
+		{
+		labelText.setText(text);
+		}
+
 	@Override
 	public void setSize(int width, int height)
 		{
-			super.setSize(width+10, height+10);
-			this.labelText.setSize(width, height);
+		super.setSize(width + 10, height + 10);
+		this.labelText.setSize(width, height);
 		}
 
 	/*------------------------------*\

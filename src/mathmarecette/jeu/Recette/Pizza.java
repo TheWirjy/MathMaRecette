@@ -3,9 +3,7 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
-import mathmarecette.jeu.JFrameRecette;
 import mathmarecette.jeu.ingredient.IngredientOrdre;
-import mathmarecette.jeu.ordre.JDialogOrdreRecette;
 
 public class Pizza extends Recette
 	{
@@ -16,7 +14,8 @@ public class Pizza extends Recette
 
 	public Pizza()
 		{
-		super("Pizza", "Tomate - Mozzarella - Jambon", 8);
+		super("Pizza", "Tomate - Mozzarella - Jambon", 8, 10);
+
 
 		tabQuestion[0] = "Met 300g de farine";
 		tabQuestion[1] = "Rajoute 2 œufs";
@@ -27,12 +26,12 @@ public class Pizza extends Recette
 		tabQuestion[6] = "Chauffe 220g de sauce tomate";
 		tabQuestion[7] = "Coupe  125g de mozzarella en 10 parts égales";
 
-		createQuestion(0, CHEMIN_QUESTION+"Q1R1.png", CHEMIN_QUESTION+"Q1R2.png", CHEMIN_QUESTION+"Q1R3.png", CHEMIN_QUESTION+"Q1R4.png");
-		createQuestion(1, CHEMIN_QUESTION+"Q2R1.png", CHEMIN_QUESTION+"Q2R2.png", CHEMIN_QUESTION+"Q2R3.png", CHEMIN_QUESTION+"Q2R4.png");
-		createQuestion(2, CHEMIN_QUESTION+"Q3R1.png", CHEMIN_QUESTION+"Q3R2.png", CHEMIN_QUESTION+"Q3R3.png", CHEMIN_QUESTION+"Q3R4.png");
+		createQuestion(0, CHEMIN_QUESTION + "Q1R1.png", CHEMIN_QUESTION + "Q1R2.png", CHEMIN_QUESTION + "Q1R3.png", CHEMIN_QUESTION + "Q1R4.png");
+		createQuestion(1, CHEMIN_QUESTION + "Q2R1.png", CHEMIN_QUESTION + "Q2R2.png", CHEMIN_QUESTION + "Q2R3.png", CHEMIN_QUESTION + "Q2R4.png");
+		createQuestion(2, CHEMIN_QUESTION + "Q3R1.png", CHEMIN_QUESTION + "Q3R2.png", CHEMIN_QUESTION + "Q3R3.png", CHEMIN_QUESTION + "Q3R4.png");
 		createQuestion(3, "4", "4", "4", "4");
 		createQuestion(4, "5", "5", "5", "5");
-		createQuestion(5, CHEMIN_QUESTION+"Q6R1.png", CHEMIN_QUESTION+"Q6R2.png", CHEMIN_QUESTION+"Q6R3.png", CHEMIN_QUESTION+"Q6R4.png");
+		createQuestion(5, CHEMIN_QUESTION + "Q6R1.png", CHEMIN_QUESTION + "Q6R2.png", CHEMIN_QUESTION + "Q6R3.png", CHEMIN_QUESTION + "Q6R4.png");
 		createQuestion(6, "7", "7", "7", "7");
 		createQuestion(7, "8", "8", "8", "8");
 
@@ -63,6 +62,29 @@ public class Pizza extends Recette
 		tabIngredientOrdre[13] = new IngredientOrdre(CHEMIN_ORDRE + "jambon.png", "Ajouter jambon");
 		tabIngredientOrdre[14] = new IngredientOrdre(CHEMIN_ORDRE + "four.png", "Cuisson");
 
+		this.tabOrdreIndice = new int[15];
+		tabOrdreIndice[0] = 0;
+		tabOrdreIndice[1] = 1;
+		tabOrdreIndice[2] = 2;
+		tabOrdreIndice[3] = 2;
+		tabOrdreIndice[4] = 2;
+		tabOrdreIndice[5] = 3;
+		tabOrdreIndice[6] = 4;
+		tabOrdreIndice[7] = 5;
+		tabOrdreIndice[8] = 6;
+		tabOrdreIndice[9] = 7;
+		tabOrdreIndice[10] = 8;
+		tabOrdreIndice[11] = 9;
+		tabOrdreIndice[12] = 10;
+		tabOrdreIndice[13] = 11;
+		tabOrdreIndice[14] = 12;
+
+		this.tabOrdreReponse = new int[15];
+		for(int i = 0; i < 15; i++)
+			{
+			tabOrdreReponse[i] = tabOrdreIndice[i];
+			}
+
 		imageRecette = new ImageIcon(".//image//splach/splachPizza.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_pizza.png");
 
@@ -72,11 +94,11 @@ public class Pizza extends Recette
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	@Override
-	public void ordreRecette(JFrameRecette parent)
+	/*@Override
+	public void ordreRecette(JFrameRecette parent, JPanelJeu panelJeu)
 		{
-		new JDialogOrdreRecette(parent, this);
-		}
+		new JDialogOrdreRecette(parent, this, panelJeu);
+		}*/
 
 	/*------------------------------*\
 	|*				Set				*|
