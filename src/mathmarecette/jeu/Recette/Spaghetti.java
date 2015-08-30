@@ -16,8 +16,6 @@ public class Spaghetti extends Recette
 		{
 		super("Spaghetti", "Nature", 3, 5);
 
-		this.miniJeu = true;
-
 		tabQuestion[0] = "Il faut 2*1 bouteille d’ 1 litre <i>(Un récipient plein = 1L)</i>";
 		tabQuestion[1] = "On a besoin de 15g de sel (1 cuillère = 5g)";
 		tabQuestion[2] = "Le paquet de pâte contient 500g laisse 300g dans le paquet et prend le reste";

@@ -81,12 +81,6 @@ public class Cake extends Recette
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	/*@Override
-	public void ordreRecette(JFrameRecette parent, JPanelJeu panelJeu)
-		{
-		new JDialogOrdreRecette(parent, this, panelJeu);
-		}*/
-
 	@Override
 	public int checkReponseOrdre(JPanelIngredientOrdre[] ingr)
 		{

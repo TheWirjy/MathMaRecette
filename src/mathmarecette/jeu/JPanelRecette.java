@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import mathmarecette.jeu.Recette.Recette;
 import mathmarecette.jeu.score.JPanelScore;
+import mathmarecette.menu.JFrameMenu;
 
 public class JPanelRecette extends JPanel
 	{
@@ -15,17 +16,15 @@ public class JPanelRecette extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelRecette(JFrameRecette jframe, Recette recette)
+	public JPanelRecette(JFrameMenu _parent, Recette recette)
 		{
-		this.jframe = jframe;
+		this.parent = _parent;
 		this.recette = recette;
 		geometry();
 		control();
 		appearance();
 
 		panelBarResult = panelJeu.getJPanelBarResult();
-		panelJeu.setSplash(recette.getImageRecette());
-
 		}
 
 	/*------------------------------------------------------------------*\
@@ -36,16 +35,42 @@ public class JPanelRecette extends JPanel
 		{
 		this.remove(panelJeu);
 		this.add(panelJeuHorloge);
+		panelJeuHorloge.startFade();
+		repaint();
+		}
+
+	public void afficheScore()
+		{
+		this.panelMenu.stop();
+		recette.setTime(panelMenu.getTime());
+		panelScore.setTime(panelMenu.getTime());
+		this.remove(panelJeuHorloge);
+		this.add(panelScore);
+		panelScore.startFade();
+		repaint();
+		}
+
+	public void init(Recette recette)
+		{
+		removeAll();
+		add(panelMenu);
+		add(panelJeu);
+		this.recette = recette;
+		this.recette.initialisation();
+		panelMenu.initialisation();
+		panelJeuHorloge.setQuestion("");
+		panelJeu.initialisation();
+		panelJeu.setSplash(recette.getImageRecette());
 		repaint();
 		}
 
 	public void startRecette()
 		{
+		panelJeuHorloge.setQuestion(recette.getQuestionBonus());
 		panelBarResult.initialisation(recette.getNbQuestion());
 		panelJeu.setQuestion(recette.getQuestion());
 		panelJeu.setIngredient(recette.getReponse());
 		panelMenu.setTitre(recette.getImageTitre());
-		//panelJeu.remplirTable(recette.getIngredientTable());
 		panelMenu.start();
 		}
 
@@ -58,35 +83,35 @@ public class JPanelRecette extends JPanel
 			recette.addScore(50);
 			panelJeu.setScore(recette.getScore());
 			}
+		else
+			{
+			recette.addScore(0);
+			}
 
-		panelBarResult.setResultat(recette.getCptQuestion(), bJuste);
+		panelBarResult.next(recette.getCptQuestion());
+		panelJeu.addIngr(icon, recette.getCptQuestion(), x, y);
 
 		if (recette.next())
 			{
 			panelJeu.getLabelQuestion().setText("<html><body><p align=\"center\">" + recette.getQuestion() + "</p></body></html>");
 			panelJeu.setIngredient(recette.getReponse());
-			panelJeu.addIngr(icon, recette.getCptQuestion() - 1, x, y);
-			//panelJeu.removeIngr(recette.getCptQuestion()-1, (ImageIcon)icon);
 			}
 		else
 			{
-			//http://www.spagety.net/wp-content/uploads/2015/03/%C5%A1pagety.png
-			//new JDialogAfficheRecette(jframe, new ImageIcon("D:\\Desktop\\imgMMR\\SpaghettiRecette.png"));
-			recette.ordreRecette(jframe);
+			panelJeu.hideForMiniJeu();
+			recette.ordreRecette(parent);
 			}
 
-		}
-
-	public void afficheScore()
-		{
-		this.remove(panelJeuHorloge);
-		this.add(panelScore);
-		repaint();
 		}
 
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
+
+	public void setRecette(Recette _recette)
+		{
+		this.recette = _recette;
+		}
 
 	/*------------------------------*\
 	|*				Get				*|
@@ -99,7 +124,7 @@ public class JPanelRecette extends JPanel
 
 	public JFrame getJFrame()
 		{
-		return jframe;
+		return parent;
 		}
 
 	public Recette getRecette()
@@ -114,7 +139,7 @@ public class JPanelRecette extends JPanel
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		panelMenu = new JPanelInfoBar(jframe);
+		panelMenu = new JPanelInfoBar(parent);
 		panelJeu = new JPanelJeu(this);
 		panelJeuHorloge = new JPanelJeuHorloge(this);
 		panelScore = new JPanelScore(this);
@@ -122,8 +147,7 @@ public class JPanelRecette extends JPanel
 		setLayout(null);
 
 		// JComponent : add
-		add(panelMenu);
-		add(panelJeu);
+
 		//add(panelScore);
 		//add(panelJeuHorloge);
 		}
@@ -143,9 +167,9 @@ public class JPanelRecette extends JPanel
 
 	private JPanelJeu panelJeu;
 	private JPanelInfoBar panelMenu;
-	private JFrameRecette jframe;
 	private Recette recette;
 	private JPanelBarEtat panelBarResult;
 	private JPanelJeuHorloge panelJeuHorloge;
 	private JPanelScore panelScore;
+	private JFrameMenu parent;
 	}

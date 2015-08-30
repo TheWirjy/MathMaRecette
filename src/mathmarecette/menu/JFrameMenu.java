@@ -1,18 +1,21 @@
+
 package mathmarecette.menu;
 
-import java.awt.Color;
-import java.io.IOException;
+import java.awt.BorderLayout;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import mathmarecette.jeu.JPanelRecette;
+import mathmarecette.jeu.Recette.Recette;
+import mathmarecette.jeu.Recette.Spaghetti;
 
 public class JFrameMenu extends JFrame
 	{
 
 	/*------------------------------------------------------------------*\
-		|*							Constructeurs							*|
-		\*------------------------------------------------------------------*/
+	|*							Constructeurs							*|
+	\*------------------------------------------------------------------*/
 
 	public JFrameMenu()
 		{
@@ -22,40 +25,88 @@ public class JFrameMenu extends JFrame
 		}
 
 	/*------------------------------------------------------------------*\
+	|*							Methodes Public							*|
+	\*------------------------------------------------------------------*/
+
+	public void recette(Recette _recette)
+		{
+		panelRecette.init(_recette);
+		remove(panelLevel);
+		add(panelRecette);
+		revalidate();
+		repaint();
+		}
+
+	public void quitRecette()
+		{
+		remove(panelRecette);
+		add(panelMenu);
+		repaint();
+		}
+
+	public void arcade()
+		{
+
+		}
+
+	public void level()
+		{
+		remove(panelMenu);
+		add(panelLevel);
+		repaint();
+		}
+
+	public void tuto()
+		{
+		remove(panelMenu);
+		add(panelTuto);
+		repaint();
+		}
+
+	public void credit()
+		{
+		remove(panelMenu);
+		add(panelCredit);
+		repaint();
+		}
+
+	public void menu(JPanel panel)
+		{
+		remove(panel);
+		add(panelMenu);
+		repaint();
+		}
+
+	/*------------------------------*\
+	|*				Set				*|
+	\*------------------------------*/
+
+	/*------------------------------*\
+	|*				Get				*|
+	\*------------------------------*/
+
+	public JPanelRecette getPanelRecette()
+		{
+		return panelRecette;
+		}
+
+	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
 
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		menu = new JPanelMenu();
-		pictures= new JLabel("");
-		title= new JLabel("");
-		
-		try {
-			current = new java.io.File( "." ).getCanonicalPath();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		ImageIcon iconPictures = new ImageIcon(current+"\\Image\\font.png");
-		pictures.setIcon(iconPictures);
-
-		ImageIcon iconTitle = new ImageIcon(current+"\\Image\\title.png");
-		title.setIcon(iconTitle);
+		panelMenu = new JPanelMenu(this);
+		panelCredit = new JPanelCredits(this);
+		panelLevel = new JPanelLevel(this);
+		panelRecette = new JPanelRecette(this, new Spaghetti());
+		panelTuto = new JPanelTuto(this);
 
 		// JComponent : Layout
-		setLayout(null);
-		add(menu);
-		add(pictures);
-		add(title);
-		title.setSize(570, 115);
-		title.setLocation(15, 40);
-		menu.setSize(250, 300);
-		menu.setLocation(160,200);
-		pictures.setSize(500, 155);
-		pictures.setLocation(50, 500);
+		setLayout(new BorderLayout());
+
+		add(panelMenu, BorderLayout.CENTER);
 
 		}
 
@@ -66,22 +117,24 @@ public class JFrameMenu extends JFrame
 
 	private void appearance()
 		{
-		setSize(600, 700);
+		/*Dimension dim = new Dimension(600, 700);
+		setPreferredSize(dim);
+		setSize(dim);
+		setMaximumSize(dim);*/
+		pack();
+		setResizable(false);
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
-		setResizable(false);
-		Color fontColor = new Color(255,246,213);
-		getContentPane().setBackground(fontColor);
 		}
 
 	/*------------------------------------------------------------------*\
-		|*							Attributs Private						*|
-		\*------------------------------------------------------------------*/
+	|*							Attributs Private						*|
+	\*------------------------------------------------------------------*/
 
 	// Tools
-	private JPanelMenu menu;
-	JLabel pictures;
-	JLabel title;
-	private String current;
-
+	private JPanelMenu panelMenu;
+	private JPanelLevel panelLevel;
+	private JPanelCredits panelCredit;
+	private JPanelRecette panelRecette;
+	private JPanelTuto panelTuto;
 	}

@@ -1,21 +1,26 @@
 
 package mathmarecette.jeu.score;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
+import mathmarecette.Tools;
 import mathmarecette.jeu.JPanelRecette;
 
-public class JPanelScore extends JPanel
+public class JPanelScore extends JPanel implements ActionListener
 	{
 
 	/*------------------------------------------------------------------*\
@@ -25,6 +30,8 @@ public class JPanelScore extends JPanel
 	public JPanelScore(JPanelRecette panelRecette)
 		{
 		this.panelRecette = panelRecette;
+		timer = new Timer(30, this);
+		time = "";
 		geometry();
 		control();
 		appearance();
@@ -33,6 +40,28 @@ public class JPanelScore extends JPanel
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public void setTime(String time)
+		{
+		this.time = time;
+		}
+
+	public void startFade()
+		{
+		timer.start();
+		}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0)
+		{
+		alpha += 0.1f;
+		if (alpha > 1)
+			{
+			alpha = 1;
+			timer.stop();
+			}
+		repaint();
+		}
 
 	public void color(Graphics2D g, int score)
 		{
@@ -54,6 +83,8 @@ public class JPanelScore extends JPanel
 
 		// ANTI ALIASING
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 
 		g2.drawImage(TABLEAU.getImage(), 0, 0, null);
 		g2.setColor(Color.WHITE);
@@ -114,7 +145,7 @@ public class JPanelScore extends JPanel
 			g2.drawString("Horloge", 70, yPos);
 
 			color(g2, score[nbQuestion]);
-			g2.drawString(score[nbQuestion + 1] + "", 480, yPos);
+			g2.drawString(score[nbQuestion] + "", 480, yPos);
 			}
 
 		g2.setColor(Color.WHITE);
@@ -129,6 +160,9 @@ public class JPanelScore extends JPanel
 
 		color(g2, scoreTot);
 		g2.drawString(scoreTot + "", 480, yPos);
+
+		g2.setColor(Color.WHITE);
+		g2.drawString(time, 70, yPos);
 
 		}
 
@@ -187,6 +221,8 @@ public class JPanelScore extends JPanel
 		labelMedaille.setSize(80, 80);
 		labelMedaille.setLocation(450, 50);
 		labelMedaille.setIcon(MEDAILLE);
+
+		setBackground(Tools.COLOR_BAR);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -209,4 +245,7 @@ public class JPanelScore extends JPanel
 	private JButton buttonContinuer;
 	private JLabel labelMedaille;
 
+	private float alpha = 0.0f;
+	private Timer timer;
+	private String time;
 	}

@@ -17,7 +17,7 @@ public class Pizza extends Recette
 		super("Pizza", "Tomate - Mozzarella - Jambon", 8, 10);
 
 
-		tabQuestion[0] = "Met 300g de farine";
+		tabQuestion[0] = "Il faut 300g de farine";
 		tabQuestion[1] = "Rajoute 2 œufs";
 		tabQuestion[2] = "Rajoute 10g sucre";
 		tabQuestion[3] = "Rajoute 15g sel";
@@ -93,12 +93,6 @@ public class Pizza extends Recette
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
-
-	/*@Override
-	public void ordreRecette(JFrameRecette parent, JPanelJeu panelJeu)
-		{
-		new JDialogOrdreRecette(parent, this, panelJeu);
-		}*/
 
 	/*------------------------------*\
 	|*				Set				*|

@@ -3,10 +3,10 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
-import mathmarecette.jeu.JFrameRecette;
 import mathmarecette.jeu.ingredient.IngredientOrdre;
 import mathmarecette.jeu.ordre.JDialogOrdreRecette;
 import mathmarecette.jeu.ordre.JPanelIngredientOrdre;
+import mathmarecette.menu.JFrameMenu;
 
 public class Recette
 	{
@@ -20,17 +20,12 @@ public class Recette
 		this.nom = _nom;
 		this.description = _descr;
 		this.nbQuestion = _nbQuestion;
-		this.cptQuestion = 0;
-		//this.score = 0;
+		this.nbScore = nbScore;
+		this.miniJeu = true;
 		this.tabQuestion = new String[nbQuestion];
 		this.tabReponse = new ImageIcon[nbQuestion][];
-		this.indiceTabScore = 0;
-
+		this.music = ".\\Son\\recette.mp3";
 		this.tabScore = new int[nbScore];
-		for(int i = 0; i < nbScore; i++)
-			{
-			tabScore[i] = 0;
-			}
 
 		for(int i = 0; i < nbQuestion; i++)
 			{
@@ -43,6 +38,17 @@ public class Recette
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public void initialisation()
+	{
+	this.cptQuestion = 0;
+	this.indiceTabScore = 0;
+	for(int i = 0; i < nbScore; i++)
+		{
+		tabScore[i] = 0;
+		}
+
+	}
 
 	public boolean next()
 		{
@@ -106,9 +112,19 @@ public class Recette
 	|*				Set				*|
 	\*------------------------------*/
 
+	public void setTime(String time)
+		{
+		this.time = time;
+		}
+
 	/*------------------------------*\
 	|*				Get				*|
 	\*------------------------------*/
+
+	public String getMusic()
+		{
+		return music;
+		}
 
 	public boolean aUnMiniJeu()
 		{
@@ -191,7 +207,7 @@ public class Recette
 		return tabIngredientOrdre;
 		}
 
-	public void ordreRecette(@SuppressWarnings("unused") JFrameRecette parent)
+	public void ordreRecette(@SuppressWarnings("unused") JFrameMenu parent)
 		{
 		new JDialogOrdreRecette(parent, this);
 		}
@@ -226,6 +242,7 @@ public class Recette
 	private String description;
 	private int nbQuestion;
 	private int cptQuestion;
+	private int nbScore;
 	protected String[] tabQuestion;
 	protected ImageIcon[][] tabReponse;
 	protected int[] tabSolution;
@@ -243,6 +260,10 @@ public class Recette
 	protected int[] tabScore;
 	protected int indiceTabScore;
 
-	protected boolean miniJeu = true;
+	protected boolean miniJeu;
+
+	protected String music;
+
+	protected String time;
 
 	}

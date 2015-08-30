@@ -71,12 +71,6 @@ public class Crepe extends Recette
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	/*@Override
-	public void ordreRecette(JFrameRecette parent, JPanelJeu panelJeu)
-		{
-		new JDialogOrdreRecette(parent, this, panelJeu);
-		}*/
-
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/

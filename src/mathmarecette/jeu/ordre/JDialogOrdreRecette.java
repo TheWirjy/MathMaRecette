@@ -5,8 +5,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
 
-import mathmarecette.jeu.JFrameRecette;
 import mathmarecette.jeu.Recette.Recette;
+import mathmarecette.menu.JFrameMenu;
 
 public class JDialogOrdreRecette extends JDialog
 	{
@@ -15,7 +15,7 @@ public class JDialogOrdreRecette extends JDialog
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JDialogOrdreRecette(JFrameRecette parent, Recette recette)
+	public JDialogOrdreRecette(JFrameMenu parent, Recette recette)
 		{
 		super(parent, recette.getNom(), true);
 		this.parent = parent;
@@ -69,5 +69,5 @@ public class JDialogOrdreRecette extends JDialog
 	// Tools
 	private Recette recette;
 	private JPanelOrdreRecette panelOrdreRecette;
-	private JFrameRecette parent;
+	private JFrameMenu parent;
 	}

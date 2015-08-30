@@ -3,7 +3,7 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
-import mathmarecette.jeu.JFrameRecette;
+import mathmarecette.menu.JFrameMenu;
 
 public class Salade extends Recette
 	{
@@ -49,7 +49,7 @@ public class Salade extends Recette
 	\*------------------------------------------------------------------*/
 
 	@Override
-	public void ordreRecette(@SuppressWarnings("unused") JFrameRecette parent)
+	public void ordreRecette(@SuppressWarnings("unused") JFrameMenu parent)
 		{
 		//parent.getPanelRecette();
 		}

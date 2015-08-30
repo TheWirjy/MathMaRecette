@@ -1,6 +1,7 @@
 
 package mathmarecette.jeu;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,11 +17,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 
 import mathmarecette.Tools;
 import mathmarecette.jeu.horloge.JPanelHorloge;
 
-public class JPanelJeuHorloge extends JPanel
+public class JPanelJeuHorloge extends JPanel implements ActionListener
 	{
 
 	/*------------------------------------------------------------------*\
@@ -30,6 +32,7 @@ public class JPanelJeuHorloge extends JPanel
 	public JPanelJeuHorloge(JPanelRecette _panelRecette)
 		{
 		panelRecette = _panelRecette;
+		timer = new Timer(30, this);
 		geometry();
 		control();
 		appearance();
@@ -39,6 +42,28 @@ public class JPanelJeuHorloge extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	public void setQuestion(String question)
+		{
+		labelQuestion.setText("<html><body><p align=\"center\">" + question + "</p></body></html>");
+		}
+
+	@Override
+	public void actionPerformed(ActionEvent e)
+		{
+		alpha += 0.1f;
+		if (alpha > 1)
+			{
+			alpha = 1;
+			timer.stop();
+			}
+		repaint();
+		}
+
+	public void startFade()
+		{
+		timer.start();
+		}
+
 	@Override
 	protected void paintComponent(Graphics g)
 		{
@@ -47,6 +72,8 @@ public class JPanelJeuHorloge extends JPanel
 
 		// ANTI ALIASING
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 
 		g2.drawImage(HORLOGE.getImage(), 0, 0, null);
 
@@ -59,6 +86,7 @@ public class JPanelJeuHorloge extends JPanel
 		g2.setStroke(new BasicStroke(2));
 		g2.drawLine(0, 90, getWidth(), 90);
 		g2.drawLine(0, 110, getWidth(), 110);
+
 		}
 
 	/*------------------------------*\
@@ -118,10 +146,8 @@ public class JPanelJeuHorloge extends JPanel
 		labelQuestion.setLocation(10, 0);
 		labelQuestion.setVerticalAlignment(SwingConstants.CENTER);
 		labelQuestion.setHorizontalAlignment(SwingConstants.CENTER);
-		labelQuestion.setText("<html><body><p align=\"center\">"+panelRecette.getRecette().getQuestionBonus()+"</p></body></html>");
 		buttonValider.setSize(80, 40);
 		buttonValider.setLocation(160 + panelHorloge.getWidth() / 2, 570);
-		//buttonValider.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		buttonValider.setBackground(Tools.COLOR_CASE_INGREDIENT);
 
 		}
@@ -136,4 +162,6 @@ public class JPanelJeuHorloge extends JPanel
 	private JLabel labelQuestion;
 	private JPanelRecette panelRecette;
 	private JButton buttonValider;
+	private float alpha = 0.0f;
+	private Timer timer;
 	}
