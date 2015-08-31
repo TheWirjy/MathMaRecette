@@ -1,3 +1,4 @@
+
 package mathmarecette.menu;
 
 import java.io.BufferedInputStream;
@@ -5,48 +6,61 @@ import java.io.FileInputStream;
 
 import javazoom.jl.player.Player;
 
-public class MP3 {
+public class MP3
+	{
+
 	private String filename;
 	private Player player;
 
 	// constructor that takes the name of an MP3 file
-	public MP3(String filename) {
+	public MP3(String filename)
+		{
 		this.filename = filename;
-	}
-
-	public void close() {
-		if (player != null)
-			{
-				player.close();
-				}
-	}
-
-	// play the MP3 file to the sound card
-	public void play() {
-		try {
-			FileInputStream fis = new FileInputStream(filename);
-			BufferedInputStream bis = new BufferedInputStream(fis);
-			close();
-			player = new Player(bis);
-			bis.close();
-			fis.close();
-		} catch (Exception e) {
-			System.out.println("Problem playing file " + filename);
-			System.out.println(e);
 		}
 
-		// run in new thread to play in background
-		new Thread() {
-			@Override
-			public void run() {
-				try {
-
-					player.play();
-				} catch (Exception e) {
-					System.out.println("err");
-				}
+	public void close()
+		{
+		if (player != null)
+			{
+			player.close();
 			}
-		}.start();
+		}
 
+	// play the MP3 file to the sound card
+	public void play()
+		{
+		try
+			{
+			FileInputStream fis = new FileInputStream(filename);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			player = new Player(bis);
+			//bis.close();
+			//fis.close();
+			}
+		catch (Exception e)
+			{
+			System.out.println("Problem playing file " + filename);
+			System.out.println(e);
+			}
+
+		// run in new thread to play in background
+		new Thread()
+			{
+
+				@Override
+				public void run()
+					{
+					try
+						{
+
+						player.play();
+						}
+					catch (Exception e)
+						{
+						System.out.println("err");
+						}
+					}
+			}.start();
+
+		}
 	}
-}

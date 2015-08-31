@@ -2,7 +2,11 @@
 package mathmarecette.menu;
 
 import java.awt.BorderLayout;
+import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -28,11 +32,32 @@ public class JFrameMenu extends JFrame
 		geometry();
 		control();
 		appearance();
+
+		MP3 mp3 = new MP3("./Son/recette.mp3");
+		//mp3.play();
+		playSon();
 		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public void playSon()
+		{
+		try
+			{
+			File file = new File("./Son/menu.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+			clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+			}
+		catch (Exception e)
+			{
+			System.out.println("erreur son");
+			}
+		}
 
 	public void questionBonus()
 		{
@@ -48,6 +73,7 @@ public class JFrameMenu extends JFrame
 
 	public void recette(Recette _recette)
 		{
+		clip.close();
 		arcade = false;
 		panelRecette.init(_recette);
 		remove(panelLevel);
@@ -69,10 +95,12 @@ public class JFrameMenu extends JFrame
 		add(panelMenu);
 		revalidate();
 		repaint();
+		playSon();
 		}
 
 	public void arcade()
 		{
+		clip.stop();
 		arcade = true;
 		panelArcade.init();
 		remove(panelMenu);
@@ -172,4 +200,5 @@ public class JFrameMenu extends JFrame
 	private JPanelTuto panelTuto;
 	private JPanelArcade panelArcade;
 	private boolean arcade;
+	private Clip clip;
 	}

@@ -64,6 +64,7 @@ public class Crepe extends Recette
 
 		imageRecette = new ImageIcon(".//image//splach/splachCrepes.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_crepe.png");
+		music = "./Son/crepe.wav";
 
 		}
 

@@ -54,6 +54,7 @@ public class Spaghetti extends Recette
 
 		this.questionBonus = "Il est 15h37, les pâtes doivent cuire 6min, à quelle heure seront-elle prête ?";
 		this.reponseBonus = "15h43";
+		music = "./Son/spaghetti.wav";
 		}
 
 	/*------------------------------------------------------------------*\

@@ -75,8 +75,7 @@ public class Cake extends Recette
 
 		imageRecette = new ImageIcon(".//image//splach/splachCake.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_cake.png");
-
-
+		music = "./Son/cake.wav";
 		}
 
 	/*------------------------------------------------------------------*\

@@ -164,6 +164,7 @@ public class JPanelInfoBar extends JPanel
 					if (click && dessus)
 						{
 						timer.stop();
+
 						parent.quitRecette();
 						}
 					click = false;

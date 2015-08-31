@@ -1,6 +1,11 @@
 
 package mathmarecette.jeu.Recette;
 
+import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 
 import mathmarecette.jeu.ingredient.IngredientOrdre;
@@ -106,6 +111,29 @@ public class Recette
 			tabScore[indiceTabScore] = 50;
 			}
 		indiceTabScore++;
+		}
+
+	public void playSon()
+		{
+		try
+			{
+			File file = new File(music);
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+			clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+			}
+		catch (Exception e)
+			{
+			System.out.println("erreur son");
+			}
+		}
+
+	public void stopSon()
+		{
+		clip.stop();
+		clip.close();
 		}
 
 	/*------------------------------*\
@@ -279,5 +307,5 @@ public class Recette
 	protected String music;
 
 	protected int time;
-
+	private Clip clip;
 	}

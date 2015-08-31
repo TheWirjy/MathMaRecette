@@ -54,10 +54,12 @@ public class JPanelArcade extends JPanelRecette
 		panelJeu.initialisation();
 		panelJeu.setSplash(recette.getImageRecette());
 		repaint();
+		this.recette.playSon();
 		}
 
 	public void nextRecette()
 		{
+		this.recette.stopSon();
 		indiceRecette++;
 		removeAll();
 		add(panelMenu);
@@ -68,6 +70,7 @@ public class JPanelArcade extends JPanelRecette
 		panelJeu.initialisation();
 		panelJeu.setSplash(recette.getImageRecette());
 		repaint();
+		this.recette.playSon();
 		}
 
 	@Override

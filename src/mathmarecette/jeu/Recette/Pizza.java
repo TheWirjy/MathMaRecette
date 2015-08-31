@@ -81,6 +81,7 @@ public class Pizza extends Recette
 
 		imageRecette = new ImageIcon(".//image//splach/splachPizza.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_pizza.png");
+		music = "./Son/pizza.wav";
 
 		}
 

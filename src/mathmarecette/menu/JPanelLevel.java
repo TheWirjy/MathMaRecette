@@ -1,10 +1,14 @@
+
 package mathmarecette.menu;
 
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
+import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,29 +21,48 @@ import mathmarecette.jeu.Recette.Recette;
 import mathmarecette.jeu.Recette.Salade;
 import mathmarecette.jeu.Recette.Spaghetti;
 
-public class JPanelLevel extends JPanel {
+public class JPanelLevel extends JPanel
+	{
 
 	/*------------------------------------------------------------------*\
 		|*							Constructeurs							*|
 		\*------------------------------------------------------------------*/
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 2066725686365442599L;
 
-	public JPanelLevel(JFrameMenu _parent) {
+	public JPanelLevel(JFrameMenu _parent)
+		{
 		this.parent = _parent;
 		geometry();
 		control();
 		appearance();
-	}
+		}
 
 	/*------------------------------------------------------------------*\
 		|*							Methodes Private						*|
 		\*------------------------------------------------------------------*/
 
-	private void geometry() {
+	public void playSon()
+		{
+		try
+			{
+			File file = new File("./Son/bouton_menu.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+			clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+			}
+		catch (Exception e)
+			{
+			System.out.println("erreur son");
+			}
+		}
+
+	private void geometry()
+		{
 		// JComponent : Instanciation
 
 		spaghetti = new JLabel();
@@ -53,33 +76,22 @@ public class JPanelLevel extends JPanel {
 
 		// JComponent : Adaptation
 
-		try {
-			current = new java.io.File(".").getCanonicalPath();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		String filename = current + "/Son/ClickJump.mp3";
-		mp3 = new MP3(filename);
-
-		iconSpaghetti = new ImageIcon(current + "\\Image\\BTNSpaghetti.png");
+		iconSpaghetti = new ImageIcon(".\\Image\\BTNSpaghetti.png");
 		spaghetti.setIcon(iconSpaghetti);
 
-		iconPate = new ImageIcon(current + "\\Image\\BTNPate.png");
+		iconPate = new ImageIcon(".\\Image\\BTNPate.png");
 		crepe.setIcon(iconPate);
 
-		iconCake = new ImageIcon(current + "\\Image\\BTNCake.png");
+		iconCake = new ImageIcon(".\\Image\\BTNCake.png");
 		cake.setIcon(iconCake);
 
-		iconSalade = new ImageIcon(current + "\\Image\\BTNSalade.png");
+		iconSalade = new ImageIcon(".\\Image\\BTNSalade.png");
 		salade.setIcon(iconSalade);
 
-		iconPizza = new ImageIcon(current + "\\Image\\BTNPizza.png");
+		iconPizza = new ImageIcon(".\\Image\\BTNPizza.png");
 		pizza.setIcon(iconPizza);
 
-		ImageIcon iconPictures = new ImageIcon(current
-				+ "\\Image\\font-niveau.png");
+		ImageIcon iconPictures = new ImageIcon(".\\Image\\font-niveau.png");
 		pictures.setIcon(iconPictures);
 
 		// JComponent : Layout
@@ -93,88 +105,102 @@ public class JPanelLevel extends JPanel {
 		add(salade);
 		add(pizza);
 
-	}
+		}
 
-	private MouseAdapter monMouseListener(final JLabel level,
-			final Recette recette) {
-		return new MouseAdapter() {
+	private MouseAdapter monMouseListener(final JLabel level, final Recette recette)
+		{
+		return new MouseAdapter()
+			{
 
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				level.setLocation(level.getX(), level.getY() + 10);
-				if (click && dessus) {
-					parent.recette(recette);
-				}
-				click = false;
-			}
+				@Override
+				public void mouseReleased(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					level.setLocation(level.getX(), level.getY() + 10);
+					playSon();
+					if (click && dessus)
+						{
+						parent.recette(recette);
+						}
+					click = false;
+					}
 
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				click = true;
-				dessus = true;
-				level.setLocation(level.getX(), level.getY() - 10);
-			}
+				@Override
+				public void mousePressed(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					click = true;
+					dessus = true;
+					level.setLocation(level.getX(), level.getY() - 10);
+					}
 
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				dessus = false;
-			}
+				@Override
+				public void mouseExited(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = false;
+					}
 
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				dessus = true;
-			}
-		};
-	}
+				@Override
+				public void mouseEntered(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = true;
+					}
+			};
+		}
 
-	private void control() {
-		spaghetti
-				.addMouseListener(monMouseListener(spaghetti, new Spaghetti()));
+	private void control()
+		{
+		spaghetti.addMouseListener(monMouseListener(spaghetti, new Spaghetti()));
 		crepe.addMouseListener(monMouseListener(crepe, new Crepe()));
 		cake.addMouseListener(monMouseListener(cake, new Cake()));
 		salade.addMouseListener(monMouseListener(salade, new Salade()));
 		pizza.addMouseListener(monMouseListener(pizza, new Pizza()));
 
-		labelRetour.addMouseListener(new MouseAdapter() {
+		labelRetour.addMouseListener(new MouseAdapter()
+			{
 
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				labelRetour.setIcon(Tools.BOUTON_RETOUR);
-				if (click && dessus) {
-					parent.menu(JPanelLevel.this);
-				}
-				click = false;
-			}
+				@Override
+				public void mouseReleased(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					labelRetour.setIcon(Tools.BOUTON_RETOUR);
+					if (click && dessus)
+						{
+						parent.menu(JPanelLevel.this);
+						}
+					click = false;
+					}
 
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				click = true;
-				dessus = true;
-				labelRetour.setIcon(Tools.BOUTON_RETOUR_CLICK);
-			}
+				@Override
+				public void mousePressed(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					click = true;
+					dessus = true;
+					labelRetour.setIcon(Tools.BOUTON_RETOUR_CLICK);
+					}
 
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				dessus = false;
-			}
+				@Override
+				public void mouseExited(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = false;
+					}
 
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				dessus = true;
-			}
-		});
+				@Override
+				public void mouseEntered(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = true;
+					}
+			});
 
-	}
+		}
 
-	private void appearance() {
+	private void appearance()
+		{
 		Dimension panelD = new Dimension(600, 700);
 		this.setSize(panelD);
 		this.setPreferredSize(panelD);
@@ -210,7 +236,7 @@ public class JPanelLevel extends JPanel {
 		pizza.setPreferredSize(dim);
 		pizza.setSize(dim);
 		pizza.setLocation(getWidth() / 2 - dim.width / 2, 370);
-	}
+		}
 
 	/*------------------------------------------------------------------*\
 		|*							Attributs Private						*|
@@ -227,13 +253,11 @@ public class JPanelLevel extends JPanel {
 	private ImageIcon iconCake;
 	private ImageIcon iconSalade;
 	private ImageIcon iconPizza;
-	private MP3 mp3;
-	private String current;
 	private boolean click = false;
 	private boolean dessus = false;
 	private JLabel pictures;
 	private JFrameMenu parent;
 
 	private JLabel labelRetour;
-
-}
+	private Clip clip;
+	}

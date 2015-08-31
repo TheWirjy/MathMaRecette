@@ -4,8 +4,12 @@ package mathmarecette.menu;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,11 +35,38 @@ public class JPanelMenu extends JPanel
 		geometry();
 		control();
 		appearance();
+		try
+			{
+			File file = new File("./Son/ClickJump.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+			clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			}
+		catch (Exception e)
+			{
+			System.out.println("erreur son");
+			}
 		}
 
 	/*------------------------------------------------------------------*\
 		|*							Methodes Private						*|
 		\*------------------------------------------------------------------*/
+
+	public void playSon()
+		{
+		try
+			{
+			File file = new File("./Son/bouton_menu.wav");
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+			clip = AudioSystem.getClip();
+			clip.open(audioIn);
+			clip.start();
+			}
+		catch (Exception e)
+			{
+			System.out.println("erreur son");
+			}
+		}
 
 	private void geometry()
 		{
@@ -107,7 +138,7 @@ public class JPanelMenu extends JPanel
 					level.setLocation(level.getX(), level.getY() + 10);
 					if (click && dessus)
 						{
-						//mp3.play();
+						playSon();
 						switch(choix)
 							{
 							case 0://Arcade
@@ -207,6 +238,7 @@ public class JPanelMenu extends JPanel
 	private String current;
 	private boolean click = false;
 	private boolean dessus = false;
+	private Clip clip;
 
 	private JFrameMenu parent;
 	}

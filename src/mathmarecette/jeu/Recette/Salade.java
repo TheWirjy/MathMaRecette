@@ -41,7 +41,7 @@ public class Salade extends Recette
 
 		imageRecette = new ImageIcon(".//image//splach/splachSalade.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_salade.png");
-
+		music = "./Son/salade.wav";
 		}
 
 	/*------------------------------------------------------------------*\
