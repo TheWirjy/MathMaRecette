@@ -6,9 +6,9 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import mathmarecette.jeu.JPanelArcade;
 import mathmarecette.jeu.JPanelRecette;
 import mathmarecette.jeu.Recette.Recette;
-import mathmarecette.jeu.Recette.Spaghetti;
 
 public class JFrameMenu extends JFrame
 	{
@@ -18,11 +18,13 @@ public class JFrameMenu extends JFrame
 	\*------------------------------------------------------------------*/
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 2051497550641079298L;
+
 	public JFrameMenu()
 		{
+		arcade = false;
 		geometry();
 		control();
 		appearance();
@@ -32,8 +34,21 @@ public class JFrameMenu extends JFrame
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	public void questionBonus()
+		{
+		if (arcade)
+			{
+			panelArcade.startQuestionBonus();
+			}
+		else
+			{
+			panelRecette.startQuestionBonus();
+			}
+		}
+
 	public void recette(Recette _recette)
 		{
+		arcade = false;
 		panelRecette.init(_recette);
 		remove(panelLevel);
 		add(panelRecette);
@@ -43,14 +58,27 @@ public class JFrameMenu extends JFrame
 
 	public void quitRecette()
 		{
-		remove(panelRecette);
+		if (arcade)
+			{
+			remove(panelArcade);
+			}
+		else
+			{
+			remove(panelRecette);
+			}
 		add(panelMenu);
+		revalidate();
 		repaint();
 		}
 
 	public void arcade()
 		{
-
+		arcade = true;
+		panelArcade.init();
+		remove(panelMenu);
+		add(panelArcade);
+		revalidate();
+		repaint();
 		}
 
 	public void level()
@@ -104,8 +132,9 @@ public class JFrameMenu extends JFrame
 		panelMenu = new JPanelMenu(this);
 		panelCredit = new JPanelCredits(this);
 		panelLevel = new JPanelLevel(this);
-		panelRecette = new JPanelRecette(this, new Spaghetti());
+		panelRecette = new JPanelRecette(this);
 		panelTuto = new JPanelTuto(this);
+		panelArcade = new JPanelArcade(this);
 
 		// JComponent : Layout
 		setLayout(new BorderLayout());
@@ -141,4 +170,6 @@ public class JFrameMenu extends JFrame
 	private JPanelCredits panelCredit;
 	private JPanelRecette panelRecette;
 	private JPanelTuto panelTuto;
+	private JPanelArcade panelArcade;
+	private boolean arcade;
 	}

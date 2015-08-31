@@ -1,32 +1,19 @@
 
-package mathmarecette.jeu.ordre;
+package mathmarecette.jeu.medaille;
 
 import java.awt.BorderLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 
-import mathmarecette.jeu.Recette.Recette;
-import mathmarecette.menu.JFrameMenu;
-
-public class JDialogOrdreRecette extends JDialog
+public class JFrameMedaille extends JFrame
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 1455793839848303622L;
-
-	public JDialogOrdreRecette(JFrameMenu parent, Recette recette)
+	public JFrameMedaille()
 		{
-		super(parent, recette.getNom(), true);
-		this.parent = parent;
-		this.recette = recette;
 		geometry();
 		control();
 		appearance();
@@ -50,33 +37,32 @@ public class JDialogOrdreRecette extends JDialog
 
 	private void geometry()
 		{
-		panelOrdreRecette = new JPanelOrdreRecette(recette, this, parent);
-		setLayout(new BorderLayout());
-		add(panelOrdreRecette, BorderLayout.CENTER);
+			// JComponent : Instanciation
+
+			// Layout : Specification
+			{
+			BorderLayout borderLayout = new BorderLayout();
+			setLayout(borderLayout);
+
+			// borderLayout.setHgap(20);
+			// borderLayout.setVgap(20);
+			}
+
+		// JComponent : add
+		//add(TODO,BorderLayout.CENTER);
+		add(new JPanelMedaille(), BorderLayout.CENTER);
 		}
 
 	private void control()
 		{
-		addWindowListener(new WindowAdapter()
-			{
-
-				@Override
-				public void windowClosing(WindowEvent e)
-					{
-					// TODO Auto-generated method stub
-					parent.quitRecette();
-					}
-			});
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		}
 
 	private void appearance()
 		{
-		// setPreferredSize(new Dimension(400, 300));
 		pack();
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
-
 		}
 
 	/*------------------------------------------------------------------*\
@@ -84,7 +70,22 @@ public class JDialogOrdreRecette extends JDialog
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	private Recette recette;
-	private JPanelOrdreRecette panelOrdreRecette;
-	private JFrameMenu parent;
+	/*------------------------------------------------------------------*\
+	|*							Methodes Public							*|
+	\*------------------------------------------------------------------*/
+
+	public static void main(String[] args)
+		{
+		main();
+		}
+
+	public static void main()
+		{
+		new JFrameMedaille();
+		}
+
+	/*------------------------------------------------------------------*\
+	|*							Methodes Private						*|
+	\*------------------------------------------------------------------*/
+
 	}

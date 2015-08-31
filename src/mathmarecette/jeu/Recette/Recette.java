@@ -40,15 +40,15 @@ public class Recette
 	\*------------------------------------------------------------------*/
 
 	public void initialisation()
-	{
-	this.cptQuestion = 0;
-	this.indiceTabScore = 0;
-	for(int i = 0; i < nbScore; i++)
 		{
-		tabScore[i] = 0;
-		}
+		this.cptQuestion = 0;
+		this.indiceTabScore = 0;
+		for(int i = 0; i < nbScore; i++)
+			{
+			tabScore[i] = 0;
+			}
 
-	}
+		}
 
 	public boolean next()
 		{
@@ -112,14 +112,27 @@ public class Recette
 	|*				Set				*|
 	\*------------------------------*/
 
-	public void setTime(String time)
+	public void setTime(int time)
 		{
 		this.time = time;
+		}
+
+	public void setMedaille(ImageIcon medaille)
+		{
+		this.medaille = medaille;
 		}
 
 	/*------------------------------*\
 	|*				Get				*|
 	\*------------------------------*/
+
+	public String getTime()
+		{
+		int m = (int)(time / 60.0);
+		double reste = time / 60.0 - m;
+		int s = (int)(reste * 60);
+		return m + ":" + s;
+		}
 
 	public String getMusic()
 		{
@@ -243,6 +256,7 @@ public class Recette
 	private int nbQuestion;
 	private int cptQuestion;
 	private int nbScore;
+	private ImageIcon medaille;
 	protected String[] tabQuestion;
 	protected ImageIcon[][] tabReponse;
 	protected int[] tabSolution;
@@ -264,6 +278,6 @@ public class Recette
 
 	protected String music;
 
-	protected String time;
+	protected int time;
 
 	}

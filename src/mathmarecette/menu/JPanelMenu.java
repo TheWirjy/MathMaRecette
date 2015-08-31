@@ -21,7 +21,7 @@ public class JPanelMenu extends JPanel
 		\*------------------------------------------------------------------*/
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 3592622742224246733L;
 

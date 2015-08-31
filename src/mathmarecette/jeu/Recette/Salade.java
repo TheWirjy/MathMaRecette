@@ -51,7 +51,7 @@ public class Salade extends Recette
 	@Override
 	public void ordreRecette(JFrameMenu parent)
 		{
-		parent.getPanelRecette().startQuestionBonus();
+		parent.questionBonus();
 		}
 
 	/*------------------------------*\

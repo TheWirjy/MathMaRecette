@@ -26,16 +26,13 @@ public class JPanelHorloge extends JPanel
 	\*------------------------------------------------------------------*/
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -4081161226106246894L;
+
 	public JPanelHorloge()
 		{
-		reponse = "";
-		heure = "14";
-		minute = "00";
-		angleH = 45;
-		angleM = 0;
+		initialisation();
 
 		f_angle = new int[12];
 		int a = -15;
@@ -60,6 +57,15 @@ public class JPanelHorloge extends JPanel
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public void initialisation()
+		{
+		reponse = "";
+		heure = "14";
+		minute = "00";
+		angleH = 45;
+		angleM = 0;
+		}
 
 	@Override
 	protected void paintComponent(Graphics g)

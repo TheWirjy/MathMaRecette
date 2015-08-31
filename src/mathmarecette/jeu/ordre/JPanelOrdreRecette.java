@@ -19,8 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import mathmarecette.Tools;
-import mathmarecette.jeu.JPanelRecette;
 import mathmarecette.jeu.Recette.Recette;
+import mathmarecette.menu.JFrameMenu;
 
 public class JPanelOrdreRecette extends JPanel
 	{
@@ -30,14 +30,15 @@ public class JPanelOrdreRecette extends JPanel
 	\*------------------------------------------------------------------*/
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 8641894428622130919L;
-	public JPanelOrdreRecette(Recette recette, JDialog dialog, JPanelRecette panelRecette)
+
+	public JPanelOrdreRecette(Recette recette, JDialog dialog, JFrameMenu frame)
 		{
 		this.recette = recette;
 		this.dialog = dialog;
-		this.panelRecette = panelRecette;
+		this.parent = frame;
 		label = new JPanelIngredientOrdre[recette.getTabIngredientOrdre().length];
 		int[] tabOrdreIndice = recette.getTabOrdreIndice();
 
@@ -184,7 +185,7 @@ public class JPanelOrdreRecette extends JPanel
 
 							if (cptBonneRep == label.length)
 								{
-								recette.addScore(50*(nbEssai+1));
+								recette.addScore(50 * (nbEssai + 1));
 								labelResultat.setText("Tu as réussi!! Clique sur continuer pour passer à la suite");
 								buttonValider.setText("Continuer");
 								fini = true;
@@ -206,7 +207,7 @@ public class JPanelOrdreRecette extends JPanel
 					else
 						{
 						dialog.dispose();
-						panelRecette.startQuestionBonus();
+						parent.questionBonus();
 						}
 					}
 			});
@@ -268,5 +269,5 @@ public class JPanelOrdreRecette extends JPanel
 
 	private boolean fini = false;
 	private JDialog dialog;
-	private JPanelRecette panelRecette;
+	private JFrameMenu parent;
 	}
