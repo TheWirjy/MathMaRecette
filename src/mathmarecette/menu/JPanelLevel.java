@@ -1,4 +1,3 @@
-
 package mathmarecette.menu;
 
 import java.awt.Dimension;
@@ -18,27 +17,29 @@ import mathmarecette.jeu.Recette.Recette;
 import mathmarecette.jeu.Recette.Salade;
 import mathmarecette.jeu.Recette.Spaghetti;
 
-public class JPanelLevel extends JPanel
-	{
+public class JPanelLevel extends JPanel {
 
 	/*------------------------------------------------------------------*\
 		|*							Constructeurs							*|
 		\*------------------------------------------------------------------*/
 
-	public JPanelLevel(JFrameMenu _parent)
-		{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2066725686365442599L;
+
+	public JPanelLevel(JFrameMenu _parent) {
 		this.parent = _parent;
 		geometry();
 		control();
 		appearance();
-		}
+	}
 
 	/*------------------------------------------------------------------*\
 		|*							Methodes Private						*|
 		\*------------------------------------------------------------------*/
 
-	private void geometry()
-		{
+	private void geometry() {
 		// JComponent : Instanciation
 
 		spaghetti = new JLabel();
@@ -52,15 +53,12 @@ public class JPanelLevel extends JPanel
 
 		// JComponent : Adaptation
 
-		try
-			{
+		try {
 			current = new java.io.File(".").getCanonicalPath();
-			}
-		catch (IOException e)
-			{
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			}
+		}
 
 		String filename = current + "/Son/ClickJump.mp3";
 		mp3 = new MP3(filename);
@@ -80,7 +78,8 @@ public class JPanelLevel extends JPanel
 		iconPizza = new ImageIcon(current + "\\Image\\BTNPizza.png");
 		pizza.setIcon(iconPizza);
 
-		ImageIcon iconPictures = new ImageIcon(current + "\\Image\\font-niveau.png");
+		ImageIcon iconPictures = new ImageIcon(current
+				+ "\\Image\\font-niveau.png");
 		pictures.setIcon(iconPictures);
 
 		// JComponent : Layout
@@ -94,101 +93,88 @@ public class JPanelLevel extends JPanel
 		add(salade);
 		add(pizza);
 
-		}
+	}
 
-	private MouseAdapter monMouseListener(final JLabel level, final Recette recette)
-		{
-		return new MouseAdapter()
-			{
+	private MouseAdapter monMouseListener(final JLabel level,
+			final Recette recette) {
+		return new MouseAdapter() {
 
-				@Override
-				public void mouseReleased(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					level.setLocation(level.getX(), level.getY() + 10);
-					if (click && dessus)
-						{
-						parent.recette(recette);
-						}
-					click = false;
-					}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				level.setLocation(level.getX(), level.getY() + 10);
+				if (click && dessus) {
+					parent.recette(recette);
+				}
+				click = false;
+			}
 
-				@Override
-				public void mousePressed(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					click = true;
-					dessus = true;
-					level.setLocation(level.getX(), level.getY() - 10);
-					}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				click = true;
+				dessus = true;
+				level.setLocation(level.getX(), level.getY() - 10);
+			}
 
-				@Override
-				public void mouseExited(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					dessus = false;
-					}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				dessus = false;
+			}
 
-				@Override
-				public void mouseEntered(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					dessus = true;
-					}
-			};
-		}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				dessus = true;
+			}
+		};
+	}
 
-	private void control()
-		{
-		spaghetti.addMouseListener(monMouseListener(spaghetti, new Spaghetti()));
+	private void control() {
+		spaghetti
+				.addMouseListener(monMouseListener(spaghetti, new Spaghetti()));
 		crepe.addMouseListener(monMouseListener(crepe, new Crepe()));
 		cake.addMouseListener(monMouseListener(cake, new Cake()));
 		salade.addMouseListener(monMouseListener(salade, new Salade()));
 		pizza.addMouseListener(monMouseListener(pizza, new Pizza()));
 
-		labelRetour.addMouseListener(new MouseAdapter()
-			{
+		labelRetour.addMouseListener(new MouseAdapter() {
 
-				@Override
-				public void mouseReleased(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					labelRetour.setIcon(Tools.BOUTON_RETOUR);
-					if (click && dessus)
-						{
-						parent.menu(JPanelLevel.this);
-						}
-					click = false;
-					}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				labelRetour.setIcon(Tools.BOUTON_RETOUR);
+				if (click && dessus) {
+					parent.menu(JPanelLevel.this);
+				}
+				click = false;
+			}
 
-				@Override
-				public void mousePressed(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					click = true;
-					dessus = true;
-					labelRetour.setIcon(Tools.BOUTON_RETOUR_CLICK);
-					}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				click = true;
+				dessus = true;
+				labelRetour.setIcon(Tools.BOUTON_RETOUR_CLICK);
+			}
 
-				@Override
-				public void mouseExited(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					dessus = false;
-					}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				dessus = false;
+			}
 
-				@Override
-				public void mouseEntered(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					dessus = true;
-					}
-			});
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				dessus = true;
+			}
+		});
 
-		}
+	}
 
-	private void appearance()
-		{
+	private void appearance() {
 		Dimension panelD = new Dimension(600, 700);
 		this.setSize(panelD);
 		this.setPreferredSize(panelD);
@@ -224,7 +210,7 @@ public class JPanelLevel extends JPanel
 		pizza.setPreferredSize(dim);
 		pizza.setSize(dim);
 		pizza.setLocation(getWidth() / 2 - dim.width / 2, 370);
-		}
+	}
 
 	/*------------------------------------------------------------------*\
 		|*							Attributs Private						*|
@@ -250,4 +236,4 @@ public class JPanelLevel extends JPanel
 
 	private JLabel labelRetour;
 
-	}
+}

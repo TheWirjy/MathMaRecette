@@ -14,26 +14,22 @@ public class Pizza extends Recette
 
 	public Pizza()
 		{
-		super("Pizza", "Tomate - Mozzarella - Jambon", 8, 10);
+		super("Pizza", "Tomate - Mozzarella - Jambon", 6, 8);
 
 
-		tabQuestion[0] = "Il faut 300g de farine";
-		tabQuestion[1] = "Rajoute 2 œufs";
-		tabQuestion[2] = "Rajoute 10g sucre";
-		tabQuestion[3] = "Rajoute 15g sel";
-		tabQuestion[4] = "Laisse reposer 1h sachant qu’il est 17h59";
-		tabQuestion[5] = "Cuire la pâte pendant 20 minutes";
-		tabQuestion[6] = "Chauffe 220g de sauce tomate";
-		tabQuestion[7] = "Coupe  125g de mozzarella en 10 parts égales";
+		tabQuestion[0] = "Prépare 350 gramme de farine ";
+		tabQuestion[1] = "Prépare 10 gramme de sel (sachant qu’une cuillère à café fait 5 gramme)";
+		tabQuestion[2] = "Prépare 20 gramme de levure (sachant que 1 paquet de levure fait 40 gramme)";
+		tabQuestion[3] = "Prépare 2 fois plus de cuillère à café d’huile que de sel";
+		tabQuestion[4] = "Prépare 0,25l d’eau chaude";
+		tabQuestion[5] = "Préparer 200g de coulis de tomate et la moitié de mozzarella (une mozzarella entière = 300g)";
 
 		createQuestion(0, CHEMIN_QUESTION + "Q1R1.png", CHEMIN_QUESTION + "Q1R2.png", CHEMIN_QUESTION + "Q1R3.png", CHEMIN_QUESTION + "Q1R4.png");
 		createQuestion(1, CHEMIN_QUESTION + "Q2R1.png", CHEMIN_QUESTION + "Q2R2.png", CHEMIN_QUESTION + "Q2R3.png", CHEMIN_QUESTION + "Q2R4.png");
 		createQuestion(2, CHEMIN_QUESTION + "Q3R1.png", CHEMIN_QUESTION + "Q3R2.png", CHEMIN_QUESTION + "Q3R3.png", CHEMIN_QUESTION + "Q3R4.png");
-		createQuestion(3, "4", "4", "4", "4");
-		createQuestion(4, "5", "5", "5", "5");
+		createQuestion(3, CHEMIN_QUESTION + "Q4R1.png", CHEMIN_QUESTION + "Q4R2.png", CHEMIN_QUESTION + "Q4R3.png", CHEMIN_QUESTION + "Q4R4.png");
+		createQuestion(4, CHEMIN_QUESTION + "Q5R1.png", CHEMIN_QUESTION + "Q5R2.png", CHEMIN_QUESTION + "Q5R3.png", CHEMIN_QUESTION + "Q5R4.png");
 		createQuestion(5, CHEMIN_QUESTION + "Q6R1.png", CHEMIN_QUESTION + "Q6R2.png", CHEMIN_QUESTION + "Q6R3.png", CHEMIN_QUESTION + "Q6R4.png");
-		createQuestion(6, "7", "7", "7", "7");
-		createQuestion(7, "8", "8", "8", "8");
 
 		tabSolution[0] = 4;
 		tabSolution[1] = 1;
@@ -41,8 +37,6 @@ public class Pizza extends Recette
 		tabSolution[3] = 2;
 		tabSolution[4] = 2;
 		tabSolution[5] = 1;
-		tabSolution[6] = 3;
-		tabSolution[7] = 2;
 
 		// http://www.marmiton.org/recettes/recette_pate-a-pizza-epaisse-et-moelleuse_58761.aspx
 		this.tabIngredientOrdre = new IngredientOrdre[15];

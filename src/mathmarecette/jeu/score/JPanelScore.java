@@ -1,4 +1,3 @@
-
 package mathmarecette.jeu.score;
 
 import java.awt.AlphaComposite;
@@ -20,71 +19,67 @@ import javax.swing.Timer;
 import mathmarecette.Tools;
 import mathmarecette.jeu.JPanelRecette;
 
-public class JPanelScore extends JPanel implements ActionListener
-	{
+public class JPanelScore extends JPanel implements ActionListener {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelScore(JPanelRecette panelRecette)
-		{
+	public JPanelScore(JPanelRecette panelRecette) {
 		this.panelRecette = panelRecette;
 		timer = new Timer(30, this);
 		time = "";
 		geometry();
 		control();
 		appearance();
-		}
+	}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	public void setTime(String time)
-		{
+	public void setTime(String time) {
 		this.time = time;
-		}
+	}
 
-	public void startFade()
-		{
+	public void startFade() {
 		timer.start();
-		}
+	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0)
-		{
+	public void actionPerformed(ActionEvent arg0) {
 		alpha += 0.1f;
-		if (alpha > 1)
-			{
+		if (alpha > 1) {
 			alpha = 1;
 			timer.stop();
-			}
+		}
 		repaint();
-		}
+	}
 
-	public void color(Graphics2D g, int score)
-		{
-		if (score > 0)
-			{
+	public void color(Graphics2D g, int score) {
+		if (score > 0) {
 			g.setColor(Color.GREEN);
-			}
-		else
-			{
+		} else {
 			g.setColor(Color.RED);
-			}
 		}
+	}
 
 	@Override
-	protected void paintComponent(Graphics g)
-		{
+	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D)g;
+		Graphics2D g2 = (Graphics2D) g;
 
 		// ANTI ALIASING
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
 
-		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
+				alpha));
 
 		g2.drawImage(TABLEAU.getImage(), 0, 0, null);
 		g2.setColor(Color.WHITE);
@@ -99,17 +94,14 @@ public class JPanelScore extends JPanel implements ActionListener
 
 		int yPos = 130;
 		String txt = "";
-		for(int i = 0; i < nbQuestion; i++)
-			{
+		for (int i = 0; i < nbQuestion; i++) {
 			yPos += 30;
-			if (panelRecette.getRecette().getTabQuestion()[i].length() > 30)
-				{
-				txt = panelRecette.getRecette().getTabQuestion()[i].substring(0, 30) + "...";
-				}
-			else
-				{
+			if (panelRecette.getRecette().getTabQuestion()[i].length() > 30) {
+				txt = panelRecette.getRecette().getTabQuestion()[i].substring(
+						0, 30) + "...";
+			} else {
 				txt = panelRecette.getRecette().getTabQuestion()[i];
-				}
+			}
 
 			g2.setColor(Color.WHITE);
 
@@ -118,12 +110,11 @@ public class JPanelScore extends JPanel implements ActionListener
 			color(g2, score[i]);
 
 			g2.drawString(score[i] + "", 480, yPos);
-			}
+		}
 
 		g2.setColor(Color.WHITE);
 
-		if (panelRecette.getRecette().aUnMiniJeu())
-			{
+		if (panelRecette.getRecette().aUnMiniJeu()) {
 			yPos += 50;
 			g2.drawString("Mini jeu ", 70, yPos);
 
@@ -138,15 +129,13 @@ public class JPanelScore extends JPanel implements ActionListener
 
 			color(g2, score[nbQuestion + 1]);
 			g2.drawString(score[nbQuestion + 1] + "", 480, yPos);
-			}
-		else
-			{
+		} else {
 			yPos += 50;
 			g2.drawString("Horloge", 70, yPos);
 
 			color(g2, score[nbQuestion]);
 			g2.drawString(score[nbQuestion] + "", 480, yPos);
-			}
+		}
 
 		g2.setColor(Color.WHITE);
 
@@ -164,7 +153,7 @@ public class JPanelScore extends JPanel implements ActionListener
 		g2.setColor(Color.WHITE);
 		g2.drawString(time, 70, yPos);
 
-		}
+	}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -178,8 +167,7 @@ public class JPanelScore extends JPanel implements ActionListener
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
 
-	private void geometry()
-		{
+	private void geometry() {
 		// JComponent : Instanciation
 		buttonImprimer = new JButton();
 		buttonContinuer = new JButton();
@@ -191,15 +179,20 @@ public class JPanelScore extends JPanel implements ActionListener
 		add(buttonImprimer);
 		add(buttonContinuer);
 		add(labelMedaille);
-		}
+	}
 
-	private void control()
-		{
-		// rien
-		}
+	private void control() {
+		buttonContinuer.addActionListener(new ActionListener() {
 
-	private void appearance()
-		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				panelRecette.retourScore();
+			}
+		});
+	}
+
+	private void appearance() {
 		Dimension dim = new Dimension(600, 660);
 		setPreferredSize(dim);
 		setSize(dim);
@@ -210,7 +203,8 @@ public class JPanelScore extends JPanel implements ActionListener
 		buttonImprimer.setContentAreaFilled(false);
 		buttonImprimer.setBorderPainted(false);
 		buttonImprimer.setSize(146, 91);
-		buttonImprimer.setLocation(getWidth() / 2 - buttonImprimer.getWidth(), 520);
+		buttonImprimer.setLocation(getWidth() / 2 - buttonImprimer.getWidth(),
+				520);
 		buttonContinuer.setIcon(CONTINUER);
 		buttonContinuer.setPressedIcon(CONTINUER_CLICK);
 		buttonContinuer.setContentAreaFilled(false);
@@ -223,21 +217,27 @@ public class JPanelScore extends JPanel implements ActionListener
 		labelMedaille.setIcon(MEDAILLE);
 
 		setBackground(Tools.COLOR_BAR);
-		}
+	}
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	private static final ImageIcon TABLEAU = new ImageIcon(".\\image\\tableau.png");
-	private static final ImageIcon IMPRIMER = new ImageIcon(".\\image\\btnScoreImprimer.png");
-	private static final ImageIcon IMPRIMER_CLICK = new ImageIcon(".\\image\\btnScoreImprimer_click.png");
+	private static final ImageIcon TABLEAU = new ImageIcon(
+			".\\image\\tableau.png");
+	private static final ImageIcon IMPRIMER = new ImageIcon(
+			".\\image\\btnScoreImprimer.png");
+	private static final ImageIcon IMPRIMER_CLICK = new ImageIcon(
+			".\\image\\btnScoreImprimer_click.png");
 
-	private static final ImageIcon MEDAILLE = new ImageIcon(".\\image\\medaille.png");
+	private static final ImageIcon MEDAILLE = new ImageIcon(
+			".\\image\\medaille.png");
 
-	private static final ImageIcon CONTINUER = new ImageIcon(".\\image\\btnScoreContinuer.png");
-	private static final ImageIcon CONTINUER_CLICK = new ImageIcon(".\\image\\btnScoreContinuer_click.png");
+	private static final ImageIcon CONTINUER = new ImageIcon(
+			".\\image\\btnScoreContinuer.png");
+	private static final ImageIcon CONTINUER_CLICK = new ImageIcon(
+			".\\image\\btnScoreContinuer_click.png");
 	private final Font FONT_TITRE = new Font("Segoe Print", Font.BOLD, 28);
 	private final Font FONT_QUESTION = new Font("Segoe Print", Font.PLAIN, 20);
 	private JPanelRecette panelRecette;
@@ -248,4 +248,4 @@ public class JPanelScore extends JPanel implements ActionListener
 	private float alpha = 0.0f;
 	private Timer timer;
 	private String time;
-	}
+}

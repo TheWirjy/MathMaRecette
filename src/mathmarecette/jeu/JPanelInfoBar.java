@@ -1,4 +1,3 @@
-
 package mathmarecette.jeu;
 
 import java.awt.Color;
@@ -21,54 +20,51 @@ import javax.swing.Timer;
 import mathmarecette.Tools;
 import mathmarecette.menu.JFrameMenu;
 
-public class JPanelInfoBar extends JPanel
-	{
+public class JPanelInfoBar extends JPanel {
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelInfoBar(JFrameMenu frame)
-		{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3107030340064931516L;
+	public JPanelInfoBar(JFrameMenu frame) {
 		this.parent = frame;
 		geometry();
 		control();
 		appearance();
-		}
+	}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	public void initialisation()
-		{
+	public void initialisation() {
 		minute = 0;
 		seconde = 0;
 		strMinute = "00";
 		strSeconde = "00";
 		labelChrono.setText("00:00");
 		labelTitre.setIcon(null);
-		}
+	}
 
-	public void setTitre(ImageIcon icon)
-		{
+	public void setTitre(ImageIcon icon) {
 		labelTitre.setIcon(icon);
-		}
+	}
 
-	public void start()
-		{
+	public void start() {
 		timer.start();
-		}
+	}
 
-	public void stop()
-		{
+	public void stop() {
 		timer.stop();
-		}
+	}
 
-	public String getTime()
-		{
+	public String getTime() {
 		return strMinute + ":" + strSeconde;
-		}
+	}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -82,8 +78,7 @@ public class JPanelInfoBar extends JPanel
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
 
-	private void geometry()
-		{
+	private void geometry() {
 		// JComponent : Instanciation
 		labelTitre = new JLabel();
 		labelChrono = new JLabel("00:00");
@@ -98,105 +93,93 @@ public class JPanelInfoBar extends JPanel
 		add(labelTitre);
 		add(labelChrono);
 		add(labelQuitter);
-		}
+	}
 
-	private void control()
-		{
+	private void control() {
 
 		int delais = 1000;
 		ActionListener tache_timer;
 
-		tache_timer = new ActionListener()
-			{
+		tache_timer = new ActionListener() {
 
-				@Override
-				public void actionPerformed(ActionEvent e1)
-					{
-					seconde++;
-					if (seconde == 60)
-						{
-						seconde = 0;
-						minute++;
-						}
-					if (minute == 60)
-						{
-						minute = 0;
-						}
-					strSeconde = seconde + "";
-					strMinute = minute + "";
+			@Override
+			public void actionPerformed(ActionEvent e1) {
+				seconde++;
+				if (seconde == 60) {
+					seconde = 0;
+					minute++;
+				}
+				if (minute == 60) {
+					minute = 0;
+				}
+				strSeconde = seconde + "";
+				strMinute = minute + "";
 
-					if (seconde < 10)
-						{
-						strSeconde = "0" + seconde;
-						}
-					if (minute < 10)
-						{
-						strMinute = "0" + minute;
-						}
+				if (seconde < 10) {
+					strSeconde = "0" + seconde;
+				}
+				if (minute < 10) {
+					strMinute = "0" + minute;
+				}
 
-					labelChrono.setText(strMinute + ":" + strSeconde);/* rafraichir le label */
-					}
-			};
+				labelChrono.setText(strMinute + ":" + strSeconde);/*
+																 * rafraichir le
+																 * label
+																 */
+			}
+		};
 
 		timer = new Timer(delais, tache_timer);
 
-		labelQuitter.addMouseListener(new MouseAdapter()
-			{
+		labelQuitter.addMouseListener(new MouseAdapter() {
 
-				@Override
-				public void mouseReleased(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					labelQuitter.setIcon(Tools.BOUTON_RETOUR);
-					if (click && dessus)
-						{
-						timer.stop();
-						parent.quitRecette();
-						}
-					click = false;
-					}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				labelQuitter.setIcon(Tools.BOUTON_RETOUR);
+				if (click && dessus) {
+					timer.stop();
+					parent.quitRecette();
+				}
+				click = false;
+			}
 
-				@Override
-				public void mousePressed(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					click = true;
-					dessus = true;
-					labelQuitter.setIcon(Tools.BOUTON_RETOUR_CLICK);
-					}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				click = true;
+				dessus = true;
+				labelQuitter.setIcon(Tools.BOUTON_RETOUR_CLICK);
+			}
 
-				@Override
-				public void mouseExited(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					dessus = false;
-					}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				dessus = false;
+			}
 
-				@Override
-				public void mouseEntered(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					dessus = true;
-					}
-			});
-		}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				dessus = true;
+			}
+		});
+	}
 
-	private void appearance()
-		{
+	private void appearance() {
 
-		try
-			{
-			Font font = Font.createFont(Font.TRUETYPE_FONT, new File(".\\font\\DIGITALISM.TTF"));
+		try {
+			Font font = Font.createFont(Font.TRUETYPE_FONT, new File(
+					".\\font\\DIGITALISM.TTF"));
 			font = font.deriveFont(Font.BOLD, 30);
-			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			GraphicsEnvironment ge = GraphicsEnvironment
+					.getLocalGraphicsEnvironment();
 			ge.registerFont(font);
 			labelChrono.setFont(font);
-			}
-		catch (Exception e)
-			{
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			labelChrono.setFont(new Font("Arial", 1, 20));
-			}
+		}
 
 		labelTitre.setSize(200, 50);
 		labelTitre.setLocation(getWidth() / 2 - 100, 0);
@@ -212,7 +195,7 @@ public class JPanelInfoBar extends JPanel
 
 		setBackground(Tools.COLOR_BAR);
 		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
-		}
+	}
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
@@ -230,4 +213,4 @@ public class JPanelInfoBar extends JPanel
 	private static int seconde = 0;
 	private String strSeconde;
 	private String strMinute;
-	}
+}

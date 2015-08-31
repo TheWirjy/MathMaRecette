@@ -13,6 +13,11 @@ import mathmarecette.Tools;
 public class JLabelIndication extends JLabel
 	{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -396919816700923212L;
+
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/

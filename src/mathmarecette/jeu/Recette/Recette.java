@@ -207,7 +207,7 @@ public class Recette
 		return tabIngredientOrdre;
 		}
 
-	public void ordreRecette(@SuppressWarnings("unused") JFrameMenu parent)
+	public void ordreRecette(JFrameMenu parent)
 		{
 		new JDialogOrdreRecette(parent, this);
 		}

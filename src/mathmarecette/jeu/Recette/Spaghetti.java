@@ -82,6 +82,5 @@ public class Spaghetti extends Recette
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 	private final String CHEMIN_QUESTION = ".\\image\\ingredient\\spaghetti\\";
-	private final String CHEMIN_TABLE = ".\\image\\ingredient\\spaghetti\\table\\";
 	private final String CHEMIN_ORDRE = ".\\image\\ingredient\\spaghetti\\ordre\\";
 	}

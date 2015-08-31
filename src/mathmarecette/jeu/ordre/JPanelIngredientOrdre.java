@@ -19,6 +19,10 @@ public class JPanelIngredientOrdre extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6946919024948969270L;
 	public JPanelIngredientOrdre(int _id, int id_ordre, int x, ImageIcon image, String nom)
 		{
 		this.id = _id;

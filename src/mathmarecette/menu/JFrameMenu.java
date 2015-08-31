@@ -17,6 +17,10 @@ public class JFrameMenu extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2051497550641079298L;
 	public JFrameMenu()
 		{
 		geometry();

@@ -25,12 +25,12 @@ public class Salade extends Recette
 		tabQuestion[4] = "Ajouter ¼ de tomate au plat";
 		tabQuestion[5] = "Ajoute 1/6 de concombre au plat";
 
-		createQuestion(0, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R2.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q1R4.png");
-		createQuestion(1, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R2.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q2R4.png");
-		createQuestion(2, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R2.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q3R4.png");
-		createQuestion(3, "4", "4", "4", "4");
-		createQuestion(4, "5", "5", "5", "5");
-		createQuestion(5, "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R1.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R2.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R3.png", "C:\\Users\\jeremy.wirth\\Desktop\\imgMMR\\Q6R4.png");
+		createQuestion(0, CHEMIN_QUESTION + "Q1R1.png", CHEMIN_QUESTION + "Q1R2.png", CHEMIN_QUESTION + "Q1R3.png", CHEMIN_QUESTION + "Q1R4.png");
+		createQuestion(1, CHEMIN_QUESTION + "Q2R1.png", CHEMIN_QUESTION + "Q2R2.png", CHEMIN_QUESTION + "Q2R3.png", CHEMIN_QUESTION + "Q2R4.png");
+		createQuestion(2, CHEMIN_QUESTION + "Q3R1.png", CHEMIN_QUESTION + "Q3R2.png", CHEMIN_QUESTION + "Q3R3.png", CHEMIN_QUESTION + "Q3R4.png");
+		createQuestion(3, CHEMIN_QUESTION + "Q4R1.png", CHEMIN_QUESTION + "Q4R2.png", CHEMIN_QUESTION + "Q4R3.png", CHEMIN_QUESTION + "Q4R4.png");
+		createQuestion(4, CHEMIN_QUESTION + "Q5R1.png", CHEMIN_QUESTION + "Q5R2.png", CHEMIN_QUESTION + "Q5R3.png", CHEMIN_QUESTION + "Q5R4.png");
+		createQuestion(5, CHEMIN_QUESTION + "Q6R1.png", CHEMIN_QUESTION + "Q6R2.png", CHEMIN_QUESTION + "Q6R3.png", CHEMIN_QUESTION + "Q6R4.png");
 
 		tabSolution[0] = 3;
 		tabSolution[1] = 2;
@@ -49,9 +49,9 @@ public class Salade extends Recette
 	\*------------------------------------------------------------------*/
 
 	@Override
-	public void ordreRecette(@SuppressWarnings("unused") JFrameMenu parent)
+	public void ordreRecette(JFrameMenu parent)
 		{
-		//parent.getPanelRecette();
+		parent.getPanelRecette().startQuestionBonus();
 		}
 
 	/*------------------------------*\
@@ -69,4 +69,5 @@ public class Salade extends Recette
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
+	private final String CHEMIN_QUESTION = ".\\image\\ingredient\\salade\\";
 	}

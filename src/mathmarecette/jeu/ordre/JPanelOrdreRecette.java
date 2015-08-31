@@ -29,6 +29,10 @@ public class JPanelOrdreRecette extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8641894428622130919L;
 	public JPanelOrdreRecette(Recette recette, JDialog dialog, JPanelRecette panelRecette)
 		{
 		this.recette = recette;

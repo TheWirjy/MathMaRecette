@@ -22,6 +22,10 @@ public class JPanelCredits extends JPanel
 		|*							Constructeurs							*|
 		\*------------------------------------------------------------------*/
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8560785449800765489L;
 	public JPanelCredits(JFrameMenu _parent)
 		{
 		this.parent = _parent;

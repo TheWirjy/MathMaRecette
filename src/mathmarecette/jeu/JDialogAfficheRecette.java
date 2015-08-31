@@ -23,6 +23,11 @@ public class JDialogAfficheRecette extends JDialog
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 167996414766460118L;
+
 	public JDialogAfficheRecette(final JFrame parent, ImageIcon image)
 		{
 		super(parent, "Spaghetti", true);

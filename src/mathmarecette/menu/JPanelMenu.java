@@ -20,6 +20,11 @@ public class JPanelMenu extends JPanel
 		|*							Constructeurs							*|
 		\*------------------------------------------------------------------*/
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3592622742224246733L;
+
 	public JPanelMenu(JFrameMenu _parent)
 		{
 		this.parent = _parent;

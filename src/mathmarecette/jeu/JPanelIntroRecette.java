@@ -1,4 +1,3 @@
-
 package mathmarecette.jeu;
 
 import java.awt.Dimension;
@@ -9,30 +8,31 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class JPanelIntroRecette extends JPanel
-	{
+public class JPanelIntroRecette extends JPanel {
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelIntroRecette(JPanelJeu jeu)
-		{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3732205656497898409L;
+	public JPanelIntroRecette(JPanelJeu jeu) {
 		this.panelJeu = jeu;
 		geometry();
 		control();
 		appearance();
-		}
+	}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	public void setSplash(ImageIcon image)
-		{
+	public void setSplash(ImageIcon image) {
 		labelSplash.setIcon(image);
 		labelSplash.setVisible(true);
-		}
+	}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -46,8 +46,7 @@ public class JPanelIntroRecette extends JPanel
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
 
-	private void geometry()
-		{
+	private void geometry() {
 		// JComponent : Instanciation
 		labelSplash = new JLabel();
 		buttonValider = new JLabel();
@@ -60,53 +59,45 @@ public class JPanelIntroRecette extends JPanel
 		add(labelSplash);
 		setComponentZOrder(labelSplash, 1);
 
-		}
+	}
 
-	private void control()
-		{
-		buttonValider.addMouseListener(new MouseAdapter()
-			{
+	private void control() {
+		buttonValider.addMouseListener(new MouseAdapter() {
 
-				@Override
-				public void mouseReleased(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					if (click && dessus)
-						{
-						setVisible(false);
-						panelJeu.startRecette();
-						}
-					click = false;
-					buttonValider.setIcon(BOUTON);
-					}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if (click && dessus) {
+					setVisible(false);
+					panelJeu.startRecette();
+				}
+				click = false;
+				buttonValider.setIcon(BOUTON);
+			}
 
-				@Override
-				public void mousePressed(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					buttonValider.setIcon(BOUTON_CLICK);
-					click = true;
-					dessus = true;
-					}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				buttonValider.setIcon(BOUTON_CLICK);
+				click = true;
+				dessus = true;
+			}
 
-				@Override
-				public void mouseExited(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					dessus = false;
-					}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				dessus = false;
+			}
 
-				@Override
-				public void mouseEntered(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					dessus = true;
-					}
-			});
-		}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				dessus = true;
+			}
+		});
+	}
 
-	private void appearance()
-		{
+	private void appearance() {
 		Dimension dim = new Dimension(600, 500);
 
 		setPreferredSize(dim);
@@ -123,7 +114,7 @@ public class JPanelIntroRecette extends JPanel
 		buttonValider.setSize(dim2);
 		buttonValider.setLocation(getWidth() / 2 - dim2.width / 2, 290);
 		buttonValider.setIcon(BOUTON);
-		}
+	}
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
@@ -133,8 +124,10 @@ public class JPanelIntroRecette extends JPanel
 	private JLabel labelSplash;
 	private JLabel buttonValider;
 	private JPanelJeu panelJeu;
-	private final ImageIcon BOUTON = new ImageIcon(".\\image\\splach\\bouton.png");
-	private final ImageIcon BOUTON_CLICK = new ImageIcon(".\\image\\splach\\bouton_click.png");
+	private final ImageIcon BOUTON = new ImageIcon(
+			".\\image\\splach\\bouton.png");
+	private final ImageIcon BOUTON_CLICK = new ImageIcon(
+			".\\image\\splach\\bouton_click.png");
 	private boolean click = false;
 	private boolean dessus = false;
-	}
+}
