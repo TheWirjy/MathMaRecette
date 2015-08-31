@@ -1,13 +1,9 @@
 
 package mathmarecette.jeu.memory;
 
-import java.awt.Component;
-
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLayer;
 
-import mathmarecette.jeu.BlurLayerUI;
 import mathmarecette.jeu.JPanelRecette;
 
 public class JDialogMemory extends JDialog
@@ -49,19 +45,6 @@ public class JDialogMemory extends JDialog
 		pack();
 		setLocation(parent.getX() + parent.getWidth() / 2 - panelMemory.getWidth() / 2, parent.getY() + parent.getHeight() / 2 - panelMemory.getWidth() / 2);
 		}
-
-	public void setBlur()
-		{
-		JLayer<Component> blurLayer = new JLayer<Component>(parent.getContentPane(), new BlurLayerUI());
-		panelSave = (JPanelRecette)parent.getContentPane();
-
-		parent.setContentPane(blurLayer);
-		}
-
-	public void setBlurOff()
-	{
-	parent.setContentPane(panelSave);
-	}
 
 	/*------------------------------*\
 	|*				Set				*|

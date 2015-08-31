@@ -5,8 +5,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
 
-import mathmarecette.jeu.JFrameRecette;
 import mathmarecette.jeu.Recette.Recette;
+import mathmarecette.menu.JFrameMenu;
 
 public class JDialogOrdreRecette extends JDialog
 	{
@@ -15,11 +15,11 @@ public class JDialogOrdreRecette extends JDialog
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JDialogOrdreRecette(JFrameRecette parent, Recette recette)
+	public JDialogOrdreRecette(JFrameMenu parent, Recette recette)
 		{
 		super(parent, recette.getNom(), true);
+		this.parent = parent;
 		this.recette = recette;
-
 		geometry();
 		control();
 		appearance();
@@ -28,8 +28,6 @@ public class JDialogOrdreRecette extends JDialog
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
-
-
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -45,7 +43,7 @@ public class JDialogOrdreRecette extends JDialog
 
 	private void geometry()
 		{
-		panelOrdreRecette = new JPanelOrdreRecette(recette);
+		panelOrdreRecette = new JPanelOrdreRecette(recette, this, parent.getPanelRecette());
 		setLayout(new BorderLayout());
 		add(panelOrdreRecette, BorderLayout.CENTER);
 		}
@@ -58,7 +56,7 @@ public class JDialogOrdreRecette extends JDialog
 	private void appearance()
 		{
 		//setPreferredSize(new Dimension(400, 300));
-	    pack();
+		pack();
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
 
@@ -71,4 +69,5 @@ public class JDialogOrdreRecette extends JDialog
 	// Tools
 	private Recette recette;
 	private JPanelOrdreRecette panelOrdreRecette;
+	private JFrameMenu parent;
 	}

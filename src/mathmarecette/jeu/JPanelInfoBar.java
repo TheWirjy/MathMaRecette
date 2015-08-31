@@ -13,13 +13,13 @@ import java.io.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import mathmarecette.Tools;
+import mathmarecette.menu.JFrameMenu;
 
 public class JPanelInfoBar extends JPanel
 	{
@@ -28,9 +28,9 @@ public class JPanelInfoBar extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelInfoBar(JFrame frame)
+	public JPanelInfoBar(JFrameMenu frame)
 		{
-		this.jframe = frame;
+		this.parent = frame;
 		geometry();
 		control();
 		appearance();
@@ -40,6 +40,16 @@ public class JPanelInfoBar extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	public void initialisation()
+		{
+		minute = 0;
+		seconde = 0;
+		strMinute = "00";
+		strSeconde = "00";
+		labelChrono.setText("00:00");
+		labelTitre.setIcon(null);
+		}
+
 	public void setTitre(ImageIcon icon)
 		{
 		labelTitre.setIcon(icon);
@@ -48,6 +58,16 @@ public class JPanelInfoBar extends JPanel
 	public void start()
 		{
 		timer.start();
+		}
+
+	public void stop()
+		{
+		timer.stop();
+		}
+
+	public String getTime()
+		{
+		return strMinute + ":" + strSeconde;
 		}
 
 	/*------------------------------*\
@@ -88,6 +108,7 @@ public class JPanelInfoBar extends JPanel
 
 		tache_timer = new ActionListener()
 			{
+
 				@Override
 				public void actionPerformed(ActionEvent e1)
 					{
@@ -106,7 +127,7 @@ public class JPanelInfoBar extends JPanel
 
 					if (seconde < 10)
 						{
-						strSeconde =  "0"+seconde;
+						strSeconde = "0" + seconde;
 						}
 					if (minute < 10)
 						{
@@ -126,10 +147,11 @@ public class JPanelInfoBar extends JPanel
 				public void mouseReleased(MouseEvent e)
 					{
 					// TODO Auto-generated method stub
-					labelQuitter.setIcon(QUITTER);
+					labelQuitter.setIcon(Tools.BOUTON_RETOUR);
 					if (click && dessus)
 						{
-						jframe.dispose();
+						timer.stop();
+						parent.quitRecette();
 						}
 					click = false;
 					}
@@ -140,7 +162,7 @@ public class JPanelInfoBar extends JPanel
 					// TODO Auto-generated method stub
 					click = true;
 					dessus = true;
-					labelQuitter.setIcon(QUITTER_CLICK);
+					labelQuitter.setIcon(Tools.BOUTON_RETOUR_CLICK);
 					}
 
 				@Override
@@ -186,7 +208,7 @@ public class JPanelInfoBar extends JPanel
 
 		labelQuitter.setSize(50, 50);
 		labelQuitter.setLocation(10, 0);
-		labelQuitter.setIcon(QUITTER);
+		labelQuitter.setIcon(Tools.BOUTON_RETOUR);
 
 		setBackground(Tools.COLOR_BAR);
 		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
@@ -198,12 +220,10 @@ public class JPanelInfoBar extends JPanel
 
 	// Tools
 	private Timer timer;
-	private JFrame jframe;
+	private JFrameMenu parent;
 	private JLabel labelTitre;
 	private JLabel labelChrono;
 	private JLabel labelQuitter;
-	private final ImageIcon QUITTER = new ImageIcon(".\\image\\quitter.png");
-	private final ImageIcon QUITTER_CLICK = new ImageIcon(".\\image\\quitter_click.png");
 	private boolean click = false;
 	private boolean dessus = false;
 	private static int minute = 0;

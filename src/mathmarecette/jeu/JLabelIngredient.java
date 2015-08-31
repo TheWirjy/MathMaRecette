@@ -38,7 +38,6 @@ public class JLabelIngredient extends JPanel
 		setLocation(pO);
 		setSize(90, 90);
 		setOpaque(false);
-		setEnabled(false);
 		setVisible(false);
 
 		colorRect = Color.BLACK;

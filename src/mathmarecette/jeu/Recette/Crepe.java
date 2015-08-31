@@ -3,9 +3,7 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
-import mathmarecette.jeu.JFrameRecette;
 import mathmarecette.jeu.ingredient.IngredientOrdre;
-import mathmarecette.jeu.ordre.JDialogOrdreRecette;
 
 public class Crepe extends Recette
 	{
@@ -16,7 +14,7 @@ public class Crepe extends Recette
 
 	public Crepe()
 		{
-		super("Crêpes", "Pâte à crêpe nature", 4);//huile, sucre, beurre
+		super("Crêpes", "Pâte à crêpe nature", 4, 6);//huile, sucre, beurre
 
 		tabQuestion[0] = "Ajoute 2* 125g de farine";
 		tabQuestion[1] = "Avec une boite de 6 œufs on fait 3 pâtes à crêpes, combien t'en faut-il pour en faire une";
@@ -46,6 +44,24 @@ public class Crepe extends Recette
 		tabIngredientOrdre[8] = new IngredientOrdre(CHEMIN_ORDRE + "huiler.png", "Huiler plaque");
 		tabIngredientOrdre[9] = new IngredientOrdre(CHEMIN_ORDRE + "casserole.png", "Cuisson");
 
+		this.tabOrdreIndice = new int[10];
+		tabOrdreIndice[0] = 0;
+		tabOrdreIndice[1] = 1;
+		tabOrdreIndice[2] = 2;
+		tabOrdreIndice[3] = 2;
+		tabOrdreIndice[4] = 2;
+		tabOrdreIndice[5] = 2;
+		tabOrdreIndice[6] = 3;
+		tabOrdreIndice[7] = 4;
+		tabOrdreIndice[8] = 5;
+		tabOrdreIndice[9] = 6;
+
+		this.tabOrdreReponse = new int[10];
+		for(int i = 0; i < 10; i++)
+			{
+			tabOrdreReponse[i] = tabOrdreIndice[i];
+			}
+
 		imageRecette = new ImageIcon(".//image//splach/splachCrepes.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_crepe.png");
 
@@ -54,12 +70,6 @@ public class Crepe extends Recette
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
-
-	@Override
-	public void ordreRecette(JFrameRecette parent)
-		{
-		new JDialogOrdreRecette(parent, this);
-		}
 
 	/*------------------------------*\
 	|*				Set				*|

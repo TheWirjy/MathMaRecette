@@ -1,18 +1,16 @@
 
 package mathmarecette.menu;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import mathmarecette.jeu.JFrameRecette;
+import mathmarecette.Tools;
 import mathmarecette.jeu.Recette.Cake;
 import mathmarecette.jeu.Recette.Crepe;
 import mathmarecette.jeu.Recette.Pizza;
@@ -27,8 +25,9 @@ public class JPanelLevel extends JPanel
 		|*							Constructeurs							*|
 		\*------------------------------------------------------------------*/
 
-	public JPanelLevel()
+	public JPanelLevel(JFrameMenu _parent)
 		{
+		this.parent = _parent;
 		geometry();
 		control();
 		appearance();
@@ -42,11 +41,14 @@ public class JPanelLevel extends JPanel
 		{
 		// JComponent : Instanciation
 
-		level1 = new JButton("Spaghetti");
-		level2 = new JButton("Pâte à Crêpe ");
-		level3 = new JButton("Cake au Citron ");
-		level4 = new JButton("Salade");
-		level5 = new JButton("Pizza au jambon ");
+		spaghetti = new JLabel();
+		crepe = new JLabel();
+		cake = new JLabel();
+		salade = new JLabel();
+		pizza = new JLabel();
+
+		pictures = new JLabel();
+		labelRetour = new JLabel();
 
 		// JComponent : Adaptation
 
@@ -59,47 +61,42 @@ public class JPanelLevel extends JPanel
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			}
+
 		String filename = current + "/Son/ClickJump.mp3";
 		mp3 = new MP3(filename);
 
-		level1.setPreferredSize(new Dimension(100, 30));
-		level2.setPreferredSize(new Dimension(100, 30));
-		level3.setPreferredSize(new Dimension(100, 30));
-		level4.setPreferredSize(new Dimension(100, 30));
-		level5.setPreferredSize(new Dimension(100, 30));
-
-		level1.setBorderPainted(false);
 		iconSpaghetti = new ImageIcon(current + "\\Image\\BTNSpaghetti.png");
-		level1.setIcon(iconSpaghetti);
+		spaghetti.setIcon(iconSpaghetti);
 
-		level2.setBorderPainted(false);
 		iconPate = new ImageIcon(current + "\\Image\\BTNPate.png");
-		level2.setIcon(iconPate);
+		crepe.setIcon(iconPate);
 
-		level3.setBorderPainted(false);
 		iconCake = new ImageIcon(current + "\\Image\\BTNCake.png");
-		level3.setIcon(iconCake);
+		cake.setIcon(iconCake);
 
-		level4.setBorderPainted(false);
 		iconSalade = new ImageIcon(current + "\\Image\\BTNSalade.png");
-		level4.setIcon(iconSalade);
+		salade.setIcon(iconSalade);
 
-		level5.setBorderPainted(false);
 		iconPizza = new ImageIcon(current + "\\Image\\BTNPizza.png");
-		level5.setIcon(iconPizza);
+		pizza.setIcon(iconPizza);
+
+		ImageIcon iconPictures = new ImageIcon(current + "\\Image\\font-niveau.png");
+		pictures.setIcon(iconPictures);
 
 		// JComponent : Layout
 
-		setLayout(new GridLayout(5, 1, 10, 10));
-		add(level1);
-		add(level2);
-		add(level3);
-		add(level4);
-		add(level5);
+		setLayout(null);
+		add(labelRetour);
+		add(pictures);
+		add(spaghetti);
+		add(crepe);
+		add(cake);
+		add(salade);
+		add(pizza);
 
 		}
 
-	private MouseAdapter monMouseListener(final JButton level, final Recette recette)
+	private MouseAdapter monMouseListener(final JLabel level, final Recette recette)
 		{
 		return new MouseAdapter()
 			{
@@ -108,11 +105,10 @@ public class JPanelLevel extends JPanel
 				public void mouseReleased(MouseEvent e)
 					{
 					// TODO Auto-generated method stub
-					level.setLocation(level.getX(), level.getY()+10);
+					level.setLocation(level.getX(), level.getY() + 10);
 					if (click && dessus)
 						{
-						mp3.play();
-						new JFrameRecette(recette);
+						parent.recette(recette);
 						}
 					click = false;
 					}
@@ -123,7 +119,7 @@ public class JPanelLevel extends JPanel
 					// TODO Auto-generated method stub
 					click = true;
 					dessus = true;
-					level.setLocation(level.getX(), level.getY()-10);
+					level.setLocation(level.getX(), level.getY() - 10);
 					}
 
 				@Override
@@ -144,20 +140,90 @@ public class JPanelLevel extends JPanel
 
 	private void control()
 		{
-		level1.addMouseListener(monMouseListener(level1, new Spaghetti()));
-		level2.addMouseListener(monMouseListener(level2, new Crepe()));
-		level3.addMouseListener(monMouseListener(level3, new Cake()));
-		level4.addMouseListener(monMouseListener(level4, new Salade()));
-		level5.addMouseListener(monMouseListener(level5, new Pizza()));
+		spaghetti.addMouseListener(monMouseListener(spaghetti, new Spaghetti()));
+		crepe.addMouseListener(monMouseListener(crepe, new Crepe()));
+		cake.addMouseListener(monMouseListener(cake, new Cake()));
+		salade.addMouseListener(monMouseListener(salade, new Salade()));
+		pizza.addMouseListener(monMouseListener(pizza, new Pizza()));
+
+		labelRetour.addMouseListener(new MouseAdapter()
+			{
+
+				@Override
+				public void mouseReleased(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					labelRetour.setIcon(Tools.BOUTON_RETOUR);
+					if (click && dessus)
+						{
+						parent.menu(JPanelLevel.this);
+						}
+					click = false;
+					}
+
+				@Override
+				public void mousePressed(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					click = true;
+					dessus = true;
+					labelRetour.setIcon(Tools.BOUTON_RETOUR_CLICK);
+					}
+
+				@Override
+				public void mouseExited(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = false;
+					}
+
+				@Override
+				public void mouseEntered(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = true;
+					}
+			});
+
 		}
 
 	private void appearance()
 		{
-		Dimension panelD = new Dimension(500, 470);
+		Dimension panelD = new Dimension(600, 700);
+		this.setSize(panelD);
 		this.setPreferredSize(panelD);
 		this.setMaximumSize(panelD);
-		Color fontColor = new Color(255, 246, 213);
-		setBackground(fontColor);
+
+		setBackground(Tools.COLOR_MENU);
+
+		pictures.setSize(500, 155);
+		pictures.setLocation(50, 500);
+
+		labelRetour.setIcon(Tools.BOUTON_RETOUR);
+		labelRetour.setSize(35, 35);
+		labelRetour.setLocation(10, 10);
+
+		Dimension dim = new Dimension(550, 107);
+
+		salade.setPreferredSize(dim);
+		salade.setSize(dim);
+		salade.setLocation(getWidth() / 2 - dim.width / 2, 10);
+
+		spaghetti.setPreferredSize(dim);
+		spaghetti.setSize(dim);
+		spaghetti.setLocation(getWidth() / 2 - dim.width / 2, 100);
+
+		crepe.setPreferredSize(dim);
+		crepe.setSize(dim);
+		crepe.setLocation(getWidth() / 2 - dim.width / 2, 190);
+
+		cake.setPreferredSize(dim);
+		cake.setSize(dim);
+		cake.setLocation(getWidth() / 2 - dim.width / 2, 280);
+
+		pizza.setPreferredSize(dim);
+		pizza.setSize(dim);
+		pizza.setLocation(getWidth() / 2 - dim.width / 2, 370);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -165,11 +231,11 @@ public class JPanelLevel extends JPanel
 		\*------------------------------------------------------------------*/
 
 	// Tools
-	JButton level1;
-	JButton level2;
-	JButton level3;
-	JButton level4;
-	JButton level5;
+	private JLabel spaghetti;
+	private JLabel crepe;
+	private JLabel cake;
+	private JLabel salade;
+	private JLabel pizza;
 	private ImageIcon iconSpaghetti;
 	private ImageIcon iconPate;
 	private ImageIcon iconCake;
@@ -179,5 +245,9 @@ public class JPanelLevel extends JPanel
 	private String current;
 	private boolean click = false;
 	private boolean dessus = false;
+	private JLabel pictures;
+	private JFrameMenu parent;
+
+	private JLabel labelRetour;
 
 	}

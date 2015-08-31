@@ -2,7 +2,6 @@
 package mathmarecette.jeu;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -13,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayer;
 import javax.swing.JPanel;
 
 
@@ -38,9 +36,6 @@ public class JDialogAfficheRecette extends JDialog
 		setLocation(800, 200);
 
 		//setLocationRelativeTo(null);
-		JLayer<Component> blurLayer = new JLayer<Component>(parent.getContentPane(), new BlurLayerUI());
-		final JPanel panel = (JPanel)parent.getContentPane();
-		parent.setContentPane(blurLayer);
 		JLabel labelImage = new JLabel(image);
 		labelImage.setSize(400, 500);
 	    getContentPane().add(labelImage);
@@ -57,7 +52,6 @@ public class JDialogAfficheRecette extends JDialog
 					// TODO Auto-generated method stub
 					setVisible(false);
 				    dispose();
-				    parent.setContentPane(panel);
 					}
 			});
 

@@ -5,8 +5,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.RenderingHints;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -36,6 +38,54 @@ public class JPanelJeu extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	public void initialisation()
+		{
+		removeAll();
+		imageCuisine = CUISINE.getImage();
+		labelScore.setText("0");
+		labelQuestion.setText("");
+		panelBarResult.initialisation(0);
+		labelScore.setVisible(true);
+
+		for(JLabel ingr:labelIngredientTable)
+			{
+			ingr.setIcon(null);
+			ingr.setVisible(true);
+			}
+
+		for(int i = 0; i < 4; i++)
+			{
+			labelIngredient[i].setIngredient(null);
+			labelIngredient[i].setEnabled(false);
+			labelIngredient[i].setVisible(false);
+			}
+
+		for(int i = 0; i < labelIngredient.length; i++)
+			{
+			add(labelIngredient[i]);
+			setComponentZOrder(labelIngredient[i], i);
+			}
+
+		// JComponent : add
+		add(panelIntroRecette);
+		setComponentZOrder(panelIntroRecette, 4);
+		add(labelQuestion);
+		setComponentZOrder(labelQuestion, 5);
+		add(panelBarResult);
+		setComponentZOrder(panelBarResult, 6);
+		add(labelScore);
+		setComponentZOrder(labelScore, 7);
+
+		int cpt = 8;
+
+		for(int i = labelIngredientTable.length - 1; i >= 0; i--)
+			{
+			add(labelIngredientTable[i]);
+			setComponentZOrder(labelIngredientTable[i], cpt);
+			cpt++;
+			}
+		}
+
 	public void setIngredient(ImageIcon[] ingredient)
 		{
 		for(int i = 0; i < ingredient.length; i++)
@@ -57,9 +107,9 @@ public class JPanelJeu extends JPanel
 
 	public void setSplash(ImageIcon image)
 		{
+		panelIntroRecette.setVisible(true);
 		panelIntroRecette.setSplash(image);
 		imageCuisine = CUISINE_FLOU.getImage();
-
 		}
 
 	public void removeSplash()
@@ -106,12 +156,33 @@ public class JPanelJeu extends JPanel
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
 
+	public void hideForMiniJeu()
+		{
+		for(JLabelIngredient label:labelIngredient)
+			{
+			label.setVisible(false);
+			}
+		for(JLabel ingr:labelIngredientTable)
+			{
+			ingr.setVisible(false);
+			}
+		labelScore.setVisible(false);
+		labelQuestion.setVisible(false);
+		imageCuisine = CUISINE_FLOU.getImage();
+		repaint();
+		}
+
 	@Override
 	protected void paintComponent(Graphics g)
 		{
 		super.paintComponent(g);
-		g.drawImage(imageCuisine, 0, 0, null);
-		g.drawLine(0, 530, 600, 530);
+		Graphics2D g2 = (Graphics2D)g;
+
+		// ANTI ALIASING
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+		g2.drawImage(imageCuisine, 0, 0, null);
+		g2.drawLine(0, 530, 600, 530);
 		}
 
 	private void geometry()
@@ -119,7 +190,7 @@ public class JPanelJeu extends JPanel
 
 		labelQuestion = new JLabel();
 		panelBarResult = new JPanelBarEtat();
-		labelScore = new JLabel("0");
+		labelScore = new JLabel();
 		panelIntroRecette = new JPanelIntroRecette(this);
 
 		Dimension dim = new Dimension(80, 80);
@@ -144,31 +215,6 @@ public class JPanelJeu extends JPanel
 			Point p = new Point(getWidth() / 2 - (2 * 90 + 15) + i * 90 + i * 10, 545);
 			labelIngredient[i] = new JLabelIngredient(panelRecette, i + 1, p);
 			}
-
-		for(int i = 0; i < labelIngredient.length; i++)
-			{
-			add(labelIngredient[i]);
-			setComponentZOrder(labelIngredient[i], i);
-			}
-
-		// JComponent : add
-		add(panelIntroRecette);
-		setComponentZOrder(panelIntroRecette, 4);
-		add(labelQuestion);
-		setComponentZOrder(labelQuestion, 5);
-		add(panelBarResult);
-		setComponentZOrder(panelBarResult, 6);
-		add(labelScore);
-		setComponentZOrder(labelScore, 7);
-		int cpt = 8;
-
-		for(int i = labelIngredientTable.length - 1; i >= 0; i--)
-			{
-			add(labelIngredientTable[i]);
-			setComponentZOrder(labelIngredientTable[i], cpt);
-			cpt++;
-			}
-
 		}
 
 	private void control()
@@ -178,7 +224,6 @@ public class JPanelJeu extends JPanel
 
 	private void appearance()
 		{
-		imageCuisine = CUISINE.getImage();
 
 		labelQuestion.setOpaque(false);
 		Font font = new Font("Arial", 1, 14);

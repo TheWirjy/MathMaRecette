@@ -43,7 +43,7 @@ public class MP3 {
 
 					player.play();
 				} catch (Exception e) {
-					System.out.println("");
+					System.out.println("err");
 				}
 			}
 		}.start();

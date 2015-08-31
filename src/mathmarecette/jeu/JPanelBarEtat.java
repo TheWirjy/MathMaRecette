@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,13 +52,13 @@ public class JPanelBarEtat extends JPanel
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D)g;
-
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		for(int i = 0; i < nbQuestion; i++)
 			{
 			if (reponse.get(i) == 1)
 				{
 				g2.setColor(COLOR_JUSTE);
-				g2.fillRect(i * 10 + i * 5 + 5, 3, 10, 10);
+				g2.fillOval(i * 10 + i * 5 + 5, 3, 10, 10);
 				}
 			}
 
@@ -66,11 +67,11 @@ public class JPanelBarEtat extends JPanel
 
 		for(int i = 0; i < nbQuestion; i++)
 			{
-			g.drawRect(i * 10 + i * 5 + 5, 3, 10, 10);
+			g.drawOval(i * 10 + i * 5 + 5, 3, 10, 10);
 			}
 		}
 
-	public void setResultat(int indice, @SuppressWarnings("unused") boolean juste)
+	public void next(int indice)
 		{
 		reponse.add(indice, 1);
 		repaint();

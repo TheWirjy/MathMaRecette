@@ -1,16 +1,17 @@
 
 package mathmarecette.menu;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import mathmarecette.Tools;
 
 public class JPanelMenu extends JPanel
 	{
@@ -19,8 +20,9 @@ public class JPanelMenu extends JPanel
 		|*							Constructeurs							*|
 		\*------------------------------------------------------------------*/
 
-	public JPanelMenu()
+	public JPanelMenu(JFrameMenu _parent)
 		{
+		this.parent = _parent;
 		geometry();
 		control();
 		appearance();
@@ -34,13 +36,12 @@ public class JPanelMenu extends JPanel
 		{
 		// JComponent : Instanciation
 
-		arcade = new JButton("");
-		niveau = new JButton("");
-		tutoriel = new JButton("");
-		apropos = new JButton("");
-
-		String filename = "C:/Users/raphael.schaffo/HE-ARC/MathMaRecette Media/Son/CLickJump.mp3";
-		mp3 = new MP3(filename);
+		arcade = new JButton();
+		niveau = new JButton();
+		tutoriel = new JButton();
+		apropos = new JButton();
+		pictures = new JLabel();
+		title = new JLabel();
 
 		try
 			{
@@ -52,214 +53,133 @@ public class JPanelMenu extends JPanel
 			e.printStackTrace();
 			}
 
-		// JComponent : Adaptation
-
-		arcade.setPreferredSize(new Dimension(100, 30));
-		niveau.setPreferredSize(new Dimension(100, 30));
-		tutoriel.setPreferredSize(new Dimension(100, 30));
-		apropos.setPreferredSize(new Dimension(100, 30));
+		String filename = current + "/Son/CLickJump.mp3";
+		mp3 = new MP3(filename);
 
 		arcade.setBorderPainted(false);
 		iconArcade = new ImageIcon(current + "\\Image\\BTNArcade.png");
-		iconArcadeCopie = new ImageIcon(current + "\\Image\\BTNArcade-copie.png");
 		arcade.setIcon(iconArcade);
 
 		niveau.setBorderPainted(false);
 		iconLevel = new ImageIcon(current + "\\Image\\BTNNiveau.png");
-		iconLevelCopie = new ImageIcon(current + "\\Image\\BTNNiveau-copie.png");
 		niveau.setIcon(iconLevel);
 
 		tutoriel.setBorderPainted(false);
 		iconTutorial = new ImageIcon(current + "\\Image\\BTNTutoriel.png");
-		iconTutorialCopie = new ImageIcon(current + "\\Image\\BTNTutoriel-copie.png");
 		tutoriel.setIcon(iconTutorial);
 
 		apropos.setBorderPainted(false);
 		iconApropos = new ImageIcon(current + "\\Image\\BTNApropos.png");
-		iconAproposCopie = new ImageIcon(current + "\\Image\\BTNApropos - Copie.png");
 		apropos.setIcon(iconApropos);
+
+		ImageIcon iconPictures = new ImageIcon(current + "\\Image\\font.png");
+		pictures.setIcon(iconPictures);
+
+		ImageIcon iconTitle = new ImageIcon(current + "\\Image\\title.png");
+		title.setIcon(iconTitle);
 
 		// JComponent : Layout
 
-		setLayout(new GridLayout(4, 1, 20, 20));
+		setLayout(null);
+
 		add(arcade);
 		add(niveau);
 		add(tutoriel);
 		add(apropos);
+		add(pictures);
+		add(title);
+		}
+
+	private MouseAdapter monMouseListener(final JButton level, final int choix)
+		{
+		return new MouseAdapter()
+			{
+
+				@Override
+				public void mouseReleased(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					level.setLocation(level.getX(), level.getY() + 10);
+					if (click && dessus)
+						{
+						//mp3.play();
+						switch(choix)
+							{
+							case 0://Arcade
+								parent.arcade();
+								break;
+							case 1://Niveau
+								parent.level();
+								break;
+							case 2://Tuto
+								parent.tuto();
+								break;
+							case 3://A propos
+								parent.credit();
+								break;
+							}
+						}
+					click = false;
+					}
+
+				@Override
+				public void mousePressed(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					click = true;
+					dessus = true;
+					level.setLocation(level.getX(), level.getY() - 10);
+					}
+
+				@Override
+				public void mouseExited(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = false;
+					}
+
+				@Override
+				public void mouseEntered(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = true;
+					}
+			};
 		}
 
 	private void control()
 		{
-		tutoriel.addMouseListener(new MouseListener()
-			{
-
-				@Override
-				public void mouseReleased(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					tutoriel.setIcon(iconTutorial);
-
-					}
-
-				@Override
-				public void mousePressed(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					tutoriel.setIcon(iconTutorialCopie);
-
-					}
-
-				@Override
-				public void mouseExited(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-
-					}
-
-				@Override
-				public void mouseEntered(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-
-					}
-
-				@Override
-				public void mouseClicked(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					mp3.play();
-
-					}
-			});
-		arcade.addMouseListener(new MouseListener()
-			{
-
-				@Override
-				public void mouseReleased(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					arcade.setIcon(iconArcade);
-					}
-
-				@Override
-				public void mousePressed(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					arcade.setIcon(iconArcadeCopie);
-					}
-
-				@Override
-				public void mouseExited(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-
-					}
-
-				@Override
-				public void mouseEntered(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-
-					}
-
-				@Override
-				public void mouseClicked(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					mp3.play();
-
-					}
-			});
-		niveau.addMouseListener(new MouseListener()
-			{
-
-				@Override
-				public void mouseReleased(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					niveau.setIcon(iconLevel);
-					}
-
-				@Override
-				public void mousePressed(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					niveau.setIcon(iconLevelCopie);
-					}
-
-				@Override
-				public void mouseExited(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-
-					}
-
-				@Override
-				public void mouseEntered(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-
-					}
-
-				@Override
-				public void mouseClicked(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					new JFrameLevel();
-					mp3.play();
-					}
-			});
-
-		apropos.addMouseListener(new MouseListener()
-			{
-
-				@Override
-				public void mouseReleased(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					apropos.setIcon(iconApropos);
-					}
-
-				@Override
-				public void mousePressed(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					apropos.setIcon(iconAproposCopie);
-
-					}
-
-				@Override
-				public void mouseExited(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-
-					}
-
-				@Override
-				public void mouseEntered(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-
-					}
-
-				@Override
-				public void mouseClicked(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-					new JFrameCredits().setAlwaysOnTop(true);
-					mp3.play();
-					}
-			});
-
+		arcade.addMouseListener(monMouseListener(arcade, 0));
+		niveau.addMouseListener(monMouseListener(niveau, 1));
+		tutoriel.addMouseListener(monMouseListener(tutoriel, 2));
+		apropos.addMouseListener(monMouseListener(apropos, 3));
 		}
 
 	private void appearance()
 		{
-		Dimension panelD = new Dimension(250, 300);
-		this.setPreferredSize(panelD);
-		this.setMaximumSize(panelD);
-		Color fontColor = new Color(255, 246, 213);
-		setBackground(fontColor);
+		Dimension dimPanel = new Dimension(590, 690);
+		setPreferredSize(dimPanel);
+		setSize(dimPanel);
+		setBackground(Tools.COLOR_MENU);
+
+		title.setSize(570, 115);
+		title.setLocation(15, 40);
+		pictures.setSize(500, 155);
+		pictures.setLocation(50, 500);
+
+		Dimension dim = new Dimension(250, 60);
+		arcade.setPreferredSize(dim);
+		arcade.setSize(dim);
+		arcade.setLocation(getWidth() / 2 - dim.width / 2, 180);
+		niveau.setPreferredSize(dim);
+		niveau.setSize(dim);
+		niveau.setLocation(getWidth() / 2 - dim.width / 2, 260);
+		tutoriel.setPreferredSize(dim);
+		tutoriel.setSize(dim);
+		tutoriel.setLocation(getWidth() / 2 - dim.width / 2, 340);
+		apropos.setPreferredSize(dim);
+		apropos.setSize(dim);
+		apropos.setLocation(getWidth() / 2 - dim.width / 2, 420);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -267,19 +187,21 @@ public class JPanelMenu extends JPanel
 		\*------------------------------------------------------------------*/
 
 	// Tools
-	JButton arcade;
-	JButton niveau;
-	JButton tutoriel;
-	JButton apropos;
+	private JButton arcade;
+	private JButton niveau;
+	private JButton tutoriel;
+	private JButton apropos;
+	private JLabel pictures;
+	private JLabel title;
+
 	private ImageIcon iconApropos;
-	private ImageIcon iconAproposCopie;
 	private ImageIcon iconLevel;
-	private ImageIcon iconLevelCopie;
 	private ImageIcon iconArcade;
-	private ImageIcon iconArcadeCopie;
 	private ImageIcon iconTutorial;
-	private ImageIcon iconTutorialCopie;
 	private MP3 mp3;
 	private String current;
+	private boolean click = false;
+	private boolean dessus = false;
 
+	private JFrameMenu parent;
 	}

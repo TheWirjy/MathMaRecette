@@ -62,8 +62,6 @@ public class JPanelMemory extends JPanel
 
 		tabLabel = new JLabelCarte[16];
 
-		dialog.setBlur();
-
 		Box b = Box.createVerticalBox();
 		int cpt = 0;
 		for(int i = 0; i < 4; i++)
@@ -95,7 +93,6 @@ public class JPanelMemory extends JPanel
 					// TODO Auto-generated method stub
 					setVisible(false);
 					dialog.dispose();
-					dialog.setBlurOff();
 					//parent.setContentPane(panel);
 					}
 			});

@@ -3,8 +3,10 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
-import mathmarecette.jeu.JFrameRecette;
 import mathmarecette.jeu.ingredient.IngredientOrdre;
+import mathmarecette.jeu.ordre.JDialogOrdreRecette;
+import mathmarecette.jeu.ordre.JPanelIngredientOrdre;
+import mathmarecette.menu.JFrameMenu;
 
 public class Recette
 	{
@@ -13,15 +15,17 @@ public class Recette
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public Recette(String _nom, String _descr, int _nbQuestion)
+	public Recette(String _nom, String _descr, int _nbQuestion, int nbScore)
 		{
 		this.nom = _nom;
 		this.description = _descr;
 		this.nbQuestion = _nbQuestion;
-		this.cptQuestion = 0;
-		this.score = 0;
+		this.nbScore = nbScore;
+		this.miniJeu = true;
 		this.tabQuestion = new String[nbQuestion];
 		this.tabReponse = new ImageIcon[nbQuestion][];
+		this.music = ".\\Son\\recette.mp3";
+		this.tabScore = new int[nbScore];
 
 		for(int i = 0; i < nbQuestion; i++)
 			{
@@ -34,6 +38,17 @@ public class Recette
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public void initialisation()
+	{
+	this.cptQuestion = 0;
+	this.indiceTabScore = 0;
+	for(int i = 0; i < nbScore; i++)
+		{
+		tabScore[i] = 0;
+		}
+
+	}
 
 	public boolean next()
 		{
@@ -80,20 +95,61 @@ public class Recette
 
 	public void addScore(int pts)
 		{
-		this.score += pts;
+		tabScore[indiceTabScore] = pts;
+		indiceTabScore++;
+		}
+
+	public void verificationBonus(String reponse)
+		{
+		if (reponse.equals(reponseBonus))
+			{
+			tabScore[indiceTabScore] = 50;
+			}
+		indiceTabScore++;
 		}
 
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
 
+	public void setTime(String time)
+		{
+		this.time = time;
+		}
+
 	/*------------------------------*\
 	|*				Get				*|
 	\*------------------------------*/
 
+	public String getMusic()
+		{
+		return music;
+		}
+
+	public boolean aUnMiniJeu()
+		{
+		return miniJeu;
+		}
+
+	public String getQuestionBonus()
+		{
+		return questionBonus;
+		}
+
+	public String getReponseBonus()
+		{
+		return reponseBonus;
+		}
+
 	public int getScore()
 		{
-		return this.score;
+		int score = 0;
+		for(int i = 0; i < tabScore.length; i++)
+			{
+			score += tabScore[i];
+			}
+
+		return score;
 		}
 
 	public String getNom()
@@ -136,6 +192,11 @@ public class Recette
 		return tabSolution;
 		}
 
+	public int[] getTabScore()
+		{
+		return tabScore;
+		}
+
 	public ImageIcon[][] getTabReponse()
 		{
 		return tabReponse;
@@ -146,9 +207,27 @@ public class Recette
 		return tabIngredientOrdre;
 		}
 
-	public void ordreRecette(@SuppressWarnings("unused") JFrameRecette parent)
+	public void ordreRecette(@SuppressWarnings("unused") JFrameMenu parent)
 		{
+		new JDialogOrdreRecette(parent, this);
+		}
 
+	public int checkReponseOrdre(JPanelIngredientOrdre[] ingr)
+		{
+		int cptBonneRep = 0;
+		for(int i = 0; i < ingr.length; i++)
+			{
+			if (ingr[i].getID_ordre() == tabOrdreIndice[i])
+				{
+				cptBonneRep++;
+				}
+			}
+		return cptBonneRep;
+		}
+
+	public int[] getTabOrdreIndice()
+		{
+		return tabOrdreIndice;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -163,13 +242,28 @@ public class Recette
 	private String description;
 	private int nbQuestion;
 	private int cptQuestion;
+	private int nbScore;
 	protected String[] tabQuestion;
 	protected ImageIcon[][] tabReponse;
 	protected int[] tabSolution;
 	protected ImageIcon imageRecette;
 	protected IngredientOrdre[] tabIngredientOrdre;
+	protected int[] tabOrdreReponse;
 	protected int[] tabOrdreIndice;
-	private int score;
+	//private int score;
 	protected final String CHEMIN_TITRE = ".\\image\\titre\\";
 	protected ImageIcon imageTitre;
+
+	protected String questionBonus;
+	protected String reponseBonus;
+
+	protected int[] tabScore;
+	protected int indiceTabScore;
+
+	protected boolean miniJeu;
+
+	protected String music;
+
+	protected String time;
+
 	}

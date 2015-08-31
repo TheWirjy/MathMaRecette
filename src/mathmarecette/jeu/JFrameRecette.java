@@ -46,12 +46,11 @@ public class JFrameRecette extends JFrame
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		panelRecette = new JPanelRecette(this, recette);
-		panelRecette.setPreferredSize(new Dimension(600, 700));
+		//panelRecette = new JPanelRecette(this, recette);
+		panelRecette.setPreferredSize(new Dimension(590, 690));
 
 		// JComponent : add
 		setContentPane(panelRecette);
-		pack();
 		}
 
 	private void control()
@@ -61,10 +60,11 @@ public class JFrameRecette extends JFrame
 
 	private void appearance()
 		{
+		pack();
 		setTitle("Math ma recette");
-		//setResizable(false);
+		setResizable(false);
 		setLocationRelativeTo(null); // frame centrer
-		setVisible(true); // last!
+		setVisible(true);
 		}
 
 	/*------------------------------------------------------------------*\
