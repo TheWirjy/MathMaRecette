@@ -12,6 +12,11 @@ public class JFrameHorloge extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1118980583671279405L;
+
 	public JFrameHorloge()
 		{
 		geometry();

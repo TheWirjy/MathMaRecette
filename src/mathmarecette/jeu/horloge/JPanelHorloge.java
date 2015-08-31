@@ -25,6 +25,10 @@ public class JPanelHorloge extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4081161226106246894L;
 	public JPanelHorloge()
 		{
 		reponse = "";
