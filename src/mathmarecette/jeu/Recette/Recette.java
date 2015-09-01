@@ -16,12 +16,13 @@ public class Recette
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public Recette(String _nom, String _descr, int _nbQuestion, int nbScore)
+	public Recette(String _nom, String _descr, int _nbQuestion, int _nbScore, int _scoreMax)
 		{
 		this.nom = _nom;
 		this.description = _descr;
 		this.nbQuestion = _nbQuestion;
-		this.nbScore = nbScore;
+		this.nbScore = _nbScore;
+		this.scoreMax = _scoreMax;
 		this.miniJeu = true;
 		this.tabQuestion = new String[nbQuestion];
 		this.tabReponse = new ImageIcon[nbQuestion][];
@@ -34,6 +35,7 @@ public class Recette
 			}
 
 		this.tabSolution = new int[nbQuestion];
+		medaille = Tools.MEDAILLE_VIDE;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -122,9 +124,9 @@ public class Recette
 		this.time = time;
 		}
 
-	public void setMedaille(ImageIcon medaille)
+	public void setMedaille()
 		{
-		this.medaille = medaille;
+		this.medaille = Tools.MEDAILLE_VIDE;
 		}
 
 	/*------------------------------*\
@@ -248,6 +250,16 @@ public class Recette
 		return tabOrdreIndice;
 		}
 
+	public ImageIcon getMedaille()
+		{
+		return medaille;
+		}
+
+	public int getScoreMax()
+		{
+			return scoreMax;
+		}
+
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
@@ -261,7 +273,7 @@ public class Recette
 	private int nbQuestion;
 	private int cptQuestion;
 	private int nbScore;
-	private ImageIcon medaille;
+	protected ImageIcon medaille;
 	protected String[] tabQuestion;
 	protected ImageIcon[][] tabReponse;
 	protected int[] tabSolution;
@@ -284,4 +296,5 @@ public class Recette
 	protected String music;
 
 	protected int time;
+	protected int scoreMax;
 	}

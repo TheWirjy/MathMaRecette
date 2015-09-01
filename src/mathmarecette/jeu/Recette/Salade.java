@@ -3,6 +3,7 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
+import mathmarecette.Tools;
 import mathmarecette.menu.JFrameMenu;
 
 public class Salade extends Recette
@@ -14,7 +15,7 @@ public class Salade extends Recette
 
 	public Salade()
 		{
-		super("Salade", "Sauce - Tomate - Concombre", 6, 7);
+		super("Salade", "Sauce - Tomate - Concombre", 6, 7, 350);
 
 		this.miniJeu = false;
 
@@ -56,6 +57,28 @@ public class Salade extends Recette
 	public void ordreRecette(JFrameMenu parent)
 		{
 		parent.questionBonus();
+		}
+
+	@Override
+	public void setMedaille()
+		{
+		int score = getScore();
+
+		if (score >= scoreMax - 200) //>=150 au moins 3/7 reponse correct 42% juste = moyen
+			{
+			if (score >= scoreMax - 50) //>=300 au moins 6/7 reponse correct 85% juste = tres bien
+				{
+				medaille = Tools.M_SALADE_3;
+				}
+			else
+				{
+				medaille = Tools.M_SALADE_2;
+				}
+			}
+		else // -42% juste
+			{
+			medaille = Tools.M_SALADE_1;
+			}
 		}
 
 	/*------------------------------*\

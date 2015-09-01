@@ -36,6 +36,18 @@ public class JPanelMenu extends JPanel
 		|*							Methodes Private						*|
 		\*------------------------------------------------------------------*/
 
+	public void setMute(boolean mute)
+		{
+		if (mute)
+			{
+			bouton_mute.setIcon(Tools.MUTE_ON);
+			}
+		else
+			{
+			bouton_mute.setIcon(Tools.MUTE_OFF);
+			}
+		}
+
 	private void geometry()
 		{
 		// JComponent : Instanciation
@@ -159,14 +171,10 @@ public class JPanelMenu extends JPanel
 						{
 						Tools.stopSon();
 						Tools.setMute();
-						if (Tools.getMute())
+						parent.setMute(Tools.getMute());
+						if (!Tools.getMute())
 							{
-							bouton_mute.setIcon(Tools.MUTE_CLICK);
-							}
-						else
-							{
-							bouton_mute.setIcon(Tools.MUTE);
-							Tools.playSon("./Son/menu.wav");
+							Tools.playSon(Tools.getSonSave());
 							}
 						}
 					click = false;
@@ -223,9 +231,9 @@ public class JPanelMenu extends JPanel
 		apropos.setSize(dim);
 		apropos.setLocation(getWidth() / 2 - dim.width / 2, 420);
 
-		bouton_mute.setIcon(Tools.MUTE);
+		bouton_mute.setIcon(Tools.MUTE_OFF);
 		bouton_mute.setSize(80, 80);
-		bouton_mute.setLocation(260 , 600);
+		bouton_mute.setLocation(260, 600);
 		}
 
 	/*------------------------------------------------------------------*\

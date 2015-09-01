@@ -2,18 +2,14 @@
 package mathmarecette.menu;
 
 import java.awt.BorderLayout;
-import java.io.File;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import mathmarecette.Tools;
-import mathmarecette.jeu.JPanelArcade;
-import mathmarecette.jeu.JPanelRecette;
 import mathmarecette.jeu.Recette.Recette;
+import mathmarecette.jeu.panel.game.JPanelArcade;
+import mathmarecette.jeu.panel.game.composant.JPanelRecette;
 
 public class JFrameMenu extends JFrame
 	{
@@ -35,27 +31,18 @@ public class JFrameMenu extends JFrame
 		appearance();
 
 		Tools.playSon("./Son/menu.wav");
+
 		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	public void playSon()
+	public void setMute(boolean mute)
 		{
-		try
-			{
-			File file = new File("./Son/menu.wav");
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-			clip = AudioSystem.getClip();
-			clip.open(audioIn);
-			clip.start();
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
-			}
-		catch (Exception e)
-			{
-			System.out.println("erreur son");
-			}
+		panelMenu.setMute(mute);
+		panelRecette.setMute(mute);
+		panelArcade.setMute(mute);
 		}
 
 	public void questionBonus()
@@ -72,8 +59,6 @@ public class JFrameMenu extends JFrame
 
 	public void recette(Recette _recette)
 		{
-		//Tools.stopSon();
-		//clip.close();
 		arcade = false;
 		panelRecette.init(_recette);
 		remove(panelLevel);
@@ -100,8 +85,6 @@ public class JFrameMenu extends JFrame
 
 	public void arcade()
 		{
-		//clip.stop();
-		Tools.stopSon();
 		arcade = true;
 		panelArcade.init();
 		remove(panelMenu);
@@ -197,5 +180,4 @@ public class JFrameMenu extends JFrame
 	private JPanelTuto panelTuto;
 	private JPanelArcade panelArcade;
 	private boolean arcade;
-	private Clip clip;
 	}

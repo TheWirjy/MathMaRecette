@@ -3,6 +3,7 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
+import mathmarecette.Tools;
 import mathmarecette.jeu.ingredient.IngredientOrdre;
 
 public class Spaghetti extends Recette
@@ -14,7 +15,7 @@ public class Spaghetti extends Recette
 
 	public Spaghetti()
 		{
-		super("Spaghetti", "Nature", 3, 5);
+		super("Spaghetti", "Nature", 3, 5, 400);
 
 		tabQuestion[0] = "Il faut 2*1 bouteille d’ 1 litre <i>(Un récipient plein = 1L)</i>";
 		tabQuestion[1] = "On a besoin de 15g de sel (1 cuillère = 5g)";
@@ -61,11 +62,27 @@ public class Spaghetti extends Recette
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	/*@Override
-	public void ordreRecette(JFrameRecette parent, JPanelJeu panelJeu)
+	@Override
+	public void setMedaille()
 		{
-		new JDialogOrdreRecette(parent, this, panelJeu);
-		}*/
+		int score = getScore();
+
+		if (score >= scoreMax - 200)
+			{
+			if (score >= scoreMax - 50)
+				{
+				medaille = Tools.M_SPAGH_3;
+				}
+			else
+				{
+				medaille = Tools.M_SPAGH_2;
+				}
+			}
+		else
+			{
+			medaille = Tools.M_SPAGH_1;
+			}
+		}
 
 	/*------------------------------*\
 	|*				Set				*|

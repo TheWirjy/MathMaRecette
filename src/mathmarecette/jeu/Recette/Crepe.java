@@ -3,6 +3,7 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
+import mathmarecette.Tools;
 import mathmarecette.jeu.ingredient.IngredientOrdre;
 
 public class Crepe extends Recette
@@ -14,7 +15,7 @@ public class Crepe extends Recette
 
 	public Crepe()
 		{
-		super("Crêpes", "Pâte à crêpe nature", 4, 6);//huile, sucre, beurre
+		super("Crêpes", "Pâte à crêpe nature", 4, 6, 450);//huile, sucre, beurre
 
 		tabQuestion[0] = "Prépare 2* 125g de farine";
 		tabQuestion[1] = "Avec une boite de 6 œufs on fait 3 pâtes à crêpes, combien t'en faut-il pour en faire une?";
@@ -75,6 +76,28 @@ public class Crepe extends Recette
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	@Override
+	public void setMedaille()
+		{
+		int score = getScore();
+
+		if (score >= scoreMax - 200)
+			{
+			if (score >= scoreMax - 50)
+				{
+				medaille = Tools.M_CREPE_3;
+				}
+			else
+				{
+				medaille = Tools.M_CREPE_2;
+				}
+			}
+		else
+			{
+			medaille = Tools.M_CREPE_1;
+			}
+		}
 
 	/*------------------------------*\
 	|*				Set				*|

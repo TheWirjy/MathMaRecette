@@ -3,6 +3,7 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
+import mathmarecette.Tools;
 import mathmarecette.jeu.ingredient.IngredientOrdre;
 
 public class Pizza extends Recette
@@ -14,7 +15,7 @@ public class Pizza extends Recette
 
 	public Pizza()
 		{
-		super("Pizza", "Tomate - Mozzarella - Jambon", 6, 8);
+		super("Pizza", "Tomate - Mozzarella - Jambon", 6, 8, 550);
 
 		tabQuestion[0] = "Prépare 350 gramme de farine ";
 		tabQuestion[1] = "Prépare 10 gramme de sel <i>(sachant qu’une cuillère à café fait 5 gramme)</i>";
@@ -91,6 +92,28 @@ public class Pizza extends Recette
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	@Override
+	public void setMedaille()
+		{
+		int score = getScore();
+
+		if (score >= scoreMax - 200)
+			{
+			if (score >= scoreMax - 50)
+				{
+				medaille = Tools.M_PIZZA_3;
+				}
+			else
+				{
+				medaille = Tools.M_PIZZA_2;
+				}
+			}
+		else
+			{
+			medaille = Tools.M_PIZZA_1;
+			}
+		}
 
 	/*------------------------------*\
 	|*				Set				*|

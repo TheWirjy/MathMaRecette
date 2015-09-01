@@ -9,10 +9,10 @@ import java.awt.GraphicsEnvironment;
 import java.awt.RenderingHints;
 import java.io.File;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import mathmarecette.Tools;
+import mathmarecette.jeu.Recette.Recette;
 
 public class JPanelMedaille extends JPanel
 	{
@@ -23,6 +23,7 @@ public class JPanelMedaille extends JPanel
 
 	public JPanelMedaille()
 		{
+		time = "00:00";
 		geometry();
 		control();
 		appearance();
@@ -30,9 +31,13 @@ public class JPanelMedaille extends JPanel
 		try
 			{
 			font = Font.createFont(Font.TRUETYPE_FONT, new File(".\\font\\DIGITALISM.TTF"));
-			font = font.deriveFont(Font.BOLD, 45);
+			font = font.deriveFont(Font.BOLD, 30);
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(font);
+
+			font2 = Font.createFont(Font.TRUETYPE_FONT, new File(".\\font\\MELODBO.TTF"));
+			font2 = font2.deriveFont(Font.PLAIN, 18);
+			ge.registerFont(font2);
 			}
 		catch (Exception e)
 			{
@@ -55,21 +60,33 @@ public class JPanelMedaille extends JPanel
 		// ANTI ALIASING
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		g2.drawImage(IMAGE_TOC.getImage(), 0, 0, null);
+		g2.drawImage(Tools.TOC.getImage(), 0, 0, null);
 
-		g2.drawImage(M_SPAG.getImage(), 70, 70, null);
-		g2.drawImage(M_SALADE.getImage(), 235, 30, null);
-		g2.drawImage(M_CREPE.getImage(), 400, 70, null);
-		g2.drawImage(M_CAKE.getImage(), 170, 120, null);
-		g2.drawImage(M_PIZZA.getImage(), 300, 120, null);
-		g2.drawImage(M_TIME.getImage(), 220, 420, null);
-		g2.setFont(font);
-		g2.drawString("15:58", 253, 472);
+		if (recettes != null)
+			{
+			g2.drawImage(recettes[0].getMedaille().getImage(), 35, 35, null);
+			g2.drawImage(recettes[1].getMedaille().getImage(), 90, 85, null);
+			g2.drawImage(recettes[2].getMedaille().getImage(), 155, 120, null);
+			g2.drawImage(recettes[3].getMedaille().getImage(), 220, 85, null);
+			g2.drawImage(recettes[4].getMedaille().getImage(), 280, 35, null);
+			g2.drawImage(Tools.M_TIME.getImage(), 150, 280, null);
+			g2.setFont(font);
+			g2.drawString(time, 168, 315);
+			g2.setFont(font2);
+			g2.drawString("MATH", 165, 50);
+			g2.drawString("MA RECETTE", 135, 70);
+			}
 		}
 
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
+
+	public void setRecette(Recette[] recettes, String time)
+		{
+		this.recettes = recettes;
+		this.time = time;
+		}
 
 	/*------------------------------*\
 	|*				Get				*|
@@ -91,12 +108,12 @@ public class JPanelMedaille extends JPanel
 
 	private void appearance()
 		{
-		Dimension dim = new Dimension(600, 530);
+		Dimension dim = new Dimension(400, 353);
 		setSize(dim);
 		setPreferredSize(dim);
 		setMaximumSize(dim);
 
-		setBackground(Tools.COLOR_MUR);
+		setOpaque(false);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -104,12 +121,7 @@ public class JPanelMedaille extends JPanel
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	private ImageIcon IMAGE_TOC = new ImageIcon(".\\image\\medailles\\toc.png");
-	private ImageIcon M_SPAG = new ImageIcon(".\\image\\medailles\\mSpagh3.png");
-	private ImageIcon M_CAKE = new ImageIcon(".\\image\\medailles\\mCake3.png");
-	private ImageIcon M_PIZZA = new ImageIcon(".\\image\\medailles\\mPizza3.png");
-	private ImageIcon M_CREPE = new ImageIcon(".\\image\\medailles\\mCrepe3.png");
-	private ImageIcon M_SALADE = new ImageIcon(".\\image\\medailles\\mSalade3.png");
-	private ImageIcon M_TIME = new ImageIcon(".\\image\\medailles\\time.png");
-	private Font font;
+	private Font font, font2;
+	private Recette[] recettes;
+	private String time;
 	}

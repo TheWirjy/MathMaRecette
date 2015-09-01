@@ -3,6 +3,7 @@ package mathmarecette.jeu.Recette;
 
 import javax.swing.ImageIcon;
 
+import mathmarecette.Tools;
 import mathmarecette.jeu.ingredient.IngredientOrdre;
 import mathmarecette.jeu.ordre.JPanelIngredientOrdre;
 
@@ -16,7 +17,7 @@ public class Cake extends Recette
 	public Cake()
 		{
 
-		super("Cake au citron", "Citron - sirop", 4, 6);
+		super("Cake au citron", "Citron - sirop", 4, 6, 450);
 
 		tabQuestion[0] = "Il faut 4 blancs d’œuf + 4 jaunes d’œuf";
 		tabQuestion[1] = "Prépare 10 carrées de 10g de beurre et le double de sucre <i>(1 plaque de beurre = 200g)</i>";
@@ -82,6 +83,28 @@ public class Cake extends Recette
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	@Override
+	public void setMedaille()
+		{
+		int score = getScore();
+
+		if (score >= scoreMax - 200)
+			{
+			if (score >= scoreMax - 50)
+				{
+				medaille = Tools.M_CAKE_3;
+				}
+			else
+				{
+				medaille = Tools.M_CAKE_2;
+				}
+			}
+		else
+			{
+			medaille = Tools.M_CAKE_1;
+			}
+		}
 
 	@Override
 	public int checkReponseOrdre(JPanelIngredientOrdre[] ingr)
