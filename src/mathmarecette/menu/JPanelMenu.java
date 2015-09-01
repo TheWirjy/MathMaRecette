@@ -45,6 +45,7 @@ public class JPanelMenu extends JPanel
 		apropos = new JButton();
 		pictures = new JLabel();
 		title = new JLabel();
+		bouton_mute = new JLabel();
 
 		arcade.setBorderPainted(false);
 		iconArcade = new ImageIcon(".\\Image\\BTNArcade.png");
@@ -72,12 +73,14 @@ public class JPanelMenu extends JPanel
 
 		setLayout(null);
 
+		add(bouton_mute);
 		add(arcade);
 		add(niveau);
 		add(tutoriel);
 		add(apropos);
 		add(pictures);
 		add(title);
+
 		}
 
 	private MouseAdapter monMouseListener(final JButton level, final int choix)
@@ -143,6 +146,55 @@ public class JPanelMenu extends JPanel
 		niveau.addMouseListener(monMouseListener(niveau, 1));
 		tutoriel.addMouseListener(monMouseListener(tutoriel, 2));
 		apropos.addMouseListener(monMouseListener(apropos, 3));
+
+		bouton_mute.addMouseListener(new MouseAdapter()
+			{
+
+				@Override
+				public void mouseReleased(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					bouton_mute.setLocation(bouton_mute.getX(), bouton_mute.getY() + 10);
+					if (click && dessus)
+						{
+						Tools.stopSon();
+						Tools.setMute();
+						if (Tools.getMute())
+							{
+							bouton_mute.setIcon(Tools.MUTE_CLICK);
+							}
+						else
+							{
+							bouton_mute.setIcon(Tools.MUTE);
+							Tools.playSon("./Son/menu.wav");
+							}
+						}
+					click = false;
+					}
+
+				@Override
+				public void mousePressed(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					click = true;
+					dessus = true;
+					bouton_mute.setLocation(bouton_mute.getX(), bouton_mute.getY() - 10);
+					}
+
+				@Override
+				public void mouseExited(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = false;
+					}
+
+				@Override
+				public void mouseEntered(MouseEvent e)
+					{
+					// TODO Auto-generated method stub
+					dessus = true;
+					}
+			});
 		}
 
 	private void appearance()
@@ -170,6 +222,10 @@ public class JPanelMenu extends JPanel
 		apropos.setPreferredSize(dim);
 		apropos.setSize(dim);
 		apropos.setLocation(getWidth() / 2 - dim.width / 2, 420);
+
+		bouton_mute.setIcon(Tools.MUTE);
+		bouton_mute.setSize(80, 80);
+		bouton_mute.setLocation(260 , 600);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -183,6 +239,8 @@ public class JPanelMenu extends JPanel
 	private JButton apropos;
 	private JLabel pictures;
 	private JLabel title;
+
+	private JLabel bouton_mute;
 
 	private ImageIcon iconApropos;
 	private ImageIcon iconLevel;

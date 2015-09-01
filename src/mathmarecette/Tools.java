@@ -23,48 +23,64 @@ public class Tools
 	public static void playBruitage(String bruitage)
 		{
 
-		try
+		if (!bMute)
 			{
-			if (clipBruitage != null && clipBruitage.isRunning())
+			try
 				{
-				clipBruitage.close();
+				if (clipBruitage != null && clipBruitage.isRunning())
+					{
+					clipBruitage.close();
+					}
+				File file = new File(bruitage);
+				AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+				clipBruitage = AudioSystem.getClip();
+				clipBruitage.open(audioIn);
+				clipBruitage.start();
 				}
-			File file = new File(bruitage);
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-			clipBruitage = AudioSystem.getClip();
-			clipBruitage.open(audioIn);
-			clipBruitage.start();
-			}
-		catch (Exception e)
-			{
-			System.out.println("erreur son");
+			catch (Exception e)
+				{
+				System.out.println("erreur son");
+				}
 			}
 		}
 
 	public static void playSon(String son)
 		{
-		try
+		if (!bMute)
 			{
-			if (clipSon != null && clipSon.isRunning())
+			try
 				{
-				clipSon.close();
+				if (clipSon != null && clipSon.isRunning())
+					{
+					clipSon.close();
+					}
+				File file = new File(son);
+				AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+				clipSon = AudioSystem.getClip();
+				clipSon.open(audioIn);
+				clipSon.start();
+				clipSon.loop(Clip.LOOP_CONTINUOUSLY);
 				}
-			File file = new File(son);
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-			clipSon = AudioSystem.getClip();
-			clipSon.open(audioIn);
-			clipSon.start();
-			clipSon.loop(Clip.LOOP_CONTINUOUSLY);
-			}
-		catch (Exception e)
-			{
-			System.out.println("erreur son");
+			catch (Exception e)
+				{
+				System.out.println("erreur son");
+				}
 			}
 		}
 
 	public static void stopSon()
 		{
 		clipSon.close();
+		}
+
+	public static void setMute()
+		{
+		bMute = !bMute;
+		}
+
+	public static boolean getMute()
+		{
+		return bMute;
 		}
 
 	/*------------------------------*\
@@ -102,6 +118,9 @@ public class Tools
 	public static final ImageIcon ARC = new ImageIcon(".\\image\\arc.jpg");
 	public static final ImageIcon BOUTON_RETOUR = new ImageIcon(".\\image\\retour.png");
 	public static final ImageIcon BOUTON_RETOUR_CLICK = new ImageIcon(".\\image\\retour_click.png");
+
+	public static final ImageIcon MUTE = new ImageIcon(".\\image\\mute.png");
+	public static final ImageIcon MUTE_CLICK = new ImageIcon(".\\image\\muteOn.png");
 
 	public static final ImageIcon GIF_DRAG = new ImageIcon(".\\image\\dragGif.gif");
 	public static final ImageIcon GIF_ORDRE = new ImageIcon(".\\image\\ordreGif.gif");
