@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import mathmarecette.Tools;
 import mathmarecette.jeu.Recette.Recette;
 import mathmarecette.jeu.score.JPanelScore;
 import mathmarecette.menu.JFrameMenu;
@@ -50,6 +51,7 @@ public class JPanelRecette extends JPanel
 
 	public void afficheScore()
 		{
+		Tools.playBruitage("./Son/victoire.wav");
 		this.panelMenu.stop();
 		recette.setTime(panelMenu.getTime());
 		panelScore.setTime(recette.getTime() + "");
@@ -110,7 +112,6 @@ public class JPanelRecette extends JPanel
 			panelJeu.hideForMiniJeu();
 			recette.ordreRecette(parent);
 			}
-
 		}
 
 	/*------------------------------*\
@@ -154,16 +155,10 @@ public class JPanelRecette extends JPanel
 		panelScore = new JPanelScore(this);
 
 		setLayout(null);
-
-		// JComponent : add
-
-		// add(panelScore);
-		// add(panelJeuHorloge);
 		}
 
 	private void control()
 		{
-		// rien
 		}
 
 	private void appearance()

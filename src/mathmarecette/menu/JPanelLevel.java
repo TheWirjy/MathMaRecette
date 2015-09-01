@@ -4,11 +4,7 @@ package mathmarecette.menu;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -42,29 +38,12 @@ public class JPanelLevel extends JPanel
 		}
 
 	/*------------------------------------------------------------------*\
-		|*							Methodes Private						*|
-		\*------------------------------------------------------------------*/
-
-	public void playSon()
-		{
-		try
-			{
-			File file = new File("./Son/bouton_menu.wav");
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-			clip = AudioSystem.getClip();
-			clip.open(audioIn);
-			clip.start();
-			}
-		catch (Exception e)
-			{
-			System.out.println("erreur son");
-			}
-		}
+	|*							Methodes Private						*|
+	\*------------------------------------------------------------------*/
 
 	private void geometry()
 		{
 		// JComponent : Instanciation
-
 		spaghetti = new JLabel();
 		crepe = new JLabel();
 		cake = new JLabel();
@@ -97,6 +76,7 @@ public class JPanelLevel extends JPanel
 		// JComponent : Layout
 
 		setLayout(null);
+
 		add(labelRetour);
 		add(pictures);
 		add(spaghetti);
@@ -117,7 +97,7 @@ public class JPanelLevel extends JPanel
 					{
 					// TODO Auto-generated method stub
 					level.setLocation(level.getX(), level.getY() + 10);
-					playSon();
+					Tools.playBruitage("./Son/bouton_menu.wav");
 					if (click && dessus)
 						{
 						parent.recette(recette);
@@ -259,5 +239,4 @@ public class JPanelLevel extends JPanel
 	private JFrameMenu parent;
 
 	private JLabel labelRetour;
-	private Clip clip;
 	}

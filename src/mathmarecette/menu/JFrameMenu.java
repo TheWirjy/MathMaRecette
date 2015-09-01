@@ -10,6 +10,7 @@ import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import mathmarecette.Tools;
 import mathmarecette.jeu.JPanelArcade;
 import mathmarecette.jeu.JPanelRecette;
 import mathmarecette.jeu.Recette.Recette;
@@ -33,7 +34,7 @@ public class JFrameMenu extends JFrame
 		control();
 		appearance();
 
-		playSon();
+		Tools.playSon("./Son/menu.wav");
 		}
 
 	/*------------------------------------------------------------------*\
@@ -71,7 +72,8 @@ public class JFrameMenu extends JFrame
 
 	public void recette(Recette _recette)
 		{
-		clip.close();
+		//Tools.stopSon();
+		//clip.close();
 		arcade = false;
 		panelRecette.init(_recette);
 		remove(panelLevel);
@@ -93,12 +95,13 @@ public class JFrameMenu extends JFrame
 		add(panelMenu);
 		revalidate();
 		repaint();
-		playSon();
+		Tools.playSon("./Son/menu.wav");
 		}
 
 	public void arcade()
 		{
-		clip.stop();
+		//clip.stop();
+		Tools.stopSon();
 		arcade = true;
 		panelArcade.init();
 		remove(panelMenu);

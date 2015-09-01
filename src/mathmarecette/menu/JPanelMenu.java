@@ -4,12 +4,7 @@ package mathmarecette.menu;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -35,43 +30,15 @@ public class JPanelMenu extends JPanel
 		geometry();
 		control();
 		appearance();
-		try
-			{
-			File file = new File("./Son/ClickJump.wav");
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-			clip = AudioSystem.getClip();
-			clip.open(audioIn);
-			}
-		catch (Exception e)
-			{
-			System.out.println("erreur son");
-			}
 		}
 
 	/*------------------------------------------------------------------*\
 		|*							Methodes Private						*|
 		\*------------------------------------------------------------------*/
 
-	public void playSon()
-		{
-		try
-			{
-			File file = new File("./Son/bouton_menu.wav");
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-			clip = AudioSystem.getClip();
-			clip.open(audioIn);
-			clip.start();
-			}
-		catch (Exception e)
-			{
-			System.out.println("erreur son");
-			}
-		}
-
 	private void geometry()
 		{
 		// JComponent : Instanciation
-
 		arcade = new JButton();
 		niveau = new JButton();
 		tutoriel = new JButton();
@@ -79,39 +46,26 @@ public class JPanelMenu extends JPanel
 		pictures = new JLabel();
 		title = new JLabel();
 
-		try
-			{
-			current = new java.io.File(".").getCanonicalPath();
-			}
-		catch (IOException e)
-			{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
-
-		String filename = current + "/Son/CLickJump.mp3";
-		mp3 = new MP3(filename);
-
 		arcade.setBorderPainted(false);
-		iconArcade = new ImageIcon(current + "\\Image\\BTNArcade.png");
+		iconArcade = new ImageIcon(".\\Image\\BTNArcade.png");
 		arcade.setIcon(iconArcade);
 
 		niveau.setBorderPainted(false);
-		iconLevel = new ImageIcon(current + "\\Image\\BTNNiveau.png");
+		iconLevel = new ImageIcon(".\\Image\\BTNNiveau.png");
 		niveau.setIcon(iconLevel);
 
 		tutoriel.setBorderPainted(false);
-		iconTutorial = new ImageIcon(current + "\\Image\\BTNTutoriel.png");
+		iconTutorial = new ImageIcon(".\\Image\\BTNTutoriel.png");
 		tutoriel.setIcon(iconTutorial);
 
 		apropos.setBorderPainted(false);
-		iconApropos = new ImageIcon(current + "\\Image\\BTNApropos.png");
+		iconApropos = new ImageIcon(".\\Image\\BTNApropos.png");
 		apropos.setIcon(iconApropos);
 
-		ImageIcon iconPictures = new ImageIcon(current + "\\Image\\font.png");
+		ImageIcon iconPictures = new ImageIcon(".\\Image\\font.png");
 		pictures.setIcon(iconPictures);
 
-		ImageIcon iconTitle = new ImageIcon(current + "\\Image\\title.png");
+		ImageIcon iconTitle = new ImageIcon(".\\Image\\title.png");
 		title.setIcon(iconTitle);
 
 		// JComponent : Layout
@@ -138,7 +92,7 @@ public class JPanelMenu extends JPanel
 					level.setLocation(level.getX(), level.getY() + 10);
 					if (click && dessus)
 						{
-						playSon();
+						Tools.playBruitage("./Son/bouton_menu.wav");
 						switch(choix)
 							{
 							case 0://Arcade
@@ -234,11 +188,8 @@ public class JPanelMenu extends JPanel
 	private ImageIcon iconLevel;
 	private ImageIcon iconArcade;
 	private ImageIcon iconTutorial;
-	private MP3 mp3;
-	private String current;
 	private boolean click = false;
 	private boolean dessus = false;
-	private Clip clip;
 
 	private JFrameMenu parent;
 	}

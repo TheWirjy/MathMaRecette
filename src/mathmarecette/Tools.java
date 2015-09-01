@@ -2,7 +2,11 @@
 package mathmarecette;
 
 import java.awt.Color;
+import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 
 public class Tools
@@ -15,6 +19,53 @@ public class Tools
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public static void playBruitage(String bruitage)
+		{
+
+		try
+			{
+			if (clipBruitage != null && clipBruitage.isRunning())
+				{
+				clipBruitage.close();
+				}
+			File file = new File(bruitage);
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+			clipBruitage = AudioSystem.getClip();
+			clipBruitage.open(audioIn);
+			clipBruitage.start();
+			}
+		catch (Exception e)
+			{
+			System.out.println("erreur son");
+			}
+		}
+
+	public static void playSon(String son)
+		{
+		try
+			{
+			if (clipSon != null && clipSon.isRunning())
+				{
+				clipSon.close();
+				}
+			File file = new File(son);
+			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+			clipSon = AudioSystem.getClip();
+			clipSon.open(audioIn);
+			clipSon.start();
+			clipSon.loop(Clip.LOOP_CONTINUOUSLY);
+			}
+		catch (Exception e)
+			{
+			System.out.println("erreur son");
+			}
+		}
+
+	public static void stopSon()
+		{
+		clipSon.close();
+		}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -31,6 +82,10 @@ public class Tools
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
+
+	private static Clip clipSon;
+	private static Clip clipBruitage;
+	private static boolean bMute = false;
 
 	public static final String CHEMIN = ".\\image\\ingredient\\";
 	public static final Color COLOR_BAR = new Color(234, 226, 197);

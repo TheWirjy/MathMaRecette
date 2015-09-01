@@ -12,6 +12,11 @@ public class JFrameMedaille extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -628107275995716805L;
+
 	public JFrameMedaille()
 		{
 		geometry();
@@ -37,16 +42,10 @@ public class JFrameMedaille extends JFrame
 
 	private void geometry()
 		{
-			// JComponent : Instanciation
+		// JComponent : Instanciation
 
-			// Layout : Specification
-			{
-			BorderLayout borderLayout = new BorderLayout();
-			setLayout(borderLayout);
-
-			// borderLayout.setHgap(20);
-			// borderLayout.setVgap(20);
-			}
+		BorderLayout borderLayout = new BorderLayout();
+		setLayout(borderLayout);
 
 		// JComponent : add
 		//add(TODO,BorderLayout.CENTER);

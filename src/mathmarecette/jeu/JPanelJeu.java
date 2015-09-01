@@ -9,11 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.RenderingHints;
-import java.io.File;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -46,22 +42,6 @@ public class JPanelJeu extends JPanel
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
-
-	public void playSon()
-		{
-		try
-			{
-			File file = new File("./Son/schtong.wav");
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-			clip = AudioSystem.getClip();
-			clip.open(audioIn);
-			clip.start();
-			}
-		catch (Exception e)
-			{
-			System.out.println("erreur son");
-			}
-		}
 
 	public void initialisation()
 		{
@@ -140,7 +120,7 @@ public class JPanelJeu extends JPanel
 
 	public void removeSplash()
 		{
-		playSon();
+		Tools.playBruitage("./Son/schtong.wav");
 		imageCuisine = CUISINE.getImage();
 		repaint();
 		}
@@ -287,5 +267,4 @@ public class JPanelJeu extends JPanel
 	private static final ImageIcon CUISINE = new ImageIcon(".\\image\\kitchen.png");
 	private JPanelRecette panelRecette;
 	private JLabel[] labelIngredientTable;
-	private Clip clip;
 	}

@@ -1,6 +1,7 @@
 
 package mathmarecette.jeu;
 
+import mathmarecette.Tools;
 import mathmarecette.jeu.Recette.Cake;
 import mathmarecette.jeu.Recette.Crepe;
 import mathmarecette.jeu.Recette.Pizza;
@@ -62,7 +63,8 @@ public class JPanelArcade extends JPanelRecette
 
 	public void nextRecette()
 		{
-		this.recette.stopSon();
+		//this.recette.stopSon();
+		Tools.stopSon();
 		indiceRecette++;
 		removeAll();
 		add(panelMenu);
