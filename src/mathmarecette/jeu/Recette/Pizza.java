@@ -16,10 +16,9 @@ public class Pizza extends Recette
 		{
 		super("Pizza", "Tomate - Mozzarella - Jambon", 6, 8);
 
-
 		tabQuestion[0] = "Prépare 350 gramme de farine ";
-		tabQuestion[1] = "Prépare 10 gramme de sel (sachant qu’une cuillère à café fait 5 gramme)";
-		tabQuestion[2] = "Prépare 20 gramme de levure (sachant que 1 paquet de levure fait 40 gramme)";
+		tabQuestion[1] = "Prépare 10 gramme de sel <i>(sachant qu’une cuillère à café fait 5 gramme)</i>";
+		tabQuestion[2] = "Prépare 20 gramme de levure <i>(sachant que 1 carré de levure fait 40 gramme)</i>";
 		tabQuestion[3] = "Prépare 2 fois plus de cuillère à café d’huile que de sel";
 		tabQuestion[4] = "Prépare 0,25l d’eau chaude";
 		tabQuestion[5] = "Préparer 200g de coulis de tomate et la moitié de mozzarella (une mozzarella entière = 300g)";
@@ -29,12 +28,12 @@ public class Pizza extends Recette
 		createQuestion(2, CHEMIN_QUESTION + "Q3R1.png", CHEMIN_QUESTION + "Q3R2.png", CHEMIN_QUESTION + "Q3R3.png", CHEMIN_QUESTION + "Q3R4.png");
 		createQuestion(3, CHEMIN_QUESTION + "Q4R1.png", CHEMIN_QUESTION + "Q4R2.png", CHEMIN_QUESTION + "Q4R3.png", CHEMIN_QUESTION + "Q4R4.png");
 		createQuestion(4, CHEMIN_QUESTION + "Q5R1.png", CHEMIN_QUESTION + "Q5R2.png", CHEMIN_QUESTION + "Q5R3.png", CHEMIN_QUESTION + "Q5R4.png");
-		createQuestion(5, CHEMIN_QUESTION + "Q6R1.png", CHEMIN_QUESTION + "Q6R2.png", CHEMIN_QUESTION + "Q6R3.png", CHEMIN_QUESTION + "Q6R4.png");
+		createQuestion(5, CHEMIN_QUESTION + "Q7R1.png", CHEMIN_QUESTION + "Q7R2.png", CHEMIN_QUESTION + "Q7R3.png", CHEMIN_QUESTION + "Q7R4.png");
 
 		tabSolution[0] = 4;
-		tabSolution[1] = 1;
-		tabSolution[2] = 3;
-		tabSolution[3] = 2;
+		tabSolution[1] = 2;
+		tabSolution[2] = 1;
+		tabSolution[3] = 4;
 		tabSolution[4] = 2;
 		tabSolution[5] = 1;
 
@@ -81,6 +80,10 @@ public class Pizza extends Recette
 
 		imageRecette = new ImageIcon(".//image//splach/splachPizza.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_pizza.png");
+
+		this.questionBonus = "Pour cette pizza, il faut 20min de préparation, 1h de repos pour la pâte et enfin, 15min de cuisson. Sachant qu'il est 19h21, à quelle heure tu mets ta pizza au four?";
+		this.reponseBonus = "20h41";
+
 		music = "./Son/pizza.wav";
 
 		}

@@ -7,6 +7,7 @@ import mathmarecette.jeu.Recette.Pizza;
 import mathmarecette.jeu.Recette.Recette;
 import mathmarecette.jeu.Recette.Salade;
 import mathmarecette.jeu.Recette.Spaghetti;
+import mathmarecette.jeu.score.JPanelScoreFinal;
 import mathmarecette.menu.JFrameMenu;
 
 public class JPanelArcade extends JPanelRecette
@@ -26,6 +27,8 @@ public class JPanelArcade extends JPanelRecette
 		this.recettes[3] = new Cake();
 		this.recettes[4] = new Pizza();
 		indiceRecette = 0;
+		panelScoreF = new JPanelScoreFinal(this);
+
 		}
 
 	/*------------------------------------------------------------------*\
@@ -78,12 +81,22 @@ public class JPanelArcade extends JPanelRecette
 		{
 		if (indiceRecette >= recettes.length - 1)
 			{
-			parent.menu(this);
+			afficheScoreTot();
 			}
 		else
 			{
 			nextRecette();
 			}
+		}
+
+	public void afficheScoreTot()
+		{
+		panelScoreF.setTime(recette.getTime() + "");
+		this.remove(panelScore);
+		this.add(panelScoreF);
+		panelScoreF.startFade();
+		revalidate();
+		repaint();
 		}
 
 	/*------------------------------*\
@@ -93,6 +106,11 @@ public class JPanelArcade extends JPanelRecette
 	/*------------------------------*\
 	|*				Get				*|
 	\*------------------------------*/
+
+	public Recette[] getRecettes()
+		{
+		return this.recettes;
+		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
@@ -104,4 +122,5 @@ public class JPanelArcade extends JPanelRecette
 
 	private Recette[] recettes;
 	private int indiceRecette;
+	private JPanelScoreFinal panelScoreF;
 	}

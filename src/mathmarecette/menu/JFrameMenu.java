@@ -33,8 +33,6 @@ public class JFrameMenu extends JFrame
 		control();
 		appearance();
 
-		MP3 mp3 = new MP3("./Son/recette.mp3");
-		//mp3.play();
 		playSon();
 		}
 
@@ -178,10 +176,6 @@ public class JFrameMenu extends JFrame
 
 	private void appearance()
 		{
-		/*Dimension dim = new Dimension(600, 700);
-		setPreferredSize(dim);
-		setSize(dim);
-		setMaximumSize(dim);*/
 		pack();
 		setResizable(false);
 		setLocationRelativeTo(null); // frame centrer

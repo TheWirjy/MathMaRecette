@@ -16,10 +16,10 @@ public class Crepe extends Recette
 		{
 		super("Crêpes", "Pâte à crêpe nature", 4, 6);//huile, sucre, beurre
 
-		tabQuestion[0] = "Ajoute 2* 125g de farine";
-		tabQuestion[1] = "Avec une boite de 6 œufs on fait 3 pâtes à crêpes, combien t'en faut-il pour en faire une";
-		tabQuestion[2] = "Ajoute à quantité égal de l’eau et du lait pour un total de 0.5l";
-		tabQuestion[3] = "Ajoute [(5+3)/4] cuillère à soupe d’huile";
+		tabQuestion[0] = "Prépare 2* 125g de farine";
+		tabQuestion[1] = "Avec une boite de 6 œufs on fait 3 pâtes à crêpes, combien t'en faut-il pour en faire une?";
+		tabQuestion[2] = "Prépare à quantité égal de l’eau et du lait pour un total de 0.5l";
+		tabQuestion[3] = "Il faut 3 cl d’huile d'olive (1 cuillère = 1.5cl)";
 
 		createQuestion(0, CHEMIN_QUESTION + "Q1R1.png", CHEMIN_QUESTION + "Q1R2.png", CHEMIN_QUESTION + "Q1R3.png", CHEMIN_QUESTION + "Q1R4.png");
 		createQuestion(1, CHEMIN_QUESTION + "Q2R1.png", CHEMIN_QUESTION + "Q2R2.png", CHEMIN_QUESTION + "Q2R3.png", CHEMIN_QUESTION + "Q2R4.png");
@@ -64,6 +64,10 @@ public class Crepe extends Recette
 
 		imageRecette = new ImageIcon(".//image//splach/splachCrepes.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_crepe.png");
+
+		this.questionBonus = "Il est 16h22, il faut 10min pour faire la pâte et ensuite 15 min pour faire 10 crêpes. Quand pourra tu savourer tes crêpes? ";
+		this.reponseBonus = "16h47";
+
 		music = "./Son/crepe.wav";
 
 		}

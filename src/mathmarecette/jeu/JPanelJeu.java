@@ -151,7 +151,7 @@ public class JPanelJeu extends JPanel
 		removeSplash();
 		for(int i = 0; i < 4; i++)
 			{
-			labelIngredient[i].setEnabled(true);
+			labelIngredient[i].setEnabled(false);
 			labelIngredient[i].setVisible(true);
 			}
 		}

@@ -52,7 +52,7 @@ public class Spaghetti extends Recette
 		imageRecette = new ImageIcon(".//image//splach/splachSpaghetti.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_spaghetti.png");
 
-		this.questionBonus = "Il est 15h37, les pâtes doivent cuire 6min, à quelle heure seront-elle prête ?";
+		this.questionBonus = "Il est 15h37, les pâtes doivent cuire 6min, à quelle heure seront-elle prêtes ?";
 		this.reponseBonus = "15h43";
 		music = "./Son/spaghetti.wav";
 		}
