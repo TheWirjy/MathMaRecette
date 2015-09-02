@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import mathmarecette.Tools;
+import mathmarecette.jeu.JPanelVolume;
 
 public class JPanelMenu extends JPanel
 	{
@@ -58,6 +59,7 @@ public class JPanelMenu extends JPanel
 		pictures = new JLabel();
 		title = new JLabel();
 		bouton_mute = new JLabel();
+		panelVolume = new JPanelVolume();
 
 		arcade.setBorderPainted(false);
 		iconArcade = new ImageIcon(".\\Image\\BTNArcade.png");
@@ -85,6 +87,9 @@ public class JPanelMenu extends JPanel
 
 		setLayout(null);
 
+		panelVolume.setLocation(300-panelVolume.getWidth()/2, 670);
+
+		add(panelVolume);
 		add(bouton_mute);
 		add(arcade);
 		add(niveau);
@@ -258,4 +263,5 @@ public class JPanelMenu extends JPanel
 	private boolean dessus = false;
 
 	private JFrameMenu parent;
+	private JPanelVolume panelVolume;
 	}

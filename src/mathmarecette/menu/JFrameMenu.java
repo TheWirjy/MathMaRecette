@@ -29,7 +29,6 @@ public class JFrameMenu extends JFrame
 		geometry();
 		control();
 		appearance();
-
 		Tools.playSon("./Son/menu.wav");
 
 		}

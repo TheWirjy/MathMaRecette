@@ -104,6 +104,7 @@ public class JPanelScoreFinal extends JPanel implements ActionListener
 
 		int yPos = 130;
 		String txt = "";
+
 		for(int i = 0; i < recettes.length; i++)
 			{
 			yPos += 30;

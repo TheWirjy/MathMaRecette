@@ -7,6 +7,7 @@ import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.swing.ImageIcon;
 
 public class Tools
@@ -28,14 +29,12 @@ public class Tools
 			{
 			try
 				{
-				if (clipBruitage != null && clipBruitage.isRunning())
-					{
-					clipBruitage.close();
-					}
 				File file = new File(bruitage);
 				AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
 				clipBruitage = AudioSystem.getClip();
 				clipBruitage.open(audioIn);
+				volumeBruitage = (FloatControl)clipBruitage.getControl(FloatControl.Type.MASTER_GAIN);
+				volumeBruitage.setValue(valueVolumeSon);
 				clipBruitage.start();
 				}
 			catch (Exception e)
@@ -61,6 +60,8 @@ public class Tools
 				AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
 				clipSon = AudioSystem.getClip();
 				clipSon.open(audioIn);
+				volumeSon = (FloatControl)clipSon.getControl(FloatControl.Type.MASTER_GAIN);
+				volumeSon.setValue(valueVolumeSon);
 				clipSon.start();
 				clipSon.loop(Clip.LOOP_CONTINUOUSLY);
 				}
@@ -69,14 +70,17 @@ public class Tools
 				System.out.println("erreur son");
 				}
 			}
-		/*FloatControl volume = (FloatControl) clipSon.getControl(FloatControl.Type.MASTER_GAIN);
-		volume.setValue(-20);*/
 		}
 
 	//stop le son
 	public static void stopSon()
 		{
 		clipSon.close();
+		}
+
+	public static void stopBruitage()
+		{
+		clipBruitage.close();
 		}
 
 	/*------------------------------*\
@@ -92,6 +96,12 @@ public class Tools
 	/*------------------------------*\
 	|*				Get				*|
 	\*------------------------------*/
+
+	public static void setVolumeSon(int value)
+		{
+		valueVolumeSon = -50 + (value * 10);
+		volumeSon.setValue(valueVolumeSon);
+		}
 
 	//recupere la valeur du mute
 	public static boolean getMute()
@@ -118,7 +128,9 @@ public class Tools
 	private static Clip clipBruitage;
 	private static boolean bMute = false;
 	private static String sonSave = "";
-
+	private static FloatControl volumeSon;
+	private static FloatControl volumeBruitage;
+	private static float valueVolumeSon = 0;
 	//CHEMIN
 	public static final String CHEMIN = ".\\image\\ingredient\\";
 

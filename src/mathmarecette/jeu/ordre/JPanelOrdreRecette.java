@@ -9,12 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.io.File;
 import java.util.Random;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -69,7 +65,7 @@ public class JPanelOrdreRecette extends JPanel
 							if (panelDrag.getID_pos() + 1 < label.length)
 								{
 								swapLabel(panelDrag.getID_pos(), panelDrag.getID_pos() + 1);
-								playSon();
+								Tools.playBruitage("./Son/swap.wav");
 								}
 							}
 
@@ -78,7 +74,7 @@ public class JPanelOrdreRecette extends JPanel
 							if (panelDrag.getID_pos() - 1 > -1)
 								{
 								swapLabel(panelDrag.getID_pos(), panelDrag.getID_pos() - 1);
-								playSon();
+								Tools.playBruitage("./Son/swap.wav");
 								}
 							}
 						}
@@ -111,22 +107,6 @@ public class JPanelOrdreRecette extends JPanel
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
-
-	public void playSon()
-		{
-		try
-			{
-			File file = new File("./Son/swap.wav");
-			AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-			clip = AudioSystem.getClip();
-			clip.open(audioIn);
-			clip.start();
-			}
-		catch (Exception e)
-			{
-			System.out.println("erreur son");
-			}
-		}
 
 	public void swapLabel(int i1, int i2)
 		{
@@ -292,5 +272,4 @@ public class JPanelOrdreRecette extends JPanel
 	private boolean fini = false;
 	private JDialog dialog;
 	private JFrameMenu parent;
-	private Clip clip;
 	}

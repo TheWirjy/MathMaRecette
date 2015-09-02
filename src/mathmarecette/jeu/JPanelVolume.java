@@ -1,3 +1,4 @@
+
 package mathmarecette.jeu;
 
 import java.awt.Dimension;
@@ -5,17 +6,19 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import mathmarecette.Tools;
 
-public class JPanelVolume  extends JPanel
+public class JPanelVolume extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelVolume ()
+	public JPanelVolume()
 		{
 		geometry();
 		control();
@@ -40,42 +43,45 @@ public class JPanelVolume  extends JPanel
 
 	private void geometry()
 		{
-			// JComponent : Instanciation
-			volume= new JSlider();
-			sonPropriete= new JLabel("Paramètre Audio");
-			volumeActuel= new JLabel("10");
-			imageVolume= new JLabel();
+		// JComponent : Instanciation
+		volume = new JSlider();
+		volumeActuel = new JLabel("5");
 
+		volume.setValue(5);
+		volume.setMaximum(5);
+		volume.setMinimum(1);
 
-		// JComponent : add
-			add(sonPropriete);
-			add(volume);
-			add(volumeActuel);
-			add(imageVolume);
+		add(volume);
+		add(volumeActuel);
 
 		}
 
 	private void control()
 		{
-		// rien
+		volume.addChangeListener(new ChangeListener()
+			{
+
+				@Override
+				public void stateChanged(ChangeEvent e)
+					{
+					// TODO Auto-generated method stub
+					volumeActuel.setText(volume.getValue() + "");
+					Tools.setVolumeSon(volume.getValue());
+					}
+			});
 		}
 
 	private void appearance()
 		{
-		Dimension panelD = new Dimension(300, 120);
+		Dimension panelD = new Dimension(250, 60);
 		this.setSize(panelD);
 		this.setPreferredSize(panelD);
 		this.setMaximumSize(panelD);
-		setBackground(Tools.COLOR_MUR);
-
-		sonPropriete.setSize(300,50);
-		sonPropriete.setLocation(0, 0);
-
-		imageVolume.setSize(50, 50);
-		imageVolume.setLocation(0,60);
+		setOpaque(false);
 
 		volume.setSize(180, 50);
-		volume.setLocation(55, 60);
+		volume.setLocation(0, 0);
+		volume.setOpaque(false);
 
 		volumeActuel.setSize(50, 50);
 		volumeActuel.setLocation(245, 60);
@@ -88,11 +94,5 @@ public class JPanelVolume  extends JPanel
 
 	// Tools
 	private JSlider volume;
-	private JLabel sonPropriete;
 	private JLabel volumeActuel;
-	private JLabel imageVolume;
 	}
-
-
-
-
