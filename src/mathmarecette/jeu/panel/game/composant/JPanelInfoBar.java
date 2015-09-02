@@ -29,7 +29,7 @@ public class JPanelInfoBar extends JPanel
 	\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * panel menu - titre - chrono - bouton retour, mute
 	 */
 	private static final long serialVersionUID = -3107030340064931516L;
 
@@ -45,6 +45,7 @@ public class JPanelInfoBar extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//set mute demute (image)
 	public void setMute(boolean mute)
 		{
 		if (mute)
@@ -57,6 +58,7 @@ public class JPanelInfoBar extends JPanel
 			}
 		}
 
+	//valeur par defaut chrono, pas de titre
 	public void initialisation()
 		{
 		minute = 0;
@@ -68,22 +70,27 @@ public class JPanelInfoBar extends JPanel
 		labelTitre.setIcon(null);
 		}
 
+	//definit l image du titre
 	public void setTitre(ImageIcon icon)
 		{
 		labelTitre.setIcon(icon);
 		}
 
+	//start le chrono
+	//sauve le temps pour faire les calcul ensuite
 	public void start()
 		{
 		timeSave = getTime();
 		timer.start();
 		}
 
+	//stop le chrono
 	public void stop()
 		{
 		timer.stop();
 		}
 
+	//recupere le temps en seconde
 	public int getTime()
 		{
 		int s = 0;
@@ -130,6 +137,7 @@ public class JPanelInfoBar extends JPanel
 		int delais = 1000;
 		ActionListener tache_timer;
 
+		//chronometre
 		tache_timer = new ActionListener()
 			{
 
@@ -158,15 +166,13 @@ public class JPanelInfoBar extends JPanel
 						strMinute = "0" + minute;
 						}
 
-					labelChrono.setText(strMinute + ":" + strSeconde);/*
-																		* rafraichir le
-																		* label
-																		*/
+					labelChrono.setText(strMinute + ":" + strSeconde);//rafraichir lelabel
 					}
 			};
 
 		timer = new Timer(delais, tache_timer);
 
+		//bouton mute, demute, synchro des image
 		bouton_mute.addMouseListener(new MouseAdapter()
 			{
 
@@ -218,6 +224,7 @@ public class JPanelInfoBar extends JPanel
 					}
 			});
 
+		//bouton retour au menu
 		labelQuitter.addMouseListener(new MouseAdapter()
 			{
 
@@ -263,6 +270,7 @@ public class JPanelInfoBar extends JPanel
 	private void appearance()
 		{
 
+		//chargement de la police pour le chrono effet digital
 		try
 			{
 			Font font = Font.createFont(Font.TRUETYPE_FONT, new File(".\\font\\DIGITALISM.TTF"));

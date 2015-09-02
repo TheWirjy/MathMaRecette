@@ -31,7 +31,7 @@ public class JPanelJeuHorloge extends JPanel implements ActionListener
 	\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * panel jeu horloge
 	 */
 	private static final long serialVersionUID = -3863676014336915474L;
 
@@ -48,17 +48,20 @@ public class JPanelJeuHorloge extends JPanel implements ActionListener
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//initialisation du panel, efface la question, remet l horloge a 14h
 	public void initialisation()
 		{
 		labelQuestion.setText("");
 		panelHorloge.initialisation();
 		}
 
+	//set la question a afficher
 	public void setQuestion(String question)
 		{
 		labelQuestion.setText("<html><body><p align=\"center\">" + question + "</p></body></html>");
 		}
 
+	//effet fade
 	@Override
 	public void actionPerformed(ActionEvent e)
 		{
@@ -71,11 +74,13 @@ public class JPanelJeuHorloge extends JPanel implements ActionListener
 		repaint();
 		}
 
+	//demarre l effet
 	public void startFade()
 		{
 		timer.start();
 		}
 
+	//dessine un cadre derriere la question pour continuer notre effet de zoom dans la cuisine
 	@Override
 	protected void paintComponent(Graphics g)
 		{
@@ -130,6 +135,7 @@ public class JPanelJeuHorloge extends JPanel implements ActionListener
 
 	private void control()
 		{
+		//valide l heure, controle le resultat et affiche le score de la recette
 		buttonValider.addActionListener(new ActionListener()
 			{
 

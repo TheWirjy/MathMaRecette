@@ -13,6 +13,12 @@ public class JFramePrint extends JFrame
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
+	/**
+	 *
+	 * @param file : fichier pdf a imprimer
+	 * @param preview : image du pdf a afficher servant de preview
+	 */
+
 	public JFramePrint(String file, ImageIcon preview)
 		{
 		geometry(file, preview);
@@ -24,9 +30,31 @@ public class JFramePrint extends JFrame
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//recupere l instance de la frame, afin de n'en creer qu une
+	//si la frame est deja creer, on set juste les nouveau parametre de la recette et on retourne l instance
+	public static JFramePrint getInstance(String file, ImageIcon preview)
+		{
+		if (instance == null)
+			{
+			instance = new JFramePrint(file, preview);
+			}
+		else
+			{
+			instance.setParam(file, preview);
+			instance.setVisible(true);
+			}
+		return instance;
+		}
+
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
+
+	//permet de maj les pdf et preview
+	private void setParam(String file, ImageIcon preview)
+		{
+		panelPrint.setParam(file, preview);
+		}
 
 	/*------------------------------*\
 	|*				Get				*|
@@ -38,20 +66,16 @@ public class JFramePrint extends JFrame
 
 	private void geometry(String file, ImageIcon preview)
 		{
-			// JComponent : Instanciation
+		// JComponent : Instanciation
+		panelPrint = new JPanelPrint(this, file, preview);
 
 			// Layout : Specification
 			{
 			BorderLayout borderLayout = new BorderLayout();
 			setLayout(borderLayout);
-
-			// borderLayout.setHgap(20);
-			// borderLayout.setVgap(20);
 			}
 
-		// JComponent : add
-		//add(TODO,BorderLayout.CENTER);
-		add(new JPanelPrint(this, file, preview), BorderLayout.CENTER);
+		add(panelPrint, BorderLayout.CENTER);
 
 		}
 
@@ -68,24 +92,6 @@ public class JFramePrint extends JFrame
 		setVisible(true); // last!
 		}
 
-	/*------------------------------------------------------------------*\
-	|*							Attributs Private						*|
-	\*------------------------------------------------------------------*/
-
-	/*------------------------------------------------------------------*\
-	|*							Methodes Public							*|
-	\*------------------------------------------------------------------*/
-
-	/*------------------------------------------------------------------*\
-	|*							Methodes Private						*|
-	\*------------------------------------------------------------------*/
-
-	/*------------------------------------------------------------------*\
-	|*							Methodes Public							*|
-	\*------------------------------------------------------------------*/
-
-	/*------------------------------------------------------------------*\
-	|*							Methodes Private						*|
-	\*------------------------------------------------------------------*/
-
+	private static JFramePrint instance;
+	private JPanelPrint panelPrint;
 	}

@@ -23,7 +23,7 @@ public class JPanelCredits extends JPanel
 		\*------------------------------------------------------------------*/
 
 	/**
-	 * 
+	 * panel a propos, logo école + nom prenom
 	 */
 	private static final long serialVersionUID = 8560785449800765489L;
 	public JPanelCredits(JFrameMenu _parent)
@@ -43,6 +43,7 @@ public class JPanelCredits extends JPanel
 		// ANTI ALIASING
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+		//dessine une feuille blanche
 		g2.setColor(Color.GRAY);
 		g2.fillRect(55, 55, 500, 600);
 
@@ -51,9 +52,12 @@ public class JPanelCredits extends JPanel
 		g2.setColor(Color.BLACK);
 		g2.drawRect(50, 50, 500, 600);
 
+		//dessine les logo
 		g2.drawImage(Tools.HES_SO.getImage(), 150, 100, null);
 		g2.drawImage(Tools.ARC.getImage(), 150, 253, null);
 		g2.drawLine(130, 350, 470, 350);
+
+		//dessine les nom prenom + titre
 		g2.setFont(FONT_T);
 		g2.setColor(COLOR_ARC_ROUGE);
 		g2.drawString("Projet d'HES d'été", 210, 380);
@@ -81,6 +85,7 @@ public class JPanelCredits extends JPanel
 
 	private void control()
 		{
+		//ajout du bouton retour pour revenir au menu
 		labelRetour.addMouseListener(new MouseAdapter()
 			{
 

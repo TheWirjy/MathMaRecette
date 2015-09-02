@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import mathmarecette.Tools;
-import mathmarecette.jeu.volume.JPanelVolume;
+import mathmarecette.menu.volume.JPanelVolume;
 
 public class JPanelMenu extends JPanel
 	{
@@ -21,7 +21,7 @@ public class JPanelMenu extends JPanel
 		\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * panel du menu principal
 	 */
 	private static final long serialVersionUID = 3592622742224246733L;
 
@@ -37,6 +37,7 @@ public class JPanelMenu extends JPanel
 		|*							Methodes Private						*|
 		\*------------------------------------------------------------------*/
 
+	//mute le son, maj l'icone du menu
 	public void setMute(boolean mute)
 		{
 		if (mute)
@@ -87,7 +88,7 @@ public class JPanelMenu extends JPanel
 
 		setLayout(null);
 
-		panelVolume.setLocation(300-panelVolume.getWidth()/2, 670);
+		panelVolume.setLocation(300 - panelVolume.getWidth() / 2, 670);
 
 		add(panelVolume);
 		add(bouton_mute);
@@ -105,6 +106,7 @@ public class JPanelMenu extends JPanel
 		return new MouseAdapter()
 			{
 
+				//definition des action en fonction du bouton presser
 				@Override
 				public void mouseReleased(MouseEvent e)
 					{
@@ -159,11 +161,13 @@ public class JPanelMenu extends JPanel
 
 	private void control()
 		{
+		//applique le listener
 		arcade.addMouseListener(monMouseListener(arcade, 0));
 		niveau.addMouseListener(monMouseListener(niveau, 1));
 		tutoriel.addMouseListener(monMouseListener(tutoriel, 2));
 		apropos.addMouseListener(monMouseListener(apropos, 3));
 
+		//bouton mute, demute, synchronisation des images (menu et dans le jeu)
 		bouton_mute.addMouseListener(new MouseAdapter()
 			{
 

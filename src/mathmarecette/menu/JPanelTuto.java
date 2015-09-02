@@ -22,7 +22,8 @@ public class JPanelTuto extends JPanel
 	\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * panel du tuto
+	 * affiche 3 gif et un texte explicatif
 	 */
 	private static final long serialVersionUID = -2031343329085314683L;
 
@@ -129,7 +130,7 @@ public class JPanelTuto extends JPanel
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
 		labelTitre.setSize(230, 60);
-		labelTitre.setLocation(300-115, 20);
+		labelTitre.setLocation(300 - 115, 20);
 		labelTitre.setIcon(Tools.TITRE_TUTO);
 
 		labelRetour.setIcon(Tools.BOUTON_RETOUR);

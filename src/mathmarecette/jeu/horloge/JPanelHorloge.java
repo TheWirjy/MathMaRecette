@@ -26,7 +26,7 @@ public class JPanelHorloge extends JPanel
 	\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * Panel Horloge
 	 */
 	private static final long serialVersionUID = -4081161226106246894L;
 
@@ -34,6 +34,8 @@ public class JPanelHorloge extends JPanel
 		{
 		initialisation();
 
+		//calcul des angles pour les heure 1h = 360/12 = 30°
+		//on demarre a -15° car si l aiguille est entre -15° et 15° il est midi
 		f_angle = new int[12];
 		int a = -15;
 		for(int i = 0; i < 12; i++)
@@ -41,6 +43,7 @@ public class JPanelHorloge extends JPanel
 			f_angle[i] = a + i * 30;
 			}
 
+		//tableau des angles pour les minutes 360/60 = 6°
 		f_angleM = new int[60];
 		int m = -3;
 		for(int i = 0; i < 60; i++)
@@ -58,6 +61,7 @@ public class JPanelHorloge extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//met les valeurs par défaut (14h)
 	public void initialisation()
 		{
 		reponse = "";
@@ -146,12 +150,14 @@ public class JPanelHorloge extends JPanel
 		g2.setTransform(transform);
 		}
 
+	//active le listener pour tourner les aiguilles - montre le panel
 	public void start()
 		{
 		start = true;
 		setVisible(true);
 		}
 
+	//stop le listener - cache le panel
 	public void stop()
 		{
 		start = false;
@@ -166,6 +172,7 @@ public class JPanelHorloge extends JPanel
 	|*				Get				*|
 	\*------------------------------*/
 
+	//retourne l heure afficher sur l horloge sous le format "14h30"
 	public String getHeure()
 		{
 		return reponse;
@@ -185,6 +192,7 @@ public class JPanelHorloge extends JPanel
 
 	private void control()
 		{
+		//tourne l aiguille en maintenant la touche de la souris enfoncer et en bougant le curseur
 		addMouseMotionListener(new MouseMotionAdapter()
 			{
 
@@ -199,6 +207,8 @@ public class JPanelHorloge extends JPanel
 					}
 			});
 
+		// met l aiguille la ou on presse sur l horloge
+		//recupere le bouton presser - gauche -> tourne les heure - droite -> tourne l aiguille minutes
 		addMouseListener(new MouseAdapter()
 			{
 
@@ -215,16 +225,21 @@ public class JPanelHorloge extends JPanel
 			});
 		}
 
+	//rotation de l aiguille
 	private void rotateAiguille(MouseEvent e)
 		{
 		double a = Math.atan2((200 - e.getX()), (200 - e.getY()));
 
+		//transformation radian -> degré
 		a = Math.abs(a * 180 / Math.PI);
 		if (e.getX() < 200)
 			{
+			//tangante, 180° -> quand on tourne dans le sens des aiguille d une montre depuis midi, si l'aiguille arrive sur le cote gauche de l horlge, au lieu d avoir un angle qui redescent de 180 a 0, ou le fais aller de 180 a 360
 			a = 360 - a;
 			}
 
+		//si c est le clique gauche
+		//on regarde dans quelle plage de 30° est l aiguille et on lui donne l heure se trouvant au milieu de cette plage
 		if (button == MouseEvent.BUTTON1)
 			{
 			for(int i = 0; i < 12; i++)
@@ -236,6 +251,8 @@ public class JPanelHorloge extends JPanel
 					}
 				}
 			}
+		//si c est le bouton droite de la souris
+		//idem, on regarde cette fois dans quelle plage de 6° est l aiguille et on lui applique l angle ce trouvant au centre de cette plage
 		else if (button == MouseEvent.BUTTON3)
 			{
 			for(int i = 0; i < 60; i++)
@@ -255,6 +272,7 @@ public class JPanelHorloge extends JPanel
 					}
 				}
 			}
+		//assigne l heure afficher a une variable réponse qui pourra etre demander avec un get
 		reponse = heure + "h" + minute;
 		//System.out.println(reponse);
 		repaint();

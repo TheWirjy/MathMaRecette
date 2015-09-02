@@ -57,12 +57,6 @@ public class Crepe extends Recette
 		tabOrdreIndice[8] = 5;
 		tabOrdreIndice[9] = 6;
 
-		this.tabOrdreReponse = new int[10];
-		for(int i = 0; i < 10; i++)
-			{
-			tabOrdreReponse[i] = tabOrdreIndice[i];
-			}
-
 		imageRecette = new ImageIcon(".//image//splach/splachCrepes.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_crepe.png");
 

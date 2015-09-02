@@ -33,6 +33,12 @@ public class JPanelPrint extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
+	/**
+	 *
+	 * @param parent : jframeMenu, frame de base
+	 * @param file : fichier pdf
+	 * @param preview : image du fichier pdf (preview avant impression)
+	 */
 	public JPanelPrint(JFramePrint parent, String file, ImageIcon preview)
 		{
 		this.file = file;
@@ -41,40 +47,63 @@ public class JPanelPrint extends JPanel
 		geometry();
 		control();
 		appearance();
+
 		refreshPrint();
 		}
 
+	//maj les document pdf et image preview en fonction de la recette que l on souhaite imprimer
+	public void setParam(String file, ImageIcon preview)
+		{
+		this.file = file;
+		this.preview = preview;
+		refreshPrint();
+		repaint();
+		}
+
+	//refresh la liste des imprimante et set le document a imprimer
 	private void refreshPrint()
 		{
+		//recupere les imprimante
 		services = getPrinteuse();
+		//nettoie la liste des imprimante
 		listImprimante.removeAllItems();
+		//si le fichier pdf existe
 		if (services != null)
 			{
+			//si il existe des imprimante
 			if (services.length > 0)
 				{
+				//affiche les imprimante dans la liste
 				for(int i = 0; i < services.length; i++)
 					{
 					listImprimante.addItem(services[i].toString());
 					}
+				//permet l impression
 				buttonImprimer.setEnabled(true);
 				}
 			else
 				{
+				//affiche qu il n y a pas d imprimante
 				listImprimante.addItem("pas d imprimante");
+				//bloque l impression
 				buttonImprimer.setEnabled(false);
 				}
 			}
 		else
 			{
+			//affiche une erreur fichier pdf
 			listImprimante.addItem("Erreur fichier");
+			//bloque l impression
 			buttonImprimer.setEnabled(false);
 			}
 		}
 
+	//set le document et recupere les imprimante si le document est valider
 	private PrintService[] getPrinteuse()
 		{
 		try
 			{
+			//recupere le pdf
 			psStream = new FileInputStream(this.file);
 			}
 		catch (FileNotFoundException ffne)
@@ -82,72 +111,23 @@ public class JPanelPrint extends JPanel
 			System.out.println("File non trouvé");
 			}
 
+		//si pas de fichier pdf retourne null
 		if (psStream == null) { return null; }
 
+		//set le pdf
 		psInFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
 		myDoc = new SimpleDoc(psStream, psInFormat, null);
 		aset = new HashPrintRequestAttributeSet();
+		//recupere les imprimante
 		PrintService[] services = PrintServiceLookup.lookupPrintServices(psInFormat, aset);
 
+		//retourne les imprimante
 		return services;
 		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
-	/*
-		public static void printRecette(String file)
-			{
-			FileInputStream psStream = null;
-			try
-				{
-				psStream = new FileInputStream(file);
-				}
-			catch (FileNotFoundException ffne)
-				{
-				ffne.printStackTrace();
-				}
-
-			if (psStream == null) { return; }
-
-			DocFlavor psInFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
-			Doc myDoc = new SimpleDoc(psStream, psInFormat, null);
-			PrintRequestAttributeSet aset = new HashPrintRequestAttributeSet();
-			PrintService[] services = PrintServiceLookup.lookupPrintServices(psInFormat, aset);
-
-			// this step is necessary because I have several printers configured
-			PrintService myPrinter = null;
-			for(int i = 0; i < services.length; i++)
-				{
-
-				String svcName = services[i].toString();
-				System.out.println("service found: " + svcName);
-				if (svcName.contains("PDFCreator"))
-					{
-					myPrinter = services[i];
-					System.out.println("my printer found: " + svcName);
-					break;
-					}
-				}
-
-			if (myPrinter != null)
-				{
-				DocPrintJob job = myPrinter.createPrintJob();
-				try
-					{
-					job.print(myDoc, aset);
-					}
-				catch (Exception pe)
-					{
-					pe.printStackTrace();
-					}
-				}
-			else
-				{
-				System.out.println("no printer services found");
-				}
-			}
-	*/
 
 	@Override
 	protected void paintComponent(Graphics g)
@@ -158,6 +138,7 @@ public class JPanelPrint extends JPanel
 		// ANTI ALIASING
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+		//AFFICHE L IMAGE DE PREVIEW AVEC UN EFFET D OMBRE
 		g2.setColor(Color.GRAY);
 		g2.fillRect(65, 65, 480, 600);
 		g2.drawImage(preview.getImage(), 60, 60, null);

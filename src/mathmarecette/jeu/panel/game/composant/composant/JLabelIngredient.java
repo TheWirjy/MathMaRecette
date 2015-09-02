@@ -28,10 +28,16 @@ public class JLabelIngredient extends JPanel
 	\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * label case reponse
 	 */
 	private static final long serialVersionUID = 8578267501910220280L;
 
+	/**
+	 *
+	 * @param _panelRecette : panel du jeu
+	 * @param _id : id du label
+	 * @param pO : position de la case
+	 */
 	public JLabelIngredient(JPanelRecette _panelRecette, int _id, Point pO)
 		{
 		this.panelRecette = _panelRecette;
@@ -54,6 +60,7 @@ public class JLabelIngredient extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//dessine un effet 3D sur le label
 	@Override
 	protected void paintComponent(Graphics g)
 		{
@@ -87,11 +94,13 @@ public class JLabelIngredient extends JPanel
 	|*				Set				*|
 	\*------------------------------*/
 
+	//set l ingredient a afficher sur le label
 	public void setIngredient(ImageIcon ingr)
 		{
 		this.labelImage.setIcon(ingr);
 		}
 
+	//defini l origin du label
 	public void setOrigin(Point p)
 		{
 		pO = p;
@@ -122,6 +131,7 @@ public class JLabelIngredient extends JPanel
 
 	private void control()
 		{
+		//Drag and drop
 		addMouseMotionListener(new MouseMotionAdapter()
 			{
 
@@ -148,22 +158,21 @@ public class JLabelIngredient extends JPanel
 					ySourisClick = e.getY();
 					x = 0;
 					y = 0;
-					// setComponentZOrder(e.getComponent(), 0);
 					}
 
 				@Override
 				public void mouseReleased(MouseEvent e)
 					{
+					//si la case se trouve hors de la table (donc hors du rectangle defini ci dessous), on remet la case/label a sa place d origin
 					if (x + 45 < 110 || x + 45 > 520 || y + 45 < 320 || y + 45 > 500)
 						{
 						e.getComponent().setLocation(pO);
 						}
 					else
+						//sinon, on remet la case a sa place et on valide la reponse
 						{
 						e.getComponent().setLocation(pO);
-						Integer Px = new Integer(x);
-						Integer Py = new Integer(y);
-						panelRecette.reponseValider(id, (ImageIcon)labelImage.getIcon(), Px.intValue(), Py.intValue());
+						panelRecette.reponseValider(id, (ImageIcon)labelImage.getIcon(), x, y);
 						}
 					}
 			});
@@ -218,8 +227,7 @@ public class JLabelIngredient extends JPanel
 	protected boolean shady = true;
 	protected boolean highQuality = true;
 	protected Dimension arcs = new Dimension(0, 0);
-	// protected Dimension arcs = new Dimension(20, 20);//creates curved borders
-	// and panel
+
 	protected int shadowGap = 5;
 	protected int shadowOffset = 4;
 	private Color colorRect;

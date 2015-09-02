@@ -6,6 +6,9 @@ import javax.swing.ImageIcon;
 public class IngredientOrdre
 	{
 
+	/*
+	 * Classe pour les "carte" du jeu d'ordre de la recette. Une carte est constituer d un titre et d une image en dessous
+	 */
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/

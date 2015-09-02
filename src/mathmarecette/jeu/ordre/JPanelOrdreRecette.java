@@ -30,7 +30,7 @@ public class JPanelOrdreRecette extends JPanel
 	\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * panel du mini jeu ordre de la recette
 	 */
 	private static final long serialVersionUID = 8641894428622130919L;
 
@@ -39,14 +39,20 @@ public class JPanelOrdreRecette extends JPanel
 		this.recette = recette;
 		this.dialog = dialog;
 		this.parent = frame;
+
+		//cree un tableau de "carte" ingredient/action
 		label = new JPanelIngredientOrdre[recette.getTabIngredientOrdre().length];
+		//recupere les indice des cartes de la recette en question
 		int[] tabOrdreIndice = recette.getTabOrdreIndice();
 
+		//pour chaque "carte" (action)
 		for(int i = 0; i < label.length; i++)
 			{
-
+			//on cree une carte avec son indice unique, l'indice de la position ou il doit se trouver a la fin du mini jeu, sa position, son image et son titre
 			JPanelIngredientOrdre newPanel = new JPanelIngredientOrdre(i, tabOrdreIndice[i], 10 + SIZE_PANEL * i + i * 2, recette.getTabIngredientOrdre()[i].getImage(), recette.getTabIngredientOrdre()[i].getNom());
 			newPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+			//ajoute la carte dans le tableau de carte
 			label[i] = newPanel;
 			label[i].addMouseMotionListener(new MouseMotionAdapter()
 				{
@@ -56,12 +62,16 @@ public class JPanelOrdreRecette extends JPanel
 						{
 						// TODO Auto-generated method stub
 
+						//recupere la carte selectionnée
 						JPanelIngredientOrdre panelDrag = (JPanelIngredientOrdre)e.getComponent();
 
+						//set la position de la carte avec celle de la souris
 						panelDrag.setLocation(panelDrag.getX() + e.getX() - xSourisClick, panelDrag.getY());
 
+						//si la carte bouge d'une moitier de sa taille vers la droite
 						if ((panelDrag.getX() - panelDrag.getPositionX()) > M_SIZE_PANEL)
 							{
+							//et qu il y a une autre carte a sa droite, on les alterne
 							if (panelDrag.getID_pos() + 1 < label.length)
 								{
 								swapLabel(panelDrag.getID_pos(), panelDrag.getID_pos() + 1);
@@ -69,6 +79,7 @@ public class JPanelOrdreRecette extends JPanel
 								}
 							}
 
+						//idem mais a gauche
 						if ((panelDrag.getX() - panelDrag.getPositionX()) < -M_SIZE_PANEL)
 							{
 							if (panelDrag.getID_pos() - 1 > -1)
@@ -80,6 +91,9 @@ public class JPanelOrdreRecette extends JPanel
 						}
 				});
 
+			//au clique, on passe la carte au premier plan pour qu elle passe devant les autre carte et non derriere
+			//recupere la position du clique
+			//lorsque on relache on positionne correctement la carte que l on deplaçait
 			label[i].addMouseListener(new MouseAdapter()
 				{
 
@@ -108,6 +122,7 @@ public class JPanelOrdreRecette extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//Swap de 2 cartes : on swap les ID position, la position x de la carte qui lui etait attribuer, on adapte la position de la carte avec le nouveau x, on swap egalement les cartes dans notre tableau de cartes
 	public void swapLabel(int i1, int i2)
 		{
 		label[i2].setLocation(label[i1].getPositionX(), posIngr);
@@ -141,7 +156,7 @@ public class JPanelOrdreRecette extends JPanel
 		{
 		// JComponent : Instanciation
 		buttonValider = new JButton("Valider");
-		labelResultat = new JLabel("5 éssais restants");
+		labelResultat = new JLabel("4 éssais restants");
 
 		labelIndication = new JLabelIndication();
 
@@ -153,6 +168,7 @@ public class JPanelOrdreRecette extends JPanel
 			setComponentZOrder(label[i], i);
 			}
 
+		//generation aleatoire des positions de depart des carte (mélange les carte)
 		Random gen = new Random();
 		for(int i = 0; i < label.length; i++)
 			{
@@ -170,7 +186,13 @@ public class JPanelOrdreRecette extends JPanel
 
 	private void control()
 		{
-		// rien
+		// lorsque on valide, on regarde si il a encore des essai, sinon on lui dis qu il a perdu et donne 0 points
+		//sinon, on regarde ca reponse, on regarde combien de carte son bien placer et on le lui indique,
+		//on diminue le nombre d essai de 1
+		//si toute les carte son bien positionner, on affiche reussite, et i peut continuer la suite du jeu
+		//la distribution est defini comme suit:
+		//tout juste 200pts
+		//-50pts par essai supplementaire
 		buttonValider.addActionListener(new ActionListener()
 			{
 
@@ -180,15 +202,22 @@ public class JPanelOrdreRecette extends JPanel
 					// TODO Auto-generated method stub
 					if (!fini)
 						{
-						if (nbEssai > 0)
-							{
-							nbEssai--;
-							cptBonneRep = recette.checkReponseOrdre(label);
+						nbEssai--;
+						cptBonneRep = recette.checkReponseOrdre(label);
 
-							if (cptBonneRep == label.length)
+						if (cptBonneRep == label.length)
+							{
+							recette.addScore(50 * (nbEssai + 1));
+							labelResultat.setText("Tu as réussi!! Clique sur continuer pour passer à la suite");
+							buttonValider.setText("Continuer");
+							fini = true;
+							}
+						else
+							{
+							if (nbEssai <= 0)
 								{
-								recette.addScore(50 * (nbEssai + 1));
-								labelResultat.setText("Tu as réussi!! Clique sur continuer pour passer à la suite");
+								recette.addScore(0);
+								labelResultat.setText("Tu n'as plus d'essai. Clique sur continuer pour passer à la suite");
 								buttonValider.setText("Continuer");
 								fini = true;
 								}
@@ -196,15 +225,8 @@ public class JPanelOrdreRecette extends JPanel
 								{
 								labelResultat.setText(cptBonneRep + "/" + label.length + " Bonne réponse - plus que " + nbEssai + "essai(s)");
 								}
-							cptBonneRep = 0;
 							}
-						else
-							{
-							recette.addScore(0);
-							labelResultat.setText("Tu n'as plus d'essai. Clique sur continuer pour passer à la suite");
-							buttonValider.setText("Continuer");
-							fini = true;
-							}
+						cptBonneRep = 0;
 						}
 					else
 						{

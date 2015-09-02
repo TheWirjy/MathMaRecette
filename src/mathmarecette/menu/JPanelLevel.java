@@ -25,7 +25,7 @@ public class JPanelLevel extends JPanel
 		\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * panel lancement rapide d une unique recette
 	 */
 	private static final long serialVersionUID = 2066725686365442599L;
 
@@ -132,12 +132,14 @@ public class JPanelLevel extends JPanel
 
 	private void control()
 		{
+		//definit les listener de chaque bouton, lance la bonne recette
 		spaghetti.addMouseListener(monMouseListener(spaghetti, new Spaghetti()));
 		crepe.addMouseListener(monMouseListener(crepe, new Crepe()));
 		cake.addMouseListener(monMouseListener(cake, new Cake()));
 		salade.addMouseListener(monMouseListener(salade, new Salade()));
 		pizza.addMouseListener(monMouseListener(pizza, new Pizza()));
 
+		//retour au menu
 		labelRetour.addMouseListener(new MouseAdapter()
 			{
 
@@ -179,6 +181,7 @@ public class JPanelLevel extends JPanel
 
 		}
 
+	//placement des composant (bouton)
 	private void appearance()
 		{
 		Dimension panelD = new Dimension(600, 700);

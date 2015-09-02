@@ -22,7 +22,7 @@ public class JPanelRecette extends JPanel
 	\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * panel principal du jeu contenant une recette
 	 */
 	private static final long serialVersionUID = 4325091777849076584L;
 
@@ -40,16 +40,19 @@ public class JPanelRecette extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//mute le son (synchro des image)
 	public void setMute(boolean mute)
 		{
 		panelMenu.setMute(mute);
 		}
 
+	//quitte la recette lorsque on presse sur le bouton continuer du panel score
 	public void retourScore()
 		{
 		parent.quitRecette();
 		}
 
+	//demarre la question de l horloge
 	public void startQuestionBonus()
 		{
 		this.remove(panelJeu);
@@ -58,6 +61,7 @@ public class JPanelRecette extends JPanel
 		repaint();
 		}
 
+	//affiche le score de la recette, joue un son
 	public void afficheScore()
 		{
 		this.recette.setMedaille();
@@ -71,6 +75,8 @@ public class JPanelRecette extends JPanel
 		repaint();
 		}
 
+	//initialisation de la recette, remise a zero des composant, variable, enleve tout les panel present sur la frame et place les bon panel
+	//affiche l image d'intro (splash) de la recette
 	public void init(Recette recette)
 		{
 		removeAll();
@@ -86,6 +92,7 @@ public class JPanelRecette extends JPanel
 		this.recette.playSon();
 		}
 
+	//demarre la recette : start le chrono, enleve le splash, affiche la premiere question et set les case reponse, affiche le titre de la recette dans le panel menu
 	public void startRecette()
 		{
 		panelJeuHorloge.setQuestion(recette.getQuestionBonus());
@@ -96,29 +103,37 @@ public class JPanelRecette extends JPanel
 		panelMenu.start();
 		}
 
+	//validation d une reponse QCM
 	public void reponseValider(int _id, ImageIcon icon, int x, int y)
 		{
+		//regarde si l indice de la case choisi correspond a la bonne reponse
 		boolean bJuste = recette.verificationReponse(_id);
 
+		//si oui, on ajoute 50pts a la recette, maj le score sur le frigo
 		if (bJuste)
 			{
 			recette.addScore(50);
 			panelJeu.setScore(recette.getScore());
 			}
 		else
+			//sinon ajoute 0pts
 			{
 			recette.addScore(0);
 			}
 
+		//maj les voyant vert (suivi des questions)
 		panelBarResult.next(recette.getCptQuestion());
+		//ajoute l ingredient sur la table
 		panelJeu.addIngr(icon, recette.getCptQuestion(), x, y);
 
+		//si il existe une question suivante, on l affiche et set les nouveaux choix de reponse
 		if (recette.next())
 			{
 			panelJeu.getLabelQuestion().setText("<html><body><p align=\"center\">" + recette.getQuestion() + "</p></body></html>");
 			panelJeu.setIngredient(recette.getReponse());
 			}
 		else
+			//sinon on affiche le mini jeu (cache tout se qui a sur la table, le score et affiche l image cuisine flou)
 			{
 			panelJeu.hideForMiniJeu();
 			recette.ordreRecette(parent);
@@ -129,6 +144,7 @@ public class JPanelRecette extends JPanel
 	|*				Set				*|
 	\*------------------------------*/
 
+	//set la recette
 	public void setRecette(Recette _recette)
 		{
 		this.recette = _recette;

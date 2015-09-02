@@ -73,12 +73,6 @@ public class Pizza extends Recette
 		tabOrdreIndice[13] = 11;
 		tabOrdreIndice[14] = 12;
 
-		this.tabOrdreReponse = new int[15];
-		for(int i = 0; i < 15; i++)
-			{
-			tabOrdreReponse[i] = tabOrdreIndice[i];
-			}
-
 		imageRecette = new ImageIcon(".//image//splach/splachPizza.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_pizza.png");
 

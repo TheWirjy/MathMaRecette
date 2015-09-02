@@ -14,13 +14,14 @@ public class JLabelIndication extends JLabel
 	{
 
 	/**
-	 * 
+	 * label representant un cadre qui permet d'afficher le but du mini jeu
 	 */
 	private static final long serialVersionUID = -396919816700923212L;
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
+
 	public JLabelIndication()
 		{
 		this.labelText = new JLabel("<html><body><p align=\"center\"> Met dans l'ordre les actions ci-dessous pour obtenir la marche à suivre de la recette</p></body></html>");
@@ -42,16 +43,19 @@ public class JLabelIndication extends JLabel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//set font
 	public void setFontLabel(Font f)
 		{
 		labelText.setFont(f);
 		}
 
+	//set la question a afficher dans le label
 	public void setQuestion(String text)
 		{
 		labelText.setText(text);
 		}
 
+	//Un label qui contient un label, donc lorsque on resize le label extern, on augmente celui si de +10 pour donner une marge entre le label extern et interne
 	@Override
 	public void setSize(int width, int height)
 		{

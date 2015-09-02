@@ -43,13 +43,6 @@ public class Spaghetti extends Recette
 		tabOrdreIndice[3] = 3;
 		tabOrdreIndice[4] = 4;
 
-		this.tabOrdreReponse = new int[5];
-		tabOrdreIndice[0] = 0;
-		tabOrdreIndice[1] = 1;
-		tabOrdreIndice[2] = 2;
-		tabOrdreIndice[3] = 3;
-		tabOrdreIndice[4] = 4;
-
 		imageRecette = new ImageIcon(".//image//splach/splachSpaghetti.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_spaghetti.png");
 

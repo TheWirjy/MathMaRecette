@@ -1,5 +1,5 @@
 
-package mathmarecette.jeu.volume;
+package mathmarecette.menu.volume;
 
 import java.awt.Dimension;
 
@@ -17,6 +17,10 @@ public class JPanelVolume extends JPanel
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
+
+	/*
+	 * slider permet de modifier le volume des musique
+	 */
 
 	public JPanelVolume()
 		{
@@ -46,7 +50,7 @@ public class JPanelVolume extends JPanel
 		// JComponent : Instanciation
 		volume = new JSlider();
 		volumeActuel = new JLabel("5");
-
+		volume.setUI(new JSliderCustomUI(volume));
 		volume.setValue(5);
 		volume.setMaximum(5);
 		volume.setMinimum(1);

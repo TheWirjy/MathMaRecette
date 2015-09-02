@@ -74,6 +74,7 @@ public class JDialogOrdreRecette extends JDialog
 		{
 		// setPreferredSize(new Dimension(400, 300));
 		pack();
+		//setLocation(parent.getLocation().x + parent.getWidth()/2 - panelOrdreRecette.getWidth() / 2, parent.getLocation().y + parent.getHeight()/2 - panelOrdreRecette.getHeight() / 2);
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
 

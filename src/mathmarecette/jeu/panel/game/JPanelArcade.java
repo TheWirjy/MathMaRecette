@@ -1,7 +1,6 @@
 
 package mathmarecette.jeu.panel.game;
 
-import mathmarecette.Tools;
 import mathmarecette.jeu.Recette.Cake;
 import mathmarecette.jeu.Recette.Crepe;
 import mathmarecette.jeu.Recette.Pizza;
@@ -18,9 +17,13 @@ public class JPanelArcade extends JPanelRecette
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
+	/*
+	 * herite de panelRecette, modifie se que l on a besoin afin d enchainer les recette
+	 */
 	public JPanelArcade(JFrameMenu _parent)
 		{
 		super(_parent);
+		//defini un tableau avec les 5 recettes
 		this.recettes = new Recette[5];
 		this.recettes[0] = new Salade();
 		this.recettes[1] = new Spaghetti();
@@ -36,6 +39,7 @@ public class JPanelArcade extends JPanelRecette
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//affiche la question de l horloge
 	@Override
 	public void startQuestionBonus()
 		{
@@ -45,6 +49,7 @@ public class JPanelArcade extends JPanelRecette
 		repaint();
 		}
 
+	//initialisation, remove tout les panel et ajoute les bon, defini la premiere recette, affiche le splash d intro...
 	public void init()
 		{
 		removeAll();
@@ -61,10 +66,10 @@ public class JPanelArcade extends JPanelRecette
 		this.recette.playSon();
 		}
 
+	//recette suivante, augmente l indice pour passer a la recette suivante, set la nouvelle recette, initialise le panel/jeu
 	public void nextRecette()
 		{
-		//this.recette.stopSon();
-		Tools.stopSon();
+		//Tools.stopSon();
 		indiceRecette++;
 		removeAll();
 		add(panelMenu);
@@ -78,6 +83,8 @@ public class JPanelArcade extends JPanelRecette
 		this.recette.playSon();
 		}
 
+	//lorsque on clique sur continer depuis le tableau des score, on regarde s il existe une recette suivant, si oui on commence la nouvelle recette
+	//sinon on affiche le resumé du mode arcade
 	@Override
 	public void retourScore()
 		{
@@ -91,6 +98,7 @@ public class JPanelArcade extends JPanelRecette
 			}
 		}
 
+	//affiche le resumé du mode arcade (les scores finaux, medaille, toque)
 	public void afficheScoreTot()
 		{
 		panelScoreF.setTime(recette.getTime() + "");
@@ -101,6 +109,7 @@ public class JPanelArcade extends JPanelRecette
 		repaint();
 		}
 
+	//quitter arcade pour revenir au menu
 	public void quitArcade()
 		{
 		parent.quitRecette();
@@ -114,6 +123,7 @@ public class JPanelArcade extends JPanelRecette
 	|*				Get				*|
 	\*------------------------------*/
 
+	//recupere le tableau des recette
 	public Recette[] getRecettes()
 		{
 		return this.recettes;

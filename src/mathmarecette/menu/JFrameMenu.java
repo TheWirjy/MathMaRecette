@@ -19,7 +19,7 @@ public class JFrameMenu extends JFrame
 	\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * JFrame menu Frame principal
 	 */
 	private static final long serialVersionUID = 2051497550641079298L;
 
@@ -37,6 +37,8 @@ public class JFrameMenu extends JFrame
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//mute le son
+	//synchronisation des icone
 	public void setMute(boolean mute)
 		{
 		panelMenu.setMute(mute);
@@ -44,6 +46,7 @@ public class JFrameMenu extends JFrame
 		panelArcade.setMute(mute);
 		}
 
+	//start la question de l horloge
 	public void questionBonus()
 		{
 		if (arcade)
@@ -56,6 +59,7 @@ public class JFrameMenu extends JFrame
 			}
 		}
 
+	//lance une recette passer en parametre
 	public void recette(Recette _recette)
 		{
 		arcade = false;
@@ -66,6 +70,7 @@ public class JFrameMenu extends JFrame
 		repaint();
 		}
 
+	//lorsque on quitte une recette, on revient sur le menu principal
 	public void quitRecette()
 		{
 		if (arcade)
@@ -82,6 +87,7 @@ public class JFrameMenu extends JFrame
 		Tools.playSon("./Son/menu.wav");
 		}
 
+	//lance le mode arcade
 	public void arcade()
 		{
 		arcade = true;
@@ -92,6 +98,7 @@ public class JFrameMenu extends JFrame
 		repaint();
 		}
 
+	//affiche le menu ou l on choisi une recette a jouer
 	public void level()
 		{
 		remove(panelMenu);
@@ -99,6 +106,7 @@ public class JFrameMenu extends JFrame
 		repaint();
 		}
 
+	//affiche le tutoriel
 	public void tuto()
 		{
 		remove(panelMenu);
@@ -106,6 +114,7 @@ public class JFrameMenu extends JFrame
 		repaint();
 		}
 
+	//affiche la page a propos
 	public void credit()
 		{
 		remove(panelMenu);
@@ -113,6 +122,7 @@ public class JFrameMenu extends JFrame
 		repaint();
 		}
 
+	//retour au menu (depuis les credit, choix recette par exemple)
 	public void menu(JPanel panel)
 		{
 		remove(panel);
@@ -128,6 +138,7 @@ public class JFrameMenu extends JFrame
 	|*				Get				*|
 	\*------------------------------*/
 
+	//recupere le panel de jeu
 	public JPanelRecette getPanelRecette()
 		{
 		return panelRecette;
@@ -137,6 +148,7 @@ public class JFrameMenu extends JFrame
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
 
+	//definition des panel
 	private void geometry()
 		{
 		// JComponent : Instanciation

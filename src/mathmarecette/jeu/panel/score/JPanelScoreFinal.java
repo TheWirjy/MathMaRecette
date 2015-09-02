@@ -24,7 +24,7 @@ public class JPanelScoreFinal extends JPanel implements ActionListener
 	{
 
 	/**
-	 *
+	 * panel de score final apres le mode arcade fini au complet
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -91,12 +91,14 @@ public class JPanelScoreFinal extends JPanel implements ActionListener
 
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 
+		//dessine le tableau
 		g2.drawImage(Tools.TABLEAU.getImage(), 0, 0, null);
 		g2.setColor(Color.WHITE);
 		g2.drawLine(200, 110, 400, 110);
 		g2.setFont(FONT_TITRE);
 		g2.drawString("RÉSUMÉ", 240, 100);
 
+		//recupere les recette
 		Recette[] recettes = panelRecette.getRecettes();
 		int scoreTot = 0;
 		int scoreTotMax = 0;
@@ -105,6 +107,7 @@ public class JPanelScoreFinal extends JPanel implements ActionListener
 		int yPos = 130;
 		String txt = "";
 
+		//pour chaque recette, on affiche son nom et son score ainsi que le nombre de point max possible pour la recette
 		for(int i = 0; i < recettes.length; i++)
 			{
 			yPos += 30;
@@ -132,6 +135,7 @@ public class JPanelScoreFinal extends JPanel implements ActionListener
 
 		yPos += 30;
 
+		//affiche le temps
 		g2.drawString(scoreTot + "", 390, yPos);
 		g2.drawString(" / " + scoreTotMax, 450, yPos);
 		g2.setColor(Color.WHITE);
@@ -170,6 +174,7 @@ public class JPanelScoreFinal extends JPanel implements ActionListener
 
 	private void control()
 		{
+		//affiche la toque avec les badge que l on pourra imprimer en 3d
 		boutonToc.addActionListener(new ActionListener()
 			{
 
@@ -192,6 +197,7 @@ public class JPanelScoreFinal extends JPanel implements ActionListener
 					}
 			});
 
+		//bouton quitter = retour menu
 		boutonQuitter.addActionListener(new ActionListener()
 			{
 

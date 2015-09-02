@@ -22,7 +22,7 @@ public class JPanelBarEtat extends JPanel
 	\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * panel suivi des question qcm, affiche a quelle question on est (en fonction du nombre de question total)
 	 */
 	private static final long serialVersionUID = -4325557141358902924L;
 
@@ -41,6 +41,7 @@ public class JPanelBarEtat extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//initialisation : recupere le nombre de question = nombre de rond a afficher
 	public void initialisation(int _nbQuestion)
 		{
 		nbQuestion = _nbQuestion;
@@ -58,6 +59,8 @@ public class JPanelBarEtat extends JPanel
 
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+		//si la case du tableau = 1 : signifie que la question a ete repondu donc on affiche un cercle vert
 		for(int i = 0; i < nbQuestion; i++)
 			{
 			if (reponse.get(i) == 1)
@@ -70,7 +73,7 @@ public class JPanelBarEtat extends JPanel
 		g2.setColor(Color.black);
 		g2.setStroke(new BasicStroke(2));
 
-		for(int i = 0; i < nbQuestion; i++)
+		for(int i = 0; i < nbQuestion; i++)//affiche un cercle vide de contour noir pour chaque question
 			{
 			g.drawOval(i * 10 + i * 5 + 5, 3, 10, 10);
 			}

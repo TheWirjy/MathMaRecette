@@ -24,7 +24,7 @@ public class JPanelScore extends JPanel implements ActionListener
 	{
 
 	/**
-	 *
+	 * panel du score. il s affiche apres chaque recette
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -46,16 +46,19 @@ public class JPanelScore extends JPanel implements ActionListener
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//permet de lui passer le temps effectuer pour faire la recette
 	public void setTime(String time)
 		{
 		this.time = time;
 		}
 
+	//demarre l effet au lancement
 	public void startFade()
 		{
 		timer.start();
 		}
 
+	//effet fade
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 		{
@@ -68,6 +71,7 @@ public class JPanelScore extends JPanel implements ActionListener
 		repaint();
 		}
 
+	//set la couleur du pinceau en fonction du score. 0 = rouge, sinon vert
 	public void color(Graphics2D g, int score)
 		{
 		if (score > 0)
@@ -89,19 +93,26 @@ public class JPanelScore extends JPanel implements ActionListener
 		// ANTI ALIASING
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+		//effet fade
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 
+		//dessine le tableau en image de fond
 		g2.drawImage(Tools.TABLEAU.getImage(), 0, 0, null);
+
+		//dessine le titre
 		g2.setColor(Color.WHITE);
 		g2.drawLine(120, 110, 480, 110);
 		g2.setFont(FONT_TITRE);
 		g2.drawString("TABLEAU DES SCORES", 130, 100);
 
+		//recupere les element de la recette a afficher (score + question)
 		int[] score = panelRecette.getRecette().getTabScore();
 		int nbQuestion = panelRecette.getRecette().getNbQuestion();
 
 		g2.setFont(FONT_QUESTION);
 
+		//affiche sur une ligne la question (30 caractere max)  et le nombre de point obtenu
+		//pour chaque question de la recette
 		int yPos = 130;
 		String txt = "";
 		for(int i = 0; i < nbQuestion; i++)
@@ -127,6 +138,8 @@ public class JPanelScore extends JPanel implements ActionListener
 
 		g2.setColor(Color.WHITE);
 
+		//si la recette a un mini jeu, on affiche le score qu il a fait
+		//affiche le score de la question de l horloge egalement
 		if (panelRecette.getRecette().aUnMiniJeu())
 			{
 			yPos += 50;
@@ -145,6 +158,7 @@ public class JPanelScore extends JPanel implements ActionListener
 			g2.drawString(score[nbQuestion + 1] + "", 480, yPos);
 			}
 		else
+			//s il a pas de mini jeu on affiche juste la question de l horloge
 			{
 			yPos += 50;
 			g2.drawString("Horloge", 70, yPos);
@@ -161,6 +175,7 @@ public class JPanelScore extends JPanel implements ActionListener
 
 		yPos += 30;
 
+		//affiche le score total de la recette
 		int scoreTot = panelRecette.getRecette().getScore();
 
 		color(g2, scoreTot);
@@ -169,6 +184,7 @@ public class JPanelScore extends JPanel implements ActionListener
 		g2.setColor(Color.WHITE);
 		g2.drawString(time, 70, yPos);
 
+		//affiche la medaille obtenue
 		g2.drawImage(panelRecette.getRecette().getMedaille().getImage(), 460, 50, null);
 		}
 
@@ -201,6 +217,7 @@ public class JPanelScore extends JPanel implements ActionListener
 
 	private void control()
 		{
+		//bouton continuer, on retourne au menu, si arcade, on passe a la recette suivante
 		buttonContinuer.addActionListener(new ActionListener()
 			{
 
@@ -212,6 +229,7 @@ public class JPanelScore extends JPanel implements ActionListener
 					}
 			});
 
+		//bouton d impression, recupere l instance de la fenetre d impression et l affiche et passant les bon document (pdf + image)
 		buttonImprimer.addActionListener(new ActionListener()
 			{
 
@@ -219,7 +237,8 @@ public class JPanelScore extends JPanel implements ActionListener
 				public void actionPerformed(ActionEvent e)
 					{
 					// TODO Auto-generated method stub
-					new JFramePrint(panelRecette.getRecette().getPrintPdf(), panelRecette.getRecette().getPrintImage());
+					JFramePrint.getInstance(panelRecette.getRecette().getPrintPdf(), panelRecette.getRecette().getPrintImage());
+					//new JFramePrint(panelRecette.getRecette().getPrintPdf(), panelRecette.getRecette().getPrintImage());
 					}
 			});
 		}

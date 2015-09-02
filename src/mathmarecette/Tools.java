@@ -78,11 +78,6 @@ public class Tools
 		clipSon.close();
 		}
 
-	public static void stopBruitage()
-		{
-		clipBruitage.close();
-		}
-
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
@@ -97,6 +92,7 @@ public class Tools
 	|*				Get				*|
 	\*------------------------------*/
 
+	//set le volume des son/bruitage
 	public static void setVolumeSon(int value)
 		{
 		valueVolumeSon = -50 + (value * 10);
@@ -131,6 +127,7 @@ public class Tools
 	private static FloatControl volumeSon;
 	private static FloatControl volumeBruitage;
 	private static float valueVolumeSon = 0;
+
 	//CHEMIN
 	public static final String CHEMIN = ".\\image\\ingredient\\";
 

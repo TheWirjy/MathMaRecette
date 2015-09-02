@@ -20,9 +20,18 @@ public class JPanelIngredientOrdre extends JPanel
 	\*------------------------------------------------------------------*/
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6946919024948969270L;
+
+	/**
+	 *
+	 * @param _id : id unique du panel
+	 * @param id_ordre : id permet de recuperer la position du panel
+	 * @param x : position horizontal
+	 * @param image : image du panel (ingredient)
+	 * @param nom : nom du panel (l'action)
+	 */
 	public JPanelIngredientOrdre(int _id, int id_ordre, int x, ImageIcon image, String nom)
 		{
 		this.id = _id;

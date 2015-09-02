@@ -29,14 +29,16 @@ public class JPanelJeu extends JPanel
 	\*------------------------------------------------------------------*/
 
 	/**
-	 *
+	 * panel du jeu, le panel cuisine + case reponse
 	 */
 	private static final long serialVersionUID = 5397251654976575668L;
 
 	public JPanelJeu(JPanelRecette panelRecette)
 		{
 		this.panelRecette = panelRecette;
+		//tableau des case reponse
 		this.labelIngredient = new JLabelIngredient[4];
+		//defini le tableau des aliments a afficher sur la table
 		labelIngredientTable = new JLabel[8];
 		geometry();
 		control();
@@ -47,16 +49,26 @@ public class JPanelJeu extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	//initialisation
 	public void initialisation()
 		{
+		//enleve tout les composant du panel et on rajoute ceux que l on a besoin
 		removeAll();
+
+		//defini l image de la cusine
 		imageCuisine = CUISINE.getImage();
+
+		//set les label avec leur valeur par defaut
 		labelScore.setText("0");
 		labelQuestion.setText("");
+		//initialise la barre de suivi
 		panelBarResult.initialisation(0);
+		//rend visible la question et le score
 		labelScore.setVisible(true);
 		labelQuestion.setVisible(true);
 
+		//set image null au label qui affiche les aliment sur la table
+		//rend le label visible
 		for(JLabel ingr:labelIngredientTable)
 			{
 			ingr.setIcon(null);
@@ -70,12 +82,14 @@ public class JPanelJeu extends JPanel
 			labelIngredient[i].setVisible(false);
 			}
 
+		//ajoute les composant
 		for(int i = 0; i < labelIngredient.length; i++)
 			{
 			add(labelIngredient[i]);
 			setComponentZOrder(labelIngredient[i], i);
 			}
 
+		//Zorder le composant avec le plus petit indice sera au dessus des autre
 		// JComponent : add
 		add(panelIntroRecette);
 		setComponentZOrder(panelIntroRecette, 4);
@@ -96,6 +110,7 @@ public class JPanelJeu extends JPanel
 			}
 		}
 
+	//set les image reponse sur les case reponse
 	public void setIngredient(ImageIcon[] ingredient)
 		{
 		for(int i = 0; i < ingredient.length; i++)
@@ -104,17 +119,20 @@ public class JPanelJeu extends JPanel
 			}
 		}
 
+	//ajout un ingredient sur la table
 	public void addIngr(ImageIcon icon, int indice, int x, int y)
 		{
 		labelIngredientTable[indice].setIcon(icon);
 		labelIngredientTable[indice].setLocation(x, y);
 		}
 
+	//set la question a afficher
 	public void setQuestion(String question)
 		{
 		labelQuestion.setText("<html><body><p align=\"center\">" + question + "</p></body></html>");
 		}
 
+	//affiche le splash d intro de la recette
 	public void setSplash(ImageIcon image)
 		{
 		panelIntroRecette.setVisible(true);
@@ -122,6 +140,7 @@ public class JPanelJeu extends JPanel
 		imageCuisine = CUISINE_FLOU.getImage();
 		}
 
+	//cache le splash
 	public void removeSplash()
 		{
 		Tools.playBruitage("./Son/schtong.wav");
@@ -129,6 +148,7 @@ public class JPanelJeu extends JPanel
 		repaint();
 		}
 
+	//demarre la recette (lorsque on cache le splash)
 	public void startRecette()
 		{
 		panelRecette.startRecette();
@@ -167,6 +187,7 @@ public class JPanelJeu extends JPanel
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
 
+	//cache les element pour le mini jeu d ordre de la recette, set l image flou
 	public void hideForMiniJeu()
 		{
 		for(JLabelIngredient label:labelIngredient)
@@ -183,6 +204,7 @@ public class JPanelJeu extends JPanel
 		repaint();
 		}
 
+	//dessine l image de la cuisine
 	@Override
 	protected void paintComponent(Graphics g)
 		{
