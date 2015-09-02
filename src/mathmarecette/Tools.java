@@ -137,6 +137,7 @@ public class Tools
 	public static final ImageIcon HES_SO = new ImageIcon(".\\image\\logo_ecole\\hes-so.jpg");
 	public static final ImageIcon ARC = new ImageIcon(".\\image\\logo_ecole\\arc.jpg");
 
+	public static final ImageIcon TITRE_TUTO = new ImageIcon(".\\image\\titre\\titre_tuto.png");
 	public static final ImageIcon BOUTON_QUITTER_ARCADE = new ImageIcon(".\\image\\quitter_fin_arcade.png");
 	public static final ImageIcon BOUTON_QUITTER_ARCADE_CLICK = new ImageIcon(".\\image\\quitter_fin_arcade_click.png");
 

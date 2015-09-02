@@ -26,7 +26,6 @@ public class Recette
 		this.miniJeu = true;
 		this.tabQuestion = new String[nbQuestion];
 		this.tabReponse = new ImageIcon[nbQuestion][];
-		this.music = ".\\Son\\recette.mp3";
 		this.tabScore = new int[nbScore];
 
 		for(int i = 0; i < nbQuestion; i++)

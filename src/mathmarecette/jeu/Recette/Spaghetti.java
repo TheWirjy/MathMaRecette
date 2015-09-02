@@ -30,11 +30,11 @@ public class Spaghetti extends Recette
 		tabSolution[2] = 4;
 
 		this.tabIngredientOrdre = new IngredientOrdre[5];
-		tabIngredientOrdre[0] = new IngredientOrdre(CHEMIN_ORDRE + "eau.png", "Eau");
-		tabIngredientOrdre[1] = new IngredientOrdre(CHEMIN_ORDRE + "sel.png", "Sel");
-		tabIngredientOrdre[2] = new IngredientOrdre(CHEMIN_ORDRE + "pate.png", "Pâtes");
+		tabIngredientOrdre[0] = new IngredientOrdre(CHEMIN_ORDRE + "eau.png", "Mettre de l'eau");
+		tabIngredientOrdre[1] = new IngredientOrdre(CHEMIN_ORDRE + "sel.png", "Ajouter le sel");
+		tabIngredientOrdre[2] = new IngredientOrdre(CHEMIN_ORDRE + "pate.png", "Mettre les pâtes");
 		tabIngredientOrdre[3] = new IngredientOrdre(CHEMIN_ORDRE + "casserole.png", "Cuisson");
-		tabIngredientOrdre[4] = new IngredientOrdre(CHEMIN_ORDRE + "huile.png", "Huile d'olive");
+		tabIngredientOrdre[4] = new IngredientOrdre(CHEMIN_ORDRE + "huile.png", "Mettre l'huile d'olive");
 
 		this.tabOrdreIndice = new int[5];
 		tabOrdreIndice[0] = 0;
