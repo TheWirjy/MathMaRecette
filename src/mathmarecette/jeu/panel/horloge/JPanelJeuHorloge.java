@@ -21,7 +21,7 @@ import javax.swing.Timer;
 
 import mathmarecette.Tools;
 import mathmarecette.jeu.horloge.JPanelHorloge;
-import mathmarecette.jeu.panel.game.composant.JPanelRecette;
+import mathmarecette.jeu.panel.game.JPanelRecette;
 
 public class JPanelJeuHorloge extends JPanel implements ActionListener
 	{

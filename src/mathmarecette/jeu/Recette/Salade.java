@@ -35,7 +35,7 @@ public class Salade extends Recette
 
 		tabSolution[0] = 2;
 		tabSolution[1] = 2;
-		tabSolution[2] = 2;//a voir
+		tabSolution[2] = 2;
 		tabSolution[3] = 4;
 		tabSolution[4] = 2;
 		tabSolution[5] = 3;
@@ -47,6 +47,8 @@ public class Salade extends Recette
 		this.reponseBonus = "12h01";
 
 		music = "./Son/salade.wav";
+		this.printImage = Tools.RECETTE_SALADE_IMAGE;
+		this.printPdf = Tools.RECETTE_SALADE;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -75,7 +77,8 @@ public class Salade extends Recette
 				medaille = Tools.M_SALADE_2;
 				}
 			}
-		else // -42% juste
+		else
+			// -42% juste
 			{
 			medaille = Tools.M_SALADE_1;
 			}

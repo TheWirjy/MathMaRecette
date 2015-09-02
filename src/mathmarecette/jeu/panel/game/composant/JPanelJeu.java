@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import mathmarecette.Tools;
+import mathmarecette.jeu.panel.game.JPanelRecette;
 import mathmarecette.jeu.panel.game.composant.composant.JLabelIngredient;
 import mathmarecette.jeu.panel.game.composant.composant.JPanelBarEtat;
 import mathmarecette.jeu.panel.game.composant.composant.JPanelIntroRecette;

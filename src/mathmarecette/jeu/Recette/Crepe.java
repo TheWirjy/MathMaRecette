@@ -70,6 +70,8 @@ public class Crepe extends Recette
 		this.reponseBonus = "16h47";
 
 		music = "./Son/crepe.wav";
+		this.printImage = Tools.RECETTE_CREPE_IMAGE;
+		this.printPdf = Tools.RECETTE_CREPE;
 
 		}
 

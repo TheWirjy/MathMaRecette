@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import mathmarecette.Tools;
-import mathmarecette.jeu.panel.game.composant.JPanelRecette;
+import mathmarecette.jeu.panel.game.JPanelRecette;
 
 public class JLabelIngredient extends JPanel
 	{

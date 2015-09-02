@@ -1,5 +1,5 @@
 
-package mathmarecette.jeu.panel.game;
+package mathmarecette.jeu.panel.game.composant;
 
 import java.awt.Color;
 import java.awt.Dimension;

@@ -78,6 +78,8 @@ public class Cake extends Recette
 		this.reponseBonus = "17h58";
 
 		music = "./Son/cake.wav";
+		this.printImage = Tools.RECETTE_CAKE_IMAGE;
+		this.printPdf = Tools.RECETTE_CAKE;
 		}
 
 	/*------------------------------------------------------------------*\

@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import mathmarecette.Tools;
 import mathmarecette.jeu.Recette.Recette;
 import mathmarecette.jeu.panel.game.JPanelArcade;
-import mathmarecette.jeu.panel.game.composant.JPanelRecette;
+import mathmarecette.jeu.panel.game.JPanelRecette;
 
 public class JFrameMenu extends JFrame
 	{

@@ -201,4 +201,18 @@ public class Tools
 	public static final ImageIcon M_PIZZA_1 = new ImageIcon(".\\image\\medailles\\mPizza1.png");
 	public static final ImageIcon M_PIZZA_2 = new ImageIcon(".\\image\\medailles\\mPizza2.png");
 	public static final ImageIcon M_PIZZA_3 = new ImageIcon(".\\image\\medailles\\mPizza3.png");
+
+	//RECETTE
+	public static final String RECETTE_SALADE = "./recette/salade.pdf";
+	public static final String RECETTE_CAKE = "./recette/cake.pdf";
+	public static final String RECETTE_CREPE = "./recette/crepe.pdf";
+	public static final String RECETTE_PIZZA = "./recette/pizza.pdf";
+	public static final String RECETTE_SPAGHETTI = "./recette/spaghetti.pdf";
+
+	public static final ImageIcon RECETTE_SALADE_IMAGE = new ImageIcon(".\\image\\recette\\salade.png");
+	public static final ImageIcon RECETTE_CAKE_IMAGE = new ImageIcon(".\\image\\recette\\cake.png");
+	public static final ImageIcon RECETTE_CREPE_IMAGE = new ImageIcon(".\\image\\recette\\crepe.png");
+	public static final ImageIcon RECETTE_PIZZA_IMAGE = new ImageIcon(".\\image\\recette\\pizza.png");
+	public static final ImageIcon RECETTE_SPAGHETTI_IMAGE = new ImageIcon(".\\image\\recette\\spaghetti.png");
+
 	}

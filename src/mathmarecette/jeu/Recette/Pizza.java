@@ -86,6 +86,8 @@ public class Pizza extends Recette
 		this.reponseBonus = "20h41";
 
 		music = "./Son/pizza.wav";
+		this.printImage = Tools.RECETTE_PIZZA_IMAGE;
+		this.printPdf = Tools.RECETTE_PIZZA;
 
 		}
 

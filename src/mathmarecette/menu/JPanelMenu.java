@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import mathmarecette.Tools;
-import mathmarecette.jeu.JPanelVolume;
+import mathmarecette.jeu.volume.JPanelVolume;
 
 public class JPanelMenu extends JPanel
 	{

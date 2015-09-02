@@ -1,5 +1,5 @@
 
-package mathmarecette.jeu.panel.game.composant;
+package mathmarecette.jeu.panel.game;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -7,7 +7,8 @@ import javax.swing.JPanel;
 
 import mathmarecette.Tools;
 import mathmarecette.jeu.Recette.Recette;
-import mathmarecette.jeu.panel.game.JPanelInfoBar;
+import mathmarecette.jeu.panel.game.composant.JPanelInfoBar;
+import mathmarecette.jeu.panel.game.composant.JPanelJeu;
 import mathmarecette.jeu.panel.game.composant.composant.JPanelBarEtat;
 import mathmarecette.jeu.panel.horloge.JPanelJeuHorloge;
 import mathmarecette.jeu.panel.score.JPanelScore;

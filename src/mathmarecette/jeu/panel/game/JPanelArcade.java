@@ -8,7 +8,6 @@ import mathmarecette.jeu.Recette.Pizza;
 import mathmarecette.jeu.Recette.Recette;
 import mathmarecette.jeu.Recette.Salade;
 import mathmarecette.jeu.Recette.Spaghetti;
-import mathmarecette.jeu.panel.game.composant.JPanelRecette;
 import mathmarecette.jeu.panel.score.JPanelScoreFinal;
 import mathmarecette.menu.JFrameMenu;
 

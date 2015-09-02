@@ -1,5 +1,5 @@
 
-package mathmarecette.jeu;
+package mathmarecette.jeu.volume;
 
 import java.awt.Dimension;
 

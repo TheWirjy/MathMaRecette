@@ -256,7 +256,17 @@ public class Recette
 
 	public int getScoreMax()
 		{
-			return scoreMax;
+		return scoreMax;
+		}
+
+	public ImageIcon getPrintImage()
+		{
+		return printImage;
+		}
+
+	public String getPrintPdf()
+		{
+		return printPdf;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -296,4 +306,7 @@ public class Recette
 
 	protected int time;
 	protected int scoreMax;
+
+	protected ImageIcon printImage;
+	protected String printPdf;
 	}

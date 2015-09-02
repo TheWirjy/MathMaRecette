@@ -17,7 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import mathmarecette.Tools;
-import mathmarecette.jeu.panel.game.composant.JPanelRecette;
+import mathmarecette.jeu.panel.game.JPanelRecette;
+import mathmarecette.jeu.print.JFramePrint;
 
 public class JPanelScore extends JPanel implements ActionListener
 	{
@@ -208,6 +209,17 @@ public class JPanelScore extends JPanel implements ActionListener
 					{
 					// TODO Auto-generated method stub
 					panelRecette.retourScore();
+					}
+			});
+
+		buttonImprimer.addActionListener(new ActionListener()
+			{
+
+				@Override
+				public void actionPerformed(ActionEvent e)
+					{
+					// TODO Auto-generated method stub
+					new JFramePrint(panelRecette.getRecette().getPrintPdf(), panelRecette.getRecette().getPrintImage());
 					}
 			});
 		}
