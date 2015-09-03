@@ -138,39 +138,42 @@ public class JPanelTuto extends JPanel
 		labelRetour.setLocation(10, 10);
 
 		labelDrag.setSize(135, 160);
-		labelDrag.setLocation(430, 130);
+		labelDrag.setLocation(415, 130);
 		labelDrag.setIcon(Tools.GIF_DRAG);
 		labelDrag.setBorder(border);
 
 		labelOrdre.setSize(135, 160);
-		labelOrdre.setLocation(430, 310);
+		labelOrdre.setLocation(415, 310);
 		labelOrdre.setIcon(Tools.GIF_ORDRE);
 		labelOrdre.setBorder(border);
 
 		labelHorloge.setSize(135, 160);
-		labelHorloge.setLocation(430, 490);
+		labelHorloge.setLocation(415, 490);
 		labelHorloge.setIcon(Tools.GIF_HORLOGE);
 		labelHorloge.setBorder(border);
 
-		font = new Font("Segoe Print", Font.PLAIN, 12);
+		font = new Font("Segoe Print", Font.PLAIN, 14);
 
-		labelDragText.setSize(370, 160);
-		labelDragText.setLocation(30, 130);
+		labelDragText.setSize(330, 160);
+		labelDragText.setLocation(50, 130);
 		labelDragText.setFont(font);
-		labelDragText
-				.setText("<html><body><p align=\"justify\">Ici tu as une question et quatre possibilitées de réponse. Pour répondre, tu dois cliquer (maintenir enfoncé la touche) sur un alimant. Ensuite tu dois le déplacer sur la table et relaché le bouton pour validé ton choix.</p></body></html>");
+		labelDragText.setText("<html><body><p align=\"justify\">Clique sur une réponse<br/>Maintient la touche enfoncée et déplace la case sur la table<br/>Relâche le bouton</p></body></html>");
+		//labelDragText
+		//		.setText("<html><body><p align=\"justify\">Ici tu as une question et quatre possibilitées de réponse. Pour répondre, tu dois cliquer (maintenir enfoncé la touche) sur un alimant. Ensuite tu dois le déplacer sur la table et relaché le bouton pour validé ton choix.</p></body></html>");
 
-		labelOrdreText.setSize(370, 160);
-		labelOrdreText.setLocation(30, 310);
+		labelOrdreText.setSize(330, 160);
+		labelOrdreText.setLocation(50, 310);
 		labelOrdreText.setFont(font);
-		labelOrdreText
-				.setText("<html><body><p align=\"justify\">Dans ce mini jeu, tu dois mettre dans l'ordre les actions qui compose la recette. Pour déplacer une action, tu dois cliquer (maintenir la touche enfoncée) sur une \"carte\" et la déplacée de gauche à droite. Relâche le bouton pour validé la position. Le jeu t'indique le nombre d'action qui sont bien placé lorsque tu valide une réponse mais tu ne sais pas lesquelles. Tu as 4 essais.</p></body></html>");
+		labelOrdreText.setText("<html><body><p align=\"justify\">Clique sur une carte<br/>Maintient la touche enfoncée et déplace la de gauche à droite<br/>Relâche le bouton</p></body></html>");
+		//labelOrdreText
+			//	.setText("<html><body><p align=\"justify\">Dans ce mini jeu, tu dois mettre dans l'ordre les actions qui compose la recette. Pour déplacer une action, tu dois cliquer (maintenir la touche enfoncée) sur une \"carte\" et la déplacée de gauche à droite. Relâche le bouton pour validé la position. Le jeu t'indique le nombre d'action qui sont bien placé lorsque tu valide une réponse mais tu ne sais pas lesquelles. Tu as 4 essais.</p></body></html>");
 
-		labelHorlogeText.setSize(370, 160);
-		labelHorlogeText.setLocation(30, 490);
+		labelHorlogeText.setSize(330, 160);
+		labelHorlogeText.setLocation(50, 490);
 		labelHorlogeText.setFont(font);
-		labelHorlogeText
-				.setText("<html><body><p align=\"justify\">Le but ici est de mettre l'horloge à l'heure. Pour dépacer une aiguille, tu dois maintenir presser le bouton de la souris, déplacer l'aiguille puis relâcher pour valider<br/>Clique gauche : Heures<br/>Clique droit : Minutes</p></body></html>");
+		labelHorlogeText.setText("<html><body><p align=\"justify\">Clique sur l'horloge<br/>Maintient la touche enfoncée et tourne<br/>Relâche le bouton<br/>Clique gauche : Heures<br/>Clique droit : Minutes</p></body></html>");
+		//labelHorlogeText
+			//	.setText("<html><body><p align=\"justify\">Le but ici est de mettre l'horloge à l'heure. Pour dépacer une aiguille, tu dois maintenir presser le bouton de la souris, déplacer l'aiguille puis relâcher pour valider<br/>Clique gauche : Heures<br/>Clique droit : Minutes</p></body></html>");
 		}
 
 	/*------------------------------------------------------------------*\

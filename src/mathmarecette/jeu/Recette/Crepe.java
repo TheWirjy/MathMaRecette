@@ -60,7 +60,7 @@ public class Crepe extends Recette
 		imageRecette = new ImageIcon(".//image//splach/splachCrepes.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_crepe.png");
 
-		this.questionBonus = "Il est 16h22, il faut 10min pour faire la pâte et ensuite 15 min pour faire 10 crêpes. Quand pourra tu savourer tes crêpes? ";
+		this.questionBonus = "Il est 16h22, il faut 10min pour faire la pâte et ensuite 15 min pour faire 10 crêpes. Quand pourras-tu savourer tes crêpes? ";
 		this.reponseBonus = "16h47";
 
 		music = "./Son/crepe.wav";

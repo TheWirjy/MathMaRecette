@@ -23,8 +23,8 @@ public class Salade extends Recette
 		tabQuestion[1] = "Prépare une cuillère d’huile et une de vinaigre au bol";
 		tabQuestion[2] = "Prépare 3x une demi cuillère à café d’herbe de Provence et 3x moins de sel";
 		tabQuestion[3] = "Mets sur la table trois grandes feuilles de salade";
-		tabQuestion[4] = "Prépare ¼ de tomate";
-		tabQuestion[5] = "Mets 1/6 de concombre sur la table";
+		tabQuestion[4] = "Prépare trois quarts de tomate";
+		tabQuestion[5] = "Mets un demi concombre sur la table";
 
 		createQuestion(0, CHEMIN_QUESTION + "Q1R1.png", CHEMIN_QUESTION + "Q1R2.png", CHEMIN_QUESTION + "Q1R3.png", CHEMIN_QUESTION + "Q1R4.png");
 		createQuestion(1, CHEMIN_QUESTION + "Q2R1.png", CHEMIN_QUESTION + "Q2R2.png", CHEMIN_QUESTION + "Q2R3.png", CHEMIN_QUESTION + "Q2R4.png");
@@ -37,13 +37,13 @@ public class Salade extends Recette
 		tabSolution[1] = 2;
 		tabSolution[2] = 2;
 		tabSolution[3] = 4;
-		tabSolution[4] = 2;
-		tabSolution[5] = 3;
+		tabSolution[4] = 4;
+		tabSolution[5] = 1;
 
 		imageRecette = new ImageIcon(".//image//splach/splachSalade.png");
 		imageTitre = new ImageIcon(CHEMIN_TITRE + "titre_salade.png");
 
-		this.questionBonus = "Il est 11h53, le temps de préparation est de 8min, à quelle heure la salade sera prête?";
+		this.questionBonus = "Il est 11h53, le temps de préparation est de 8min, à quelle heure la salade sera t-elle prête?";
 		this.reponseBonus = "12h01";
 
 		music = "./Son/salade.wav";

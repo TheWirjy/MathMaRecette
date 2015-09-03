@@ -12,7 +12,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import mathmarecette.menu.JFrameMenu;
@@ -90,7 +89,7 @@ public class UseMathMaRecette
 
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException
 		{
-		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		SwingUtilities.invokeLater(new Runnable()
 			{
 
