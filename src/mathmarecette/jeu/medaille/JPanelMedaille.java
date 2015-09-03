@@ -76,7 +76,7 @@ public class JPanelMedaille extends JPanel
 			//affiche le temps du mode arcade
 			g2.drawImage(Tools.M_TIME.getImage(), 150, 280, null);
 			g2.setFont(font);
-			g2.drawString(time, 168, 315);
+			g2.drawString(time, 165, 315);
 			g2.setFont(font2);
 			//affiche le titre du jeu sur la toque
 			g2.drawString("MATH", 165, 50);

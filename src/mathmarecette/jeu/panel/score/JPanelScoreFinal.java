@@ -182,9 +182,8 @@ public class JPanelScoreFinal extends JPanel implements ActionListener
 				public void actionPerformed(ActionEvent e)
 					{
 					// TODO Auto-generated method stub
-					//System.out.println("menu");
 					panelMedaille.setVisible(!panelMedaille.isVisible());
-					panelMedaille.setRecette(panelRecette.getRecettes(), "00:00");
+					panelMedaille.setRecette(panelRecette.getRecettes(), time);
 
 					if (panelMedaille.isVisible())
 						{

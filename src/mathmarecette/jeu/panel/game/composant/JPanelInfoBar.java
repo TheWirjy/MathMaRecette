@@ -99,6 +99,14 @@ public class JPanelInfoBar extends JPanel
 		return s - timeSave;
 		}
 
+	public int getTimeFinal()
+		{
+		int s = 0;
+		s += minute * 60;
+		s += seconde;
+		return s;
+		}
+
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/

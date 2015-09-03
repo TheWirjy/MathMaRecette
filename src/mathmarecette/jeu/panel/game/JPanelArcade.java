@@ -98,10 +98,30 @@ public class JPanelArcade extends JPanelRecette
 			}
 		}
 
+	private String transformTime(int time)
+		{
+		int m = (int)(time / 60.0);
+		double reste = time / 60.0 - m;
+		int s = (int)(reste * 60);
+		String strM = m + "";
+		String strS = s + "";
+		if (m < 10)
+			{
+			strM = "0" + m;
+			}
+		if (s < 10)
+			{
+			strS = "0" + s;
+			}
+
+		return strM + ":" + strS;
+		}
+
 	//affiche le resumé du mode arcade (les scores finaux, medaille, toque)
 	public void afficheScoreTot()
 		{
-		panelScoreF.setTime(recette.getTime() + "");
+
+		panelScoreF.setTime(transformTime(panelMenu.getTimeFinal()));
 		this.remove(panelScore);
 		this.add(panelScoreF);
 		panelScoreF.startFade();
