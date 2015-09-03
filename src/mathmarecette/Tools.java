@@ -24,7 +24,6 @@ public class Tools
 	//joue un bruitage
 	public static void playBruitage(String bruitage)
 		{
-
 		if (!bMute)
 			{
 			try

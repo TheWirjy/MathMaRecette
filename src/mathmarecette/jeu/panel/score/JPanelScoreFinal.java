@@ -204,6 +204,7 @@ public class JPanelScoreFinal extends JPanel implements ActionListener
 				public void actionPerformed(ActionEvent e)
 					{
 					// TODO Auto-generated method stub
+					panelMedaille.save();
 					panelRecette.quitArcade();
 					}
 			});
